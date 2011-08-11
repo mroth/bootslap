@@ -1,17 +1,17 @@
 # Bootstrap mroth mac
-Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't happen all too often, but in between home, work, desktops, laptops, etc., it happens more often than I'd 
+Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't happen all too often, but in between home, work, desktops, laptops, etc., it happens more often than I'd like!
 
 
 
 
 ## Dev Environment
-1. XCode
+#### XCode
 
-2. Homebrew (now handled in setup_homebrew.sh)
+#### Homebrew (now handled in setup_homebrew.sh)
 
     /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 
-3. Configure git
+#### Configure git
 
     git config --global user.name "Matthew Rothenberg"
     git config --global user.email "mrothenberg@gmail.com"
@@ -19,7 +19,7 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
     git config --global github.token github_api_token
     git config color.ui true
 
-4. rvm and ruby 1.9 (why not default in Lion? lame...)
+#### rvm and ruby 1.9 (why not default in Lion? lame...)
 
     bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
     echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile
