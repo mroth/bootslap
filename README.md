@@ -13,20 +13,24 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 
 #### Configure git
 
+    ```bash
     git config --global user.name "Matthew Rothenberg"
     git config --global user.email "mrothenberg@gmail.com"
     git config --global github.user mroth
     git config --global github.token github_api_token
     git config color.ui true
+    ```
 
 #### rvm and ruby 1.9 (why not default in Lion? lame...)
 
+    ```bash
     bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
     echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile
     hash -r
     rvm install 1.9.2
     rvm use ruby-1.9.2
     gem install rails bundler
+    ```
 
 ## Configuration
 1. Install all software updates.
