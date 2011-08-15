@@ -34,6 +34,7 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 
 2. Generate new SSH keys for the machine.
     1. Generate keys
+    
         ssh-keygen -t rsa -C "mroth@bitly.com"
     
     2. Copy to github
@@ -42,6 +43,9 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 
 3. Set up GUI preferences
     1. DEAR GOD DISABLE NATURAL SCROLLING
+    
+        defaults write ~/Library/Preferences/.GlobalPreferences com.apple.swipescrolldirection -bool false
+        
     2. Change appearance and highlight color to be more monochromatic
 
 
