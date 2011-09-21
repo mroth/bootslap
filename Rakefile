@@ -1,7 +1,7 @@
 
 home = ENV['HOME']
 if File.expand_path(File.dirname( __FILE__ )) != "#{home}/.dothome"
-  abort "dothome should be in ~/.dothome"
+  abort "For this to work, we should be located in ~/.dothome"
 end
 
 require 'rake'
@@ -73,35 +73,35 @@ desc "setup mac stuff"
 task :mac do |t|
   if RUBY_PLATFORM.include?("darwin")
     
-    # hide unixy stuff from finder
-    sh "chflags hidden ~/var ~/tmp ~/bin"
-    
-    # set up the dock
-    sh "defaults write com.apple.dock tilesize -int 18" # small
-    sh "defaults write com.apple.dock largesize -int 32" # little bit of magnification if it was turned on
-    sh "defaults write com.apple.dock magnification -bool no"
-    sh "defaults write com.apple.dock autohide -bool no"
-    sh "defaults write com.apple.dock pinning -string end" # on the right pls
-    sh "defaults write com.apple.dock orientation -string bottom" # at the bottom
-    sh "defaults write com.apple.dock showhidden -bool true"
-    sh "defaults write com.apple.dock no-glass -boolean YES"
-    sh "defaults write com.apple.dock minimize-to-application -boolean YES"
-
-    # screen saver
-    sh "defaults write com.apple.dock wvous-bl-corner -int 5"
-    sh "defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Arabesque path '/System/Library/Screen Savers/Arabesque.qtz' type 1"
-
-    # background
-    sh %q{osascript -e 'tell application "System Events" to set picture of item 2 of every desktop to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Dark.png"'}
-    sh %q{osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Dark.png"'}
-
-    sh "killall Dock"
-    
-    # set up the terminal
-    sh "open ~/.dothome/mac/ph.terminal"
-    sh "sleep 1"
-    sh %q{osascript -e 'tell application "Terminal" to set default settings to settings set "ph"'}
-    sh %q{osascript -e 'tell application "Terminal" to set startup settings to settings set "ph"'}
+    # # hide unixy stuff from finder
+    # sh "chflags hidden ~/var ~/tmp ~/bin"
+    # 
+    # # set up the dock
+    # sh "defaults write com.apple.dock tilesize -int 18" # small
+    # sh "defaults write com.apple.dock largesize -int 32" # little bit of magnification if it was turned on
+    # sh "defaults write com.apple.dock magnification -bool no"
+    # sh "defaults write com.apple.dock autohide -bool no"
+    # sh "defaults write com.apple.dock pinning -string end" # on the right pls
+    # sh "defaults write com.apple.dock orientation -string bottom" # at the bottom
+    # sh "defaults write com.apple.dock showhidden -bool true"
+    # sh "defaults write com.apple.dock no-glass -boolean YES"
+    # sh "defaults write com.apple.dock minimize-to-application -boolean YES"
+    # 
+    # # screen saver
+    # sh "defaults write com.apple.dock wvous-bl-corner -int 5"
+    # sh "defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Arabesque path '/System/Library/Screen Savers/Arabesque.qtz' type 1"
+    # 
+    # # background
+    # sh %q{osascript -e 'tell application "System Events" to set picture of item 2 of every desktop to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Dark.png"'}
+    # sh %q{osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Dark.png"'}
+    # 
+    # sh "killall Dock"
+    # 
+    # # set up the terminal
+    # sh "open ~/.dothome/mac/ph.terminal"
+    # sh "sleep 1"
+    # sh %q{osascript -e 'tell application "Terminal" to set default settings to settings set "ph"'}
+    # sh %q{osascript -e 'tell application "Terminal" to set startup settings to settings set "ph"'}
     
     # graphite, won't take effect until apps are restarted
     # in theory you could send a NSControlTintDidChangeNotification but that's too much work
