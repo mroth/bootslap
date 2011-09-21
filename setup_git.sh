@@ -19,6 +19,6 @@ read -p "When you have your API key, enter it here: " api_key
 echo "RUNNING: git config --global github.token $api_key"
 git config --global github.token $api_key
 
-echo "Enabling bash completion"
-cp /usr/local/etc/bash_completion.d/git-completion.bash ~/.git-completion.sh
+echo "Enabling bash completion and PS1 highlights"
+cp lib/bash_github.sh ~/.bash_github.sh
 cat lib/profile.git.sh >> ~/.bash_profile
