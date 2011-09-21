@@ -31,11 +31,11 @@ task :dotfiles do
     next if not File.file? file
     
     if File.symlink? target and (File.readlink(target) == src)
-    
+      puts "*** ~/.#{base} already symlinked properly"
     elsif File.symlink? target or File.exist? target
-      puts "skip ~/.#{base}"
+      puts "!!! skipping ~/.#{base} (already exists, delete it and re-run if you want it linked)"
     else
-      puts "link ~/.#{base}"
+      puts "+++ linking ~/.#{base}"
       File.symlink(src, target);
     end
   end
