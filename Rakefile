@@ -27,7 +27,7 @@ task :dotfiles do
     target = File.join(home, ".#{base}")
     src = ".dothome/#{base}"
     
-    next if %w[README Rakefile].include? base
+    next if %w[README.md Rakefile].include? base
     next if not File.file? file
     
     if File.symlink? target and (File.readlink(target) == src)
