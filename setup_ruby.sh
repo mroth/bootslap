@@ -5,5 +5,6 @@ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM
 source ~/.bash_profile
 rvm install 1.9.2
 rvm use ruby-1.9.2
+rvm --default use 1.9.2
 gem install rails bundler 
 gem install launchy heroku sqlite3
