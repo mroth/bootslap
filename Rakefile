@@ -18,6 +18,18 @@ task :ruby do
   sh "gem install rails bundler sqlite3"
 end
 
+desc "install homebrew and essential packages"
+task :brew do
+  if not File.exists? "/usr/local/bin/brew"
+    puts "+++ Installing homebrew"
+    sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
+  else
+    puts "*** homebrew already installed."
+  end
+  
+  #sh "brew install git nmap"
+end
+
 desc "install dotfiles"
 task :dotfiles do
 
