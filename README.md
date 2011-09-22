@@ -10,7 +10,7 @@ Clone the repository into your home directory:
 `git clone git@github.com:mroth/bootstrapper.git ~/.dothome`
 
 #### bash setup
-Run `rake dotfiles:install` which will symlink your .bash_profile and .bashrc to the ones in the repo (as well as any other files).  *TODO: Old files will be backed up with a .old suffix.*
+Run `rake dotfiles:install` which will symlink your .bash_profile and .bashrc to the ones in the repo (as well as any other files).  Old files will be backed up with a .old suffix.
 
 Most of the work here happens in `bash/run`.  Note that host and OS specific files will be sourced in `bash/host/*` and `bash/os/*` if they exist, this allows you to have one master repo but still have certain things that only happen on certain OSes or machines.
 

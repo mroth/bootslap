@@ -74,8 +74,10 @@ namespace :dotfiles do
       if File.symlink? target and (File.readlink(target) == src)
         puts "*** ~/.#{base} already symlinked properly"
       elsif File.symlink? target or File.exist? target
-        puts "!!! skipping ~/.#{base} (already exists, delete it and re-run if you want it linked)"
-        #TODO: rename them ourselves and then continue with symlink
+        puts "!!! backing up existing ~/.#{base} to ~/.#{base}.old "
+        FileUtils.mv(target,"#{target}.old")
+        puts "+++ linking ~/.#{base}"
+        File.symlink(src, target);
       else
         puts "+++ linking ~/.#{base}"
         File.symlink(src, target);
