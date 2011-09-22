@@ -26,6 +26,11 @@ source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
 #
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
+#
+# Put /usr/local/bin in path FIRST so brew doctor doesn't complain
+#
+export PATH=/usr/local/bin:$PATH
+
 #convenience 
 source ~/.dothome/bash/aliases.sh
 source ~/.dothome/bash/settings.sh
