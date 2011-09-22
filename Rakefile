@@ -49,26 +49,36 @@ namespace :brew do
   
 end
 
-desc "install dotfiles"
-task :dotfiles do
+namespace :dotfiles do
+  desc "install dotfiles"
+  task :install do
 
-  FileList["#{home}/.dothome/*"].each do |file|
+    FileList["#{home}/.dothome/*"].each do |file|
     
-    base = File.basename(file)
-    target = File.join(home, ".#{base}")
-    src = ".dothome/#{base}"
+      base = File.basename(file)
+      target = File.join(home, ".#{base}")
+      src = ".dothome/#{base}"
     
-    next if %w[README.md Rakefile].include? base
-    next if not File.file? file
+      next if %w[README.md Rakefile].include? base
+      next if not File.file? file
     
-    if File.symlink? target and (File.readlink(target) == src)
-      puts "*** ~/.#{base} already symlinked properly"
-    elsif File.symlink? target or File.exist? target
-      puts "!!! skipping ~/.#{base} (already exists, delete it and re-run if you want it linked)"
-    else
-      puts "+++ linking ~/.#{base}"
-      File.symlink(src, target);
+      if File.symlink? target and (File.readlink(target) == src)
+        puts "*** ~/.#{base} already symlinked properly"
+      elsif File.symlink? target or File.exist? target
+        puts "!!! skipping ~/.#{base} (already exists, delete it and re-run if you want it linked)"
+        #TODO: rename them ourselves and then continue with symlink
+      else
+        puts "+++ linking ~/.#{base}"
+        File.symlink(src, target);
+      end
     end
+  end
+  
+  desc "uninstall dotfiles, restoring whatever existed before"
+  task :uninstall do
+    abort "...not implemented yet, sorry!"
+    #TODO: remove symlinks
+    #TODO: restore .old files if they exist
   end
 end
 
