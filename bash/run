@@ -16,10 +16,18 @@ source_if_exists ~/.dothome/bash/host/${hostname}.sh
 # source OS specific scripts
 source_if_exists ~/.dothome/bash/os/${hostos}.sh
 
+#
+# source git completion from homebrew git install (always brew install git!)
+#
+source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
+
+#
+# load RVM (assuming a user-scoped install)
+#
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
 #convenience 
 source ~/.dothome/bash/aliases.sh
 source ~/.dothome/bash/settings.sh
 source ~/.dothome/bash/gitprompt.sh
 
-#source git completion from homebrew git install (always brew install git!)
-source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
