@@ -61,7 +61,7 @@ end
 
 desc "setup dirs"
 task :dirs do |t|
-  %w[var bin tmp].each do |d|
+  %w[tmp src].each do |d|
     if not File.directory? "#{home}/#{d}"
       puts "dir  ~/#{d}"
       FileUtils.mkpath "#{home}/#{d}"
