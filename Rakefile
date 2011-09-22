@@ -93,6 +93,12 @@ namespace :dotfiles do
   end
 end
 
+# desc "install solarized color scheme (iterm2,vim,textmate,others?)"
+# task :solarized do
+#   sh "mkdir -p ~/Downloads/solarized"
+#   sh "git clone git://github.com/altercation/vim-colors-solarized.git ~/Downloads/solarized"
+# end
+
 desc "setup ssh"
 task :ssh => FileList['ssh/*', "#{home}/.dothome_private/ssh/*"] do |t|
   if not File.directory? "#{home}/.ssh"
