@@ -11,6 +11,8 @@ task :default => [:dotfiles]
 
 desc "install rvm and ruby 1.9.2"
 task :ruby do
+  # TODO: check if installed already
+  # `type rvm | head -1` should return 'rvm is a function'
   sh "bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)"
   sh "rvm install 1.9.2"
   sh "rvm use ruby-1.9.2"
@@ -18,21 +20,33 @@ task :ruby do
   sh "gem install rails bundler sqlite3"
 end
 
-desc "install homebrew and essential packages"
-task :brew do
-  if not File.exists? "/usr/local/bin/brew"
-    puts "+++ Installing homebrew"
-    sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
-  else
-    puts "*** homebrew already installed."
-  end
-  sh "brew update"
+namespace :brew do
+  task :all => [:install, :update]
   
-  # sh "brew install git nmap" do |ok, res|
-  #   if ! ok
-  #     #do nothing, don't die when brew throws an error if already installed
-  #   end
-  # end
+  desc "installs homebrew"
+  task :install do
+    if not File.exists? "/usr/local/bin/brew"
+      puts "+++ Installing homebrew"
+      sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
+    else
+      puts "*** homebrew already installed."
+    end
+  end
+  
+  desc "updates homebrew package list"
+  task :update do
+    sh "brew update"
+  end
+  
+  desc "install essential packages"
+  task :packages do
+    sh "brew install git nmap" do |ok, res|
+      if ! ok
+        #do nothing, don't die when brew throws an error if already installed
+      end
+    end
+  end
+  
 end
 
 desc "install dotfiles"
