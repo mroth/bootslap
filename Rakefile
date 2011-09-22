@@ -5,7 +5,7 @@ if File.expand_path(File.dirname( __FILE__ )) != "#{home}/.dothome"
 end
 
 require 'rake'
-verbose false
+verbose true
 
 task :default => [:dotfiles]
 
@@ -93,11 +93,18 @@ namespace :dotfiles do
   end
 end
 
-# desc "install solarized color scheme (iterm2,vim,textmate,others?)"
-# task :solarized do
-#   sh "mkdir -p ~/Downloads/solarized"
-#   sh "git clone git://github.com/altercation/vim-colors-solarized.git ~/Downloads/solarized"
-# end
+desc "install solarized color scheme (iterm2,vim,textmate,others?)"
+task :solarized do
+  #get most recent version of files
+  if not File.directory? "#{home}/Downloads/solarized"
+    sh "git clone git://github.com/altercation/solarized.git ~/Downloads/solarized"
+  end
+  sh "cd ~/Downloads/solarized; git pull;"
+  
+  #install for vim
+  sh "mkdir -p ~/.vim/colors"
+  sh "cp ~/Downloads/solarized/vim-colors-solarized/colors/solarized.vim ~/.vim/colors"
+end
 
 desc "setup ssh"
 task :ssh => FileList['ssh/*', "#{home}/.dothome_private/ssh/*"] do |t|
