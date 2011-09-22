@@ -26,8 +26,13 @@ task :brew do
   else
     puts "*** homebrew already installed."
   end
+  sh "brew update"
   
-  #sh "brew install git nmap"
+  # sh "brew install git nmap" do |ok, res|
+  #   if ! ok
+  #     #do nothing, don't die when brew throws an error if already installed
+  #   end
+  # end
 end
 
 desc "install dotfiles"
