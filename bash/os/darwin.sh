@@ -6,6 +6,10 @@
 export BUNDLER_EDITOR=mate
 export GIT_EDITOR='mate -w'
 
+# go to open finder window in terminal
+# http://hints.macworld.com/article.php?story=20110817133623734
+alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists then if target of window 1 as string is not \":\" then get POSIX path of (target of window 1 as alias)"`'
+
 #
 # found in PH's stuff, an awesome notifier when a command that takes more than 10sec finishes
 # disabled for now until I special case this to make sure growl and growlnotify are installed before running,
