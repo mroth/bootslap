@@ -1,4 +1,3 @@
-
 home = ENV['HOME']
 if File.expand_path(File.dirname( __FILE__ )) != "#{home}/.dothome"
   abort "For this to work, we should be located in ~/.dothome"
@@ -11,13 +10,20 @@ task :default => [:dotfiles]
 
 desc "install rvm and ruby 1.9.2"
 task :ruby do
-  # TODO: check if installed already
-  # `type rvm | head -1` should return 'rvm is a function'
-  sh "bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)"
-  sh "rvm install 1.9.2"
-  sh "rvm use ruby-1.9.2"
-  sh "rvm --default use 1.9.2"
-  sh "gem install rails bundler sqlite3"
+  # check if installed already
+  if not File.exists? "#{home}/.rvm/bin/rvm"
+    puts "*** rvm not installed, installing..."
+    sh "bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)"
+  else
+    puts "*** rvm already installed, checking for most recent version..."
+    sh "rvm get released" #upgrade to most recent released version
+  end
+  
+  TARGET_VERSION='1.9.2'
+  #TODO: don't install version if already installed?
+  sh "rvm install #{TARGET_VERSION}"
+  sh "rvm --default use #{TARGET_VERSION}"
+  sh "gem install bundler --conservative" #make sure it's here as will use this to install fun stuff later
 end
 
 task :rubygems do

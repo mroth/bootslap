@@ -1,3 +1,4 @@
 rails
 bundler
 json
+sqlite3
