@@ -20,6 +20,10 @@ task :ruby do
   sh "gem install rails bundler sqlite3"
 end
 
+task :rubygems do
+  sh "xargs gem install --conservative < gems/essential"
+end
+
 namespace :brew do
   task :all => [:install, :update, :packages]
   
