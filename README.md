@@ -3,6 +3,9 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 
 This is a new version (IN PROGRESS!!!) designed to work with syncing updates across machines, not just a one-time setup.  The old version is in oldskool directory.
 
+### Philosophy
+Tasks should be runnable at any time, creating/repairing installations when needed, ignoring stuff if already exists.
+
 ### Installation
 
 #### Get the files
