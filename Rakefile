@@ -26,8 +26,24 @@ task :ruby do
   sh "gem install bundler --conservative" #make sure it's here as will use this to install fun stuff later
 end
 
+desc "install any rubygems from list"
 task :rubygems do
   sh "xargs gem install --conservative < gems/essential"
+end
+
+task :python do
+  if not File.exists? "/usr/local/bin/pip"
+    sh "sudo easy_install pip"
+  end
+  if not File.exists? "/usr/local/bin/virtualenv"
+    sh "sudo pip install virtualenv"
+  end
+  if not File.exists? "/usr/local/bin/virtualenvwrapper.sh"
+    sh "sudo pip install virtualenvwrapper"
+  end
+  if not File.directory? "#{home}/.virtualenvs"
+    sh "mkdir -p #{home}/.virtualenvs"
+  end
 end
 
 namespace :brew do

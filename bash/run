@@ -27,6 +27,12 @@ source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
 #
+# setup python stuff
+#
+export WORKON_HOME=$HOME/.virtualenvs
+source_if_exists /usr/local/bin/virtualenvwrapper.sh
+
+#
 # Put /usr/local/bin in path FIRST so brew doctor doesn't complain
 #
 export PATH=/usr/local/bin:$PATH
