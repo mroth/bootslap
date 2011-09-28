@@ -1,5 +1,5 @@
-home = ENV['HOME']
-if File.expand_path(File.dirname( __FILE__ )) != "#{home}/.dothome"
+$home = ENV['HOME']
+if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
   abort "For this to work, we should be located in ~/.dothome"
 end
 
@@ -21,7 +21,7 @@ namespace :dotfiles do
   desc "install dotfiles"
   task :install do
 
-    FileList["#{home}/.dothome/*"].each do |file|
+    FileList["#{$home}/.dothome/*"].each do |file|
     
       base = File.basename(file)
       target = File.join(home, ".#{base}")
@@ -55,7 +55,7 @@ end
 desc "install solarized color scheme (iterm2,vim,textmate,others?)"
 task :solarized do
   #get most recent version of files
-  if not File.directory? "#{home}/Downloads/solarized"
+  if not File.directory? "#{$home}/Downloads/solarized"
     sh "git clone git://github.com/altercation/solarized.git ~/Downloads/solarized"
   end
   sh "cd ~/Downloads/solarized; git pull;"
@@ -66,10 +66,10 @@ task :solarized do
 end
 
 # desc "setup ssh"
-# task :ssh => FileList['ssh/*', "#{home}/.dothome_private/ssh/*"] do |t|
-#   if not File.directory? "#{home}/.ssh"
+# task :ssh => FileList['ssh/*', "#{$home}/.dothome_private/ssh/*"] do |t|
+#   if not File.directory? "#{$home}/.ssh"
 #     puts "dir  ~/.ssh"
-#     FileUtils.mkpath "#{home}/.ssh"
+#     FileUtils.mkpath "#{$home}/.ssh"
 #   end
 #   puts "make ~/.ssh/config"
 #   sh "echo '\# reminder: this file is generated from ~/.dothome/ssh' > ~/.ssh/config"
@@ -77,7 +77,7 @@ end
 # end
 # 
 # desc "setup git config"
-# task :git => FileList['git/*', "#{home}/.dothome_private/git/*"] do |t|
+# task :git => FileList['git/*', "#{$home}/.dothome_private/git/*"] do |t|
 #   puts "make ~/.dothome/gitconfig"
 #   sh "echo '\# reminder: this file is generated from .dothome/git' > ~/.dothome/gitconfig"
 #   sh "cat #{t.prerequisites.join(' ')} >> ~/.dothome/gitconfig"  
@@ -86,9 +86,9 @@ end
 # desc "setup dirs"
 # task :dirs do |t|
 #   %w[tmp src].each do |d|
-#     if not File.directory? "#{home}/#{d}"
+#     if not File.directory? "#{$home}/#{d}"
 #       puts "dir  ~/#{d}"
-#       FileUtils.mkpath "#{home}/#{d}"
+#       FileUtils.mkpath "#{$home}/#{d}"
 #     end
 #   end
 # end  

@@ -1,7 +1,7 @@
 desc "install rvm and ruby 1.9.2"
 task :ruby do
   # check if installed already
-  if not File.exists? "#{home}/.rvm/bin/rvm"
+  if not File.exists? "#{$home}/.rvm/bin/rvm"
     puts "*** rvm not installed, installing..."
     sh "bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)"
   else
