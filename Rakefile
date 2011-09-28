@@ -6,83 +6,16 @@ end
 require 'rake'
 verbose true
 
-task :default => [:dotfiles]
+# $LOAD_PATH << './rake'
+# load 'homebrew.rake'
+# load 'ruby.rake'
 
-desc "install rvm and ruby 1.9.2"
-task :ruby do
-  # check if installed already
-  if not File.exists? "#{home}/.rvm/bin/rvm"
-    puts "*** rvm not installed, installing..."
-    sh "bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)"
-  else
-    puts "*** rvm already installed, checking for most recent version..."
-    sh "rvm get released" #upgrade to most recent released version
-  end
-  
-  TARGET_VERSION='1.9.2'
-  #TODO: don't install version if already installed?
-  sh "rvm install #{TARGET_VERSION}"
-  sh "rvm --default use #{TARGET_VERSION}"
-  sh "gem install bundler --conservative" #make sure it's here as will use this to install fun stuff later
-end
+# lets split this up across a bunch of files to make things easier to organize
+# load any files in the rake/* dir
+Dir["rake/*.rb"].each {|file| load file }
 
-desc "install any rubygems from list"
-task :rubygems do
-  sh "xargs gem install --conservative < gems/essential"
-end
+task :default => [ 'dotfiles:install' ]
 
-task :python do
-  if not File.exists? "/usr/local/bin/pip"
-    sh "sudo easy_install pip"
-  end
-  if not File.exists? "/usr/local/bin/virtualenv"
-    sh "sudo pip install virtualenv"
-  end
-  if not File.exists? "/usr/local/bin/virtualenvwrapper.sh"
-    sh "sudo pip install virtualenvwrapper"
-  end
-  if not File.directory? "#{home}/.virtualenvs"
-    sh "mkdir -p #{home}/.virtualenvs"
-  end
-end
-
-namespace :brew do
-  task :all => [:install, :update, :packages]
-  
-  desc "installs homebrew"
-  task :install do
-    if not File.exists? "/usr/local/bin/brew"
-      puts "+++ Installing homebrew"
-      sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
-    else
-      puts "*** homebrew already installed."
-    end
-  end
-  
-  desc "updates homebrew package list"
-  task :update do
-    sh "brew update"
-  end
-  
-  desc "install packages from the brew directory"
-  task :packages do
-    #read each file in brew directory, assume packages are listed one per line
-    package_list = []
-    FileList["brew/*"].each do |f|
-      file = File.new(f, "r")
-      while (line = file.gets)
-        package_list << line.chomp if not line =~ /^#.*/ #ignore commented out packages
-      end
-    end
-    
-    package_list.each do |p|
-      sh "brew install #{p}" do |ok, res|
-        #do nothing, don't die when brew throws an error if already installed
-      end
-    end
-  end
-  
-end
 
 namespace :dotfiles do
   desc "install dotfiles"
@@ -132,33 +65,33 @@ task :solarized do
   sh "cp ~/Downloads/solarized/vim-colors-solarized/colors/solarized.vim ~/.vim/colors"
 end
 
-desc "setup ssh"
-task :ssh => FileList['ssh/*', "#{home}/.dothome_private/ssh/*"] do |t|
-  if not File.directory? "#{home}/.ssh"
-    puts "dir  ~/.ssh"
-    FileUtils.mkpath "#{home}/.ssh"
-  end
-  puts "make ~/.ssh/config"
-  sh "echo '\# reminder: this file is generated from ~/.dothome/ssh' > ~/.ssh/config"
-  sh "cat #{t.prerequisites.join(' ')} >> ~/.ssh/config"  
-end
-
-desc "setup git config"
-task :git => FileList['git/*', "#{home}/.dothome_private/git/*"] do |t|
-  puts "make ~/.dothome/gitconfig"
-  sh "echo '\# reminder: this file is generated from .dothome/git' > ~/.dothome/gitconfig"
-  sh "cat #{t.prerequisites.join(' ')} >> ~/.dothome/gitconfig"  
-end
-
-desc "setup dirs"
-task :dirs do |t|
-  %w[tmp src].each do |d|
-    if not File.directory? "#{home}/#{d}"
-      puts "dir  ~/#{d}"
-      FileUtils.mkpath "#{home}/#{d}"
-    end
-  end
-end  
+# desc "setup ssh"
+# task :ssh => FileList['ssh/*', "#{home}/.dothome_private/ssh/*"] do |t|
+#   if not File.directory? "#{home}/.ssh"
+#     puts "dir  ~/.ssh"
+#     FileUtils.mkpath "#{home}/.ssh"
+#   end
+#   puts "make ~/.ssh/config"
+#   sh "echo '\# reminder: this file is generated from ~/.dothome/ssh' > ~/.ssh/config"
+#   sh "cat #{t.prerequisites.join(' ')} >> ~/.ssh/config"  
+# end
+# 
+# desc "setup git config"
+# task :git => FileList['git/*', "#{home}/.dothome_private/git/*"] do |t|
+#   puts "make ~/.dothome/gitconfig"
+#   sh "echo '\# reminder: this file is generated from .dothome/git' > ~/.dothome/gitconfig"
+#   sh "cat #{t.prerequisites.join(' ')} >> ~/.dothome/gitconfig"  
+# end
+# 
+# desc "setup dirs"
+# task :dirs do |t|
+#   %w[tmp src].each do |d|
+#     if not File.directory? "#{home}/#{d}"
+#       puts "dir  ~/#{d}"
+#       FileUtils.mkpath "#{home}/#{d}"
+#     end
+#   end
+# end  
 
 desc "setup mac stuff"
 task :mac do |t|
