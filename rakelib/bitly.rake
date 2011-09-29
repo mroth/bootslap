@@ -12,6 +12,7 @@ namespace :bitly do
       # since virtualenvwrapper is a function, need to run bash in interactive mode which expands functions
       sh "bash -ci 'mkvirtualenv --no-site-packages bitly'"
     end
+    sh "bash -ci 'workon bitly; pip install yolk pycurl tornado'"
   end
 
   desc "Set up a full development VM mirroring our production environment."
