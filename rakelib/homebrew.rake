@@ -1,8 +1,8 @@
-namespace :brew do
-  task :all => [:install, :update, :packages]
+namespace :homebrew do
+  task :install => [:brew_install, :brew_update, :packages_install]
   
   desc "installs homebrew"
-  task :install do
+  task :brew_install do
     if not File.exists? "/usr/local/bin/brew"
       puts "+++ Installing homebrew"
       sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
@@ -12,12 +12,12 @@ namespace :brew do
   end
   
   desc "updates homebrew package list"
-  task :update do
+  task :brew_update do
     sh "brew update"
   end
   
   desc "install packages from the brew directory"
-  task :packages do
+  task :packages_install do
     #read each file in brew directory, assume packages are listed one per line
     package_list = []
     FileList["brew/*"].each do |f|

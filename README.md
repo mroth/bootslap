@@ -18,7 +18,9 @@ Run `rake dotfiles:install` which will symlink your .bash_profile and .bashrc to
 Most of the work here happens in `bash/run`.  Note that host and OS specific files will be sourced in `bash/host/*` and `bash/os/*` if they exist, this allows you to have one master repo but still have certain things that only happen on certain OSes or machines.
 
 #### homebrew and packages
-Run `rake brew:all` which will install homebrew, update the package list, and install the list of packages found in `brew/*`.  These tasks are also available individually via `brew:install`, `brew:update`, and `brew:packages`.
+Run `rake homebrew:install` which will install homebrew, update the package list, and install the list of packages found in `brew/*`.
+
+These tasks are also available individually via `homebrew:brew_install`, `homebrew:brew_update`, and `homebrew:packages_install`.
 
 *TODO: add brew:uninstall sourcing the uninstall_homebrew.sh script?*
 
