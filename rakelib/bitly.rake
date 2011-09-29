@@ -7,13 +7,13 @@ namespace :bitly do
   $bitly_src = "#{$home}/src/bitly"
   
   desc "Create a virtualenv that has the python stuff we need to run a prototype server"
-  task :proto_vm do
+  task :proto_vm => ["dotfiles:install", "python:install"] do
+    # since virtualenvwrapper is a function, need to run bash in interactive mode which expands functions
+    sh "bash -ci 'mkvirtualenv --no-site-packages bitly'"
   end
 
   desc "Set up a full development VM mirroring our production environment."
-  task :prod_vm => ["python:install"] do
-    #sh "mkvirtualenv bitly"
-    
+  task :prod_vm do
   end
 
   desc "Create local directory to hold source repos"
@@ -43,6 +43,10 @@ namespace :bitly do
   desc "Uninstall everything (WARNING: BE SURE YOU DONT HAVE UNCOMMITTED CHANGES!)"
   task :uninstall do
     #TODO: blow it all away
+  end
+  
+  task :proto_vm_uninstall do
+    sh "bash -ci 'rmvirtualenv bitly'"
   end
 
 end
