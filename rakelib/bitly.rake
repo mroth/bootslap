@@ -11,7 +11,9 @@ namespace :bitly do
   end
 
   desc "Set up a full development VM mirroring our production environment."
-  task :prod_vm do
+  task :prod_vm => ["python:install"] do
+    #sh "mkvirtualenv bitly"
+    
   end
 
   desc "Create local directory to hold source repos"
