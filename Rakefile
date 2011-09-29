@@ -24,7 +24,7 @@ namespace :dotfiles do
     FileList["#{$home}/.dothome/*"].each do |file|
     
       base = File.basename(file)
-      target = File.join(home, ".#{base}")
+      target = File.join($home, ".#{base}")
       src = ".dothome/#{base}"
     
       next if %w[README.md Rakefile].include? base
