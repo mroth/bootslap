@@ -8,8 +8,10 @@ namespace :bitly do
   
   desc "Create a virtualenv that has the python stuff we need to run a prototype server"
   task :proto_vm => ["dotfiles:install", "python:install"] do
-    # since virtualenvwrapper is a function, need to run bash in interactive mode which expands functions
-    sh "bash -ci 'mkvirtualenv --no-site-packages bitly'"
+    if not File.directory? "#{$home}/.virtualenvs/bitly"
+      # since virtualenvwrapper is a function, need to run bash in interactive mode which expands functions
+      sh "bash -ci 'mkvirtualenv --no-site-packages bitly'"
+    end
   end
 
   desc "Set up a full development VM mirroring our production environment."
@@ -45,6 +47,7 @@ namespace :bitly do
     #TODO: blow it all away
   end
   
+  desc "Delete the virtualenv for bitly prototypes"
   task :proto_vm_uninstall do
     sh "bash -ci 'rmvirtualenv bitly'"
   end

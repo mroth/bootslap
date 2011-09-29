@@ -31,7 +31,7 @@ namespace :dotfiles do
       next if not File.file? file
     
       if File.symlink? target and (File.readlink(target) == src)
-        puts "*** ~/.#{base} already symlinked properly"
+        # puts "*** ~/.#{base} already symlinked properly" #lets not spam on this now since this will be a prereq for a lot of things
       elsif File.symlink? target or File.exist? target
         puts "!!! backing up existing ~/.#{base} to ~/.#{base}.old "
         FileUtils.mv(target,"#{target}.old")
