@@ -12,7 +12,7 @@ verbose true
 
 # lets split this up across a bunch of files to make things easier to organize
 # load any files in the rake/* dir
-Dir["rake/*.rb"].each {|file| load file }
+#Dir["rake/*.rb"].each {|file| load file }
 
 task :default => [ 'dotfiles:install' ]
 
