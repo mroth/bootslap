@@ -28,7 +28,18 @@ These tasks are also available individually via `homebrew:brew_install`, `homebr
 *TODO*
 
 #### python with virutalenv setup
-*TODO*
+`python:install` done.
+
+#### setup work stuff
+```
+rake bitly:install              # Installs everything
+rake bitly:prod_src             # Check out the production repo
+rake bitly:prod_vm              # Set up a full development VM mirroring our production environment.
+rake bitly:proto_src            # Check out the prototypes repo
+rake bitly:proto_vm             # Create a virtualenv that has the python stuff we need to run a prototype server
+rake bitly:proto_vm_uninstall   # Delete the virtualenv for bitly prototypes
+rake bitly:uninstall            # Uninstall everything (WARNING: BE SURE YOU DONT HAVE UNCOMMITTED CHANGES!)
+```
 
 ### Inspiration
 Came from various places:
