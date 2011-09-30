@@ -27,16 +27,18 @@ namespace :bitly do
   end
 
   desc "Check out the prototypes repo"
-  task :proto_src => [:src_dir] do
+  task :proto_src => [:src_dir, "git:config_github"] do
     if not File.directory? "#{$bitly_src}/prototypes"
       sh "git clone git@github.com:bitly/prototypes.git #{$bitly_src}/prototypes"
+      sh "cd #{$bitly_src}/prototypes; git config user.email mroth@bitly.com"
     end
   end
 
   desc "Check out the production repo"
-  task :prod_src => [:src_dir] do
+  task :prod_src => [:src_dir, "git:config_github"] do
     if not File.directory? "#{$bitly_src}/bitly"
       sh "git clone git@github.com:bitly/bitly.git #{$bitly_src}/bitly"
+      sh "cd #{$bitly_src}/prototypes; git config user.email mroth@bitly.com"
     end
   end
 
