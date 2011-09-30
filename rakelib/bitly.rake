@@ -19,7 +19,6 @@ namespace :bitly do
   task :prod_vm do
   end
 
-  desc "Create local directory to hold source repos"
   task :src_dir do
     if not File.directory? "#{$bitly_src}"
       FileUtils.mkdir_p "#{$bitly_src}"
