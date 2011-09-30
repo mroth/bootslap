@@ -4,7 +4,7 @@ if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
 end
 
 require 'rake'
-verbose true
+verbose false
 
 # $LOAD_PATH << './rake'
 # load 'homebrew.rake'
