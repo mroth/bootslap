@@ -28,12 +28,20 @@ These tasks are also available individually via `homebrew:brew_install`, `homebr
 *TODO*
 
 #### python with virutalenv setup
+<<<<<<< HEAD
 Use `rake python:install`. Done.
 
 #### setup work stuff
 Everything is taken care of via `rake bitly:install`.  Full list of available tasks below:
 
 ```
+=======
+`python:install` done.
+
+#### setup work stuff
+```
+rake bitly:install              # Installs everything
+>>>>>>> 0d9fc3b83b7d17aee9940a0af935847d96588366
 rake bitly:prod_src             # Check out the production repo
 rake bitly:prod_vm              # Set up a full development VM mirroring our production environment.
 rake bitly:proto_src            # Check out the prototypes repo
