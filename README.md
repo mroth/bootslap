@@ -31,7 +31,7 @@ These tasks are also available individually via `homebrew:brew_install`, `homebr
 Use `rake python:install`. Done.
 
 #### setup work stuff
-Everything is taken care of via `rake bitly:install`.  Full list of available tasks below:
+Everything is taken care of via `rake bitly:install`.  Other available tasks below:
 
 ```
 rake bitly:prod_src             # Check out the production repo
