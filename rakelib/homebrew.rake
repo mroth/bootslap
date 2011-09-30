@@ -17,7 +17,7 @@ namespace :homebrew do
   end
   
   desc "install packages from the brew directory"
-  task :packages_install do
+  task :packages_install => [:brew_update] do
     #read each file in brew directory, assume packages are listed one per line
     package_list = []
     FileList["brew/*"].each do |f|
