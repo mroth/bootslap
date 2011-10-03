@@ -2,3 +2,4 @@ rails
 bundler
 json
 sqlite3
+git
