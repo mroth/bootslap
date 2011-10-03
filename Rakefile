@@ -1,4 +1,5 @@
 $home = ENV['HOME']
+$installers = "#{$home}/.dothome/installers"
 if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
   abort "For this to work, we should be located in ~/.dothome"
 end
@@ -50,19 +51,6 @@ namespace :dotfiles do
     #TODO: remove symlinks
     #TODO: restore .old files if they exist
   end
-end
-
-desc "install solarized color scheme (iterm2,vim,textmate,others?)"
-task :solarized do
-  #get most recent version of files
-  if not File.directory? "#{$home}/Downloads/solarized"
-    sh "git clone git://github.com/altercation/solarized.git ~/Downloads/solarized"
-  end
-  sh "cd ~/Downloads/solarized; git pull;"
-  
-  #install for vim
-  sh "mkdir -p ~/.vim/colors"
-  sh "cp ~/Downloads/solarized/vim-colors-solarized/colors/solarized.vim ~/.vim/colors"
 end
 
 # desc "setup ssh"
