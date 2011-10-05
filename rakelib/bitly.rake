@@ -13,6 +13,7 @@ namespace :bitly do
       sh "bash -ci 'mkvirtualenv --no-site-packages bitly'"
     end
     sh "bash -ci 'workon bitly; pip install yolk pycurl tornado'"
+    sh "bash -ci 'workon bitly; pip install -e git://github.com/jsmits/github-cli.git#egg=github-cli'"
   end
 
   desc "Set up a full development VM mirroring our production environment."
