@@ -1,23 +1,39 @@
 require 'rake'
 verbose false
 
-#
+#########################################
 # Global vars and setup
-#
+#########################################
 $home = ENV['HOME']
 $installers = "#{$home}/.dothome/installers"
 if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
   abort "For this to work, we should be located in ~/.dothome"
 end
 
-#
+
+#########################################
+# Global methods
+#########################################
+
+# A common pattern for my scripts.  Check if a specific directory exists.  If not,
+# clone it from a git repository.  But first, recursively create any parent directories
+# for the path.
+def subdir_clone( directory, name, git_repo )
+  if not File.directory? "#{directory}/#{name}"
+    FileUtils.mkdir_p directory
+    sh "git clone #{git_repo} '#{directory}/#{name}'"
+  end
+end
+
+
+#########################################
 # Default task
-#
+#########################################
 task :default => [ 'dotfiles:install' ]
 
-#
+#########################################
 # Main dotfiles installer
-#
+#########################################
 namespace :dotfiles do
   desc "install dotfiles"
   task :install do

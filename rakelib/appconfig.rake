@@ -13,10 +13,8 @@ namespace :textmate do
   end
   
   task :bundles_install => [:create_dirs] do
-    if not File.directory? "#{tm_bundles_dir}/less.tmbundle"
-      sh "git clone git://github.com/appden/less.tmbundle.git '#{tm_bundles_dir}/less.tmbundle'"
-    end
-    
+    subdir_clone( tm_bundles_dir, 'less.tmbundle', 'git://github.com/appden/less.tmbundle.git' )
+    subdir_clone( tm_bundles_dir, 'CoffeeScript.tmbundle', 'git://github.com/jashkenas/coffee-script-tmbundle')
     sh "osascript -e 'tell app \"TextMate\" to reload bundles'"
   end
   
@@ -25,10 +23,7 @@ namespace :textmate do
   end
   
   task :webpreview_themes_install => [:create_dirs] do        
-    #install github textmate preview for markdown https://github.com/kneath/github_textmate_preview
-    if not File.directory? "#{tm_webpreview_dir}/github"
-      sh "git clone git://github.com/kneath/github_textmate_preview.git '#{tm_webpreview_dir}/github'"
-    end
+    subdir_clone( tm_webpreview_dir, 'github', 'git://github.com/kneath/github_textmate_preview.git')
   end
   
 end
@@ -42,10 +37,11 @@ namespace :solarized do
   
   task :download do
     #get most recent version of files
-    if not File.directory? solarized_dir
-      FileUtils.mkdir_p solarized_dir
-      sh "git clone git://github.com/altercation/solarized.git #{solarized_dir}"
-    end
+    # if not File.directory? solarized_dir
+    #   FileUtils.mkdir_p solarized_dir
+    #   sh "git clone git://github.com/altercation/solarized.git #{solarized_dir}"
+    # end
+    subdir_clone( $installers, 'solarized', 'git://github.com/altercation/solarized.git' )
   end
 
   desc "install solarized color theme for textmate"
