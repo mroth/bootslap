@@ -19,3 +19,13 @@ set tabstop=4
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 colorscheme solarized
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim things that only apply to GUI 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has ("gui_running")
+    set go-=T                   " no toolbar
+    set guifont=Monaco:h12		" default font and size
+    set background=light
+endif
