@@ -1,6 +1,16 @@
 # Bootstrapper
 Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't happen all too often, but in between home, work, desktops, laptops, catastrophic hardware failures, etc., it happens more often than I'd like!
 
+The main things this handles (thus far):
+
+ - homebrew and list of packages
+ - rvm, ruby 1.9, rails 3.1 and handy gems
+ - pip, virtualenv and virtualenvwrapper for python
+ - textmate plugins, snippits, etc., and solarized color scheme
+ - a sane vim and macvim configuration, including solarized color scheme
+ - dotfiles are symlinked and kept in a git repository, so they stay up to date across machines (with provisions for host and os-specific files).
+
+This is still a bit of a mess, but getting cleaned up over time, and is approaching the point where it could be easily customized for your own usage.
 
 ## Philosophy
 Tasks should be runnable at any time, creating/repairing installations when needed, ignoring stuff if already exists.
