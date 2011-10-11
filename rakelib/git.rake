@@ -5,6 +5,8 @@ namespace :git do
     sh "git config --global user.name 'Matthew Rothenberg'"
     sh "git config --global user.email 'mrothenberg@gmail.com'"
     sh "git config --global color.ui true"
+    sh "git config --global merge.tool opendiff"
+    sh "git config --global core.excludesfile ~/.gitignore"
   end
   
   desc "configures github username and API token. (interactive)"
