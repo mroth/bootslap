@@ -5,16 +5,29 @@ namespace :textmate do
   tm_bundles_dir = "#{$home}/Library/Application\ Support/TextMate/Bundles"
   tm_themes_dir = "#{$home}/Library/Application\ Support/TextMate/Themes"
   tm_webpreview_dir = "#{$home}/Library/Application\ Support/TextMate/Themes/WebPreview"
+  tm_plugins_dir = "#{$home}/Library/Application\ Support/TextMate/Plugins/"
     
   task :create_dirs do
-    for dir in [tm_bundles_dir, tm_themes_dir, tm_webpreview_dir] do
+    for dir in [tm_bundles_dir, tm_themes_dir, tm_webpreview_dir, tm_plugins_dir] do
       if not File.directory? dir then FileUtils.mkdir_p dir end
+    end
+  end
+  
+  task :plugins_install => [:create_dirs] do
+    subdir_clone( $installers, 'projectplus', 'git://github.com/gknops/projectplus.git' )
+    if not File.exists? "#{$installers}/projectplus/build/Release/ProjectPlus.tmplugin"
+      sh( "cd #{$installers}/projectplus; xcodebuild")
+    end
+    if not File.exists? "#{tm_plugins_dir}/ProjectPlus.tmplugin"
+      FileUtils.cp_r("#{$installers}/projectplus/build/Release/ProjectPlus.tmplugin", "#{tm_plugins_dir}/ProjectPlus.tmplugin")
     end
   end
   
   task :bundles_install => [:create_dirs] do
     subdir_clone( tm_bundles_dir, 'less.tmbundle', 'git://github.com/appden/less.tmbundle.git' )
     subdir_clone( tm_bundles_dir, 'CoffeeScript.tmbundle', 'git://github.com/jashkenas/coffee-script-tmbundle')
+    subdir_clone( tm_bundles_dir, 'JavaScript jQuery.tmbundle', 'git://github.com/kswedberg/jquery-tmbundle.git')
+    
     sh "osascript -e 'tell app \"TextMate\" to reload bundles'"
   end
   
