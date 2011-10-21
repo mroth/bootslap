@@ -27,6 +27,11 @@ source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
 #
+# load scm_breeze
+#
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && . "$HOME/.scm_breeze/scm_breeze.sh"
+
+#
 # setup python stuff
 #
 export WORKON_HOME=$HOME/.virtualenvs

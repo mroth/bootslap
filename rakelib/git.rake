@@ -39,4 +39,9 @@ namespace :git do
     end
   end
   
+  desc "install scm_breeze awesomeness for CLI"
+  task :install_scmbreeze do
+    subdir_clone( $home, '.scm_breeze', 'git://github.com/ndbroadbent/scm_breeze.git')
+  end
+  
 end
