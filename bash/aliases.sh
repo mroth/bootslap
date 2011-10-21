@@ -1,1 +1,2 @@
-alias g="git"
+alias g='git'
+alias lsd='ls -od \.*'
