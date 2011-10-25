@@ -38,6 +38,12 @@ export WORKON_HOME=$HOME/.virtualenvs
 source_if_exists /usr/local/bin/virtualenvwrapper.sh
 
 #
+# setup node stuff
+#
+export NODE_PATH="/usr/local/lib/node"
+export PATH="/usr/local/share/npm/bin:$PATH"
+
+#
 # Put /usr/local/bin in path FIRST so brew doctor doesn't complain
 #
 export PATH=/usr/local/bin:$PATH

@@ -7,12 +7,12 @@ namespace :homebrew do
       puts "+++ Installing homebrew"
       sh "/usr/bin/ruby -e \"$(curl -fsSL https://raw.github.com/gist/323731)\""
     else
-      puts "*** homebrew already installed."
+      #puts "*** homebrew already installed."
     end
   end
   
   desc "updates homebrew package list"
-  task :brew_update do
+  task :brew_update => [:brew_install] do
     sh "brew update"
   end
   
