@@ -30,6 +30,16 @@ end
 # Default task
 #########################################
 task :default => [ 'dotfiles:install' ]
+task :bootstrap => [  
+                      'dotfiles:install', 
+                      'homebrew:install', 
+                      'git:install', 
+                      'python:install', 
+                      'node:install', 
+                      'textmate:install', 
+                      'solarized:install',
+                      'bitly:install'
+                    ]
 
 #########################################
 # Main dotfiles installer

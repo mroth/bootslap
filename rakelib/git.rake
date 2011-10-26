@@ -1,5 +1,7 @@
 namespace :git do
   
+  task :install => [:install_brewgit, :config, :config_github, :install_scmbreeze]
+  
   desc "configures git variables"
   task :config do
     sh "git config --global user.name 'Matthew Rothenberg'"
