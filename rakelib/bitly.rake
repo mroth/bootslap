@@ -11,9 +11,9 @@ namespace :bitly do
     if not File.directory? "#{$home}/.virtualenvs/bitly"
       # since virtualenvwrapper is a function, need to run bash in interactive mode which expands functions
       sh "bash -ci 'mkvirtualenv --no-site-packages bitly'"
+      sh "bash -ci 'workon bitly; pip install yolk pycurl tornado==1.2.1'"
+      sh "bash -ci 'workon bitly; pip install -e git://github.com/jsmits/github-cli.git#egg=github-cli'"
     end
-    sh "bash -ci 'workon bitly; pip install yolk pycurl tornado==1.2.1'"
-    sh "bash -ci 'workon bitly; pip install -e git://github.com/jsmits/github-cli.git#egg=github-cli'"
   end
   
   #migration to downgrade tornado (since greg is a trouble maker)
