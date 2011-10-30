@@ -34,7 +34,8 @@ task :bootstrap => [
                       'dotfiles:install', 
                       'homebrew:install', 
                       'git:install', 
-                      'python:install', 
+                      'python:install',
+                      'ruby:install', 
                       'node:install', 
                       'textmate:install', 
                       'solarized:install',
@@ -95,16 +96,16 @@ end
 #   end
 # end  
 
-desc "setup mac stuff"
-task :mac do |t|
-  if RUBY_PLATFORM.include?("darwin")
-    
-    # # hide unixy stuff from finder
-    # sh "chflags hidden ~/var ~/tmp ~/bin"
-    
-    # graphite, won't take effect until apps are restarted
-    # in theory you could send a NSControlTintDidChangeNotification but that's too much work
-    sh "defaults write -g AppleAquaColorVariant -int 6"
-    
-  end
-end
+# desc "setup mac stuff"
+# task :mac do |t|
+#   if RUBY_PLATFORM.include?("darwin")
+#     
+#     # hide unixy stuff from finder
+#     sh "chflags hidden ~/var ~/tmp ~/bin"
+#     
+#     # graphite, won't take effect until apps are restarted
+#     # in theory you could send a NSControlTintDidChangeNotification but that's too much work
+#     sh "defaults write -g AppleAquaColorVariant -int 6"
+#     
+#   end
+# end
