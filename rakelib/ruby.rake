@@ -1,6 +1,6 @@
 namespace :ruby do
 
-  task :install => [:rvm_install, :gems_install]
+  task :install => [:rvm_install, :ruby19_install, :gems_install]
 
   desc "install rvm"
   task :rvm_install do
@@ -11,6 +11,7 @@ namespace :ruby do
     else
       #puts "*** rvm already installed, checking for most recent version..."
       sh "rvm get latest" #upgrade to most recent released version
+      sh "rvm reload"
     end
   end
   
@@ -18,10 +19,15 @@ namespace :ruby do
   desc "install ruby 1.9"
   task :ruby19_install => [:rvm_install] do
     TARGET_VERSION='1.9.3-p0'
-    curr_ver = "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"
+    #curr_ver = "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}" #gets 1.8.7 since rake apparently runs system default instead of rvm
+    rvm_ver = `rvm list default string`
+    rvm_ver.match( /^ruby-([\d\.]+)-p(\d+)/ )
+    curr_rvm_version = $1
+    curr_rvm_patch = $2
+    curr_ver = "#{$1}-p#{$2}"
     
     if curr_ver != TARGET_VERSION
-      if curr_ver.match(/^1\.9\.\d/)
+      if curr_rvm_version.match(/^1\.9\.\d/)
         #existing 1.9 install, upgrade it instead of installing new
         sh "rvm upgrade #{curr_ver} #{TARGET_VERSION}"
       else
