@@ -1,3 +1,6 @@
+set nocompatible            " dont care about legacy vi
+set encoding=utf-8
+
 syntax enable               " syntax highlighting
 set autoread                " autoread changes to file
 set number                  " line numbers
@@ -6,12 +9,19 @@ set smarttab                " tab and backspace are smart
 set ttyfast                 " we have a fast terminal
 set showmatch				" show matches braces
 set cursorline              " highlight line cursor is on
+set showcmd                 " display incomplete commands
 
+"" Searching
+set hlsearch                " highlight matches
+set incsearch               " incremental searching
+set ignorecase              " searches are case insensitive...
+set smartcase               " ... unless they contain at least one capital letter
 
 " tab stuff
 set expandtab
 set shiftwidth=4
 set tabstop=4
+filetype plugin indent on   " load file type plugins + indentation
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
