@@ -1,3 +1,4 @@
+call pathogen#infect()
 set nocompatible            " dont care about legacy vi
 set encoding=utf-8
 
