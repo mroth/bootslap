@@ -24,6 +24,9 @@ set shiftwidth=4
 set tabstop=4
 filetype plugin indent on   " load file type plugins + indentation
 
+" FUCK YOU SWAP FILES (at least stay out of my way - maybe tmpfolder later?)
+set nobackup
+set noswapfile
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color schemes
@@ -40,3 +43,17 @@ if has ("gui_running")
     set guifont=Monaco:h12		" default font and size
     set background=light
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Weird meta shit
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" auto-source the vimrc file whenever it is saved
+if has("autocmd")
+    autocmd! bufwritepost .vimrc source $MYVIMRC
+endif
+
+" ,v to edit vimrc in new tab
+let mapleader = ","
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
