@@ -1,4 +1,6 @@
 call pathogen#infect()
+call pathogen#helptags()
+
 set nocompatible            " dont care about legacy vi
 set encoding=utf-8
 
@@ -33,7 +35,6 @@ set noswapfile
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 colorscheme solarized
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim things that only apply to GUI 
