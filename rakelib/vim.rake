@@ -1,5 +1,7 @@
 namespace :vim do
 
+    task :install => [:plugins_install]
+    
     task :pathogen_install do
         system "mkdir -p ~/.vim/autoload ~/.vim/bundle"
         system "curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim"
