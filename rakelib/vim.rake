@@ -13,6 +13,7 @@ namespace :vim do
         subdir_clone( $pluginsdir, 'rails.vim', 'git://github.com/tpope/vim-rails.git' )
         subdir_clone( $pluginsdir, 'rake.vim', 'git://github.com/tpope/vim-rake.git' )
         subdir_clone( $pluginsdir, 'fugitive.vim', 'git://github.com/tpope/vim-fugitive.git' )
+        subdir_clone( $pluginsdir, 'bundler.vim', 'git://github.com/tpope/vim-bundler.git' )
     end
 end
 
