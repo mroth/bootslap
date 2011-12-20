@@ -36,6 +36,17 @@ set noswapfile
 set background=dark
 colorscheme solarized
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Convenience stuff for specific dev environments
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" bind control-l to hashrocket
+imap <C-l> <Space>=><Space>
+
+" convert word into ruby symbol
+imap <C-k> <C-o>b:<Esc>Ea
+nmap <C-k> lbi:<Esc>E
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim things that only apply to GUI 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""

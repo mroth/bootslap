@@ -14,6 +14,9 @@ namespace :vim do
         subdir_clone( $pluginsdir, 'rake.vim', 'git://github.com/tpope/vim-rake.git' )
         subdir_clone( $pluginsdir, 'fugitive.vim', 'git://github.com/tpope/vim-fugitive.git' )
         subdir_clone( $pluginsdir, 'bundler.vim', 'git://github.com/tpope/vim-bundler.git' )
+        subdir_clone( $pluginsdir, 'autoclose.vim', 'https://github.com/vim-scripts/AutoClose.git' )
+        subdir_clone( $pluginsdir, 'matchtag.vim', 'https://github.com/gregsexton/MatchTag.git')
+        subdir_clone( $pluginsdir, 'surround.vim', 'git://github.com/tpope/vim-surround.git')
     end
 end
 
