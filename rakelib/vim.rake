@@ -1,7 +1,12 @@
 namespace :vim do
 
     task :install => [:plugins_install]
-    
+
+    task :janus_install do
+        subdir_clone( $home, '.vim', 'git://github.com/carlhuda/janus.git')
+        system "cd ~/.vim; rake"
+    end
+
     task :pathogen_install do
         system "mkdir -p ~/.vim/autoload ~/.vim/bundle"
         system "curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim"
@@ -17,6 +22,7 @@ namespace :vim do
         subdir_clone( $pluginsdir, 'autoclose.vim', 'https://github.com/vim-scripts/AutoClose.git' )
         subdir_clone( $pluginsdir, 'matchtag.vim', 'https://github.com/gregsexton/MatchTag.git')
         subdir_clone( $pluginsdir, 'surround.vim', 'git://github.com/tpope/vim-surround.git')
+        subdir_clone( $pluginsdir, 'nerdtree.vim', 'https://github.com/scrooloose/nerdtree.git')
     end
 end
 
