@@ -1,9 +1,44 @@
 namespace :vim do
 
-    task :install => [:plugins_install]
+    task :install => [:janus_install]
 
     task :janus_install do
-        subdir_clone( $home, '.vim', 'git://github.com/carlhuda/janus.git')
+        target = "#{$home}/.vim"
+        dotgit = "#{target}/.git"
+        janusrepo = 'git://github.com/carlhuda/janus.git'
+
+        if (File.exists?(target) && File.exists?(dotgit) )
+            remote_url = `cd #{target}; git remote -v | grep fetch | awk '{print $2}'`.chomp
+            if remote_url == janusrepo
+                puts "*** bootstrapper: .vim is already part of janus"
+            else
+                # puts remote_url + " not proper"
+                FileUtils.move target, (target + ".old")
+            end
+        elsif File.exists?(target)
+            FileUtils.move target, (target + ".old")
+        end
+        
+        subdir_clone( $home, '.vim', janusrepo)
+
+        #check if .vimrc and .gvimrc are symlinked to proper place for janus
+        #janus installer is going to assume these DONT EXIST at all, so do the right thing
+        #...before we run janus rake installer
+        %w[ vimrc gvimrc ].each do |filename|
+            dotfile = File.expand_path("~/.#{filename}")
+            if File.exists? dotfile
+                if not File.symlink? dotfile
+                    puts "*** bootstrapper: existing #{dotfile}, renaming"
+                    FileUtils.move dotfile, (dotfile + ".old")
+                elsif File.readlink(dotfile) != "#{$home}/.vim/#{filename}"
+                    puts "*** bootstrapper: #{dotfile} is a symlink already but to the wrong place, renaming"
+                    FileUtils.move dotfile, (dotfile + ".old")
+                else
+                    puts "*** bootstrapper: #{dotfile} seem to be already symlinked to proper janus place"
+                end
+            end
+        end
+
         system "cd ~/.vim; rake"
     end
 
@@ -24,5 +59,6 @@ namespace :vim do
         subdir_clone( $pluginsdir, 'surround.vim', 'git://github.com/tpope/vim-surround.git')
         subdir_clone( $pluginsdir, 'nerdtree.vim', 'https://github.com/scrooloose/nerdtree.git')
     end
+
 end
 
