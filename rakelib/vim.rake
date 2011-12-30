@@ -26,13 +26,13 @@ namespace :vim do
         #...before we run janus rake installer
         %w[ vimrc gvimrc ].each do |filename|
             dotfile = File.expand_path("~/.#{filename}")
-            if File.exists? dotfile
+            if ( File.exists?(dotfile) || File.symlink?(dotfile) )
                 if not File.symlink? dotfile
                     puts "*** bootstrapper: existing #{dotfile}, renaming"
-                    FileUtils.move dotfile, (dotfile + ".old")
-                elsif File.readlink(dotfile) != "#{$home}/.vim/#{filename}"
+                    File.rename dotfile, (dotfile + ".old")
+                elsif File.readlink(dotfile) != "#{$home}/.vim/janus/vim/#{filename}"
                     puts "*** bootstrapper: #{dotfile} is a symlink already but to the wrong place, renaming"
-                    FileUtils.move dotfile, (dotfile + ".old")
+                    File.rename dotfile, (dotfile + ".old")
                 else
                     puts "*** bootstrapper: #{dotfile} seem to be already symlinked to proper janus place"
                 end
