@@ -13,7 +13,7 @@
 " set smarttab                " tab and backspace are smart
 " set ttyfast                 " we have a fast terminal
 " set showmatch				" show matches braces
-" set cursorline              " highlight line cursor is on
+set cursorline              " highlight line cursor is on
 " set showcmd                 " display incomplete commands
 
 " " Searching
@@ -24,8 +24,8 @@
 
 " " tab stuff
 " set expandtab
-" set shiftwidth=4
-" set tabstop=4
+set shiftwidth=4
+set tabstop=4
 " filetype plugin indent on   " load file type plugins + indentation
 
 " " FUCK YOU SWAP FILES (at least stay out of my way - maybe tmpfolder later?)

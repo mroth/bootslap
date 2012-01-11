@@ -3,6 +3,10 @@ namespace :vim do
     task :install => [:janus_install]
 
     task :janus_install do
+        system "curl -Lo- http://bit.ly/janus-bootstrap | bash"
+    end
+
+    task :old_janus_install do
         target = "#{$home}/.vim"
         dotgit = "#{target}/.git"
         janusrepo = 'git://github.com/carlhuda/janus.git'
