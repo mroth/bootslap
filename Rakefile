@@ -31,15 +31,15 @@ end
 #########################################
 task :default => [ 'dotfiles:install' ]
 task :bootstrap =>  [
-                      'dotfiles:install', 
-                      'homebrew:install', 
-                      'git:install', 
+                      'dotfiles:install',
+                      'homebrew:install',
+                      'git:install',
                       'python:install',
-                      'ruby:install', 
-                      'node:install', 
-                      'textmate:install', 
-                      'solarized:install',
-                      'bitly:install'
+                      'ruby:install',
+                      'node:install',
+                      #'textmate:install', #should be no longer needed with textmate2.. or at least needs to be updated
+                      #'solarized:install', #TODO: janus handles this now? not for apple color picker tho
+                      #'bitly:install' #TODO: update to mermanify script before reactivating
                     ]
 task :update =>     [
                       'homebrew:brew_upgrade',
