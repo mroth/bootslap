@@ -8,7 +8,7 @@ source ~/.dothome/bash/functions.sh
 # 
 hostos=`uname`
 hostname=`hostname -s`
-if [ "$hostos" == "darwin" ]; then hostname=`scutil --get LocalHostName`; fi
+#if [ "$hostos" == "darwin" ]; then hostname=`scutil --get LocalHostName`; fi
 
 # source any host specific scripts (if they exist)
 source_if_exists ~/.dothome/bash/host/${hostname}.sh
@@ -51,7 +51,7 @@ export PATH=/usr/local/bin:$PATH
 #
 # Vim wrappers for RVM with Janus
 #
-define_vim_wrappers
+#define_vim_wrappers
 
 #convenience 
 source ~/.dothome/bash/aliases.sh
