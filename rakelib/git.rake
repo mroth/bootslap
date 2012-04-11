@@ -45,5 +45,9 @@ namespace :git do
   task :install_scmbreeze do
     subdir_clone( $home, '.scm_breeze', 'git://github.com/ndbroadbent/scm_breeze.git')
   end
+
+  task :update_scmbreeze do
+      sh "bash -ci 'update_scm_breeze'"
+  end
   
 end
