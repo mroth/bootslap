@@ -3,10 +3,12 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 
 The main things this handles (thus far):
 
- - homebrew and list of packages
+ - installs homebrew and list of packages
  - rvm, ruby 1.9, rails 3.1 and handy gems
  - pip, virtualenv and virtualenvwrapper for python
  - node.js and npm package manager
+ - setup zsh and oh-my-zsh
+ - in case we aren't used to zsh yet, set up bash nicely too (git prompting, etc)
  - textmate plugins, snippits, etc., and solarized color scheme
  - a sane vim and macvim configuration, including solarized color scheme
  - dotfiles are symlinked and kept in a git repository, so they stay up to date across machines (with provisions for host and os-specific files).
