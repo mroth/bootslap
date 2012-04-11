@@ -31,6 +31,11 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 
 #
+# Run our main shell configuration
+#
+source ~/.dothome/bash/run
+
+#
 # Let this rvm shit live here instead of main configuration, 
 # cuz rvm installer is annoying and re-adds them!
 #
