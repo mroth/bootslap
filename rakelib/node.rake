@@ -26,6 +26,11 @@ namespace :node do
     puts "Uninstalling npm..."
     sh "npm uninstall npm -g"
   end
+
+  task :npm_update do
+      puts "Updating global npm modules..."
+      sh "npm update -g"
+  end
   
   task :coffee_install => [:npm_install] do
     if not File.exists? "/usr/local/bin/coffee"
