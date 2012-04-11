@@ -1,7 +1,7 @@
 #
 # functions needed to run this
 #
-source ~/.dothome/shell/functions.sh
+source ~/.dothome/shell/global/functions.sh
 
 #
 # get hostname and os
