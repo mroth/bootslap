@@ -15,6 +15,12 @@ namespace :homebrew do
   task :brew_update => [:brew_install] do
     sh "brew update"
   end
+
+  desc "upgrades all homebrew packages to latest versions"
+  task :brew_upgrade => [:brew_update] do
+      sh "brew upgrade"
+      sh "brew cleanup"
+  end
   
   desc "install packages from the brew directory"
   task :packages_install do
