@@ -1,4 +1,3 @@
 #
-# global bash settings
+# global environment settings/variables
 #
-export CLICOLOR=1

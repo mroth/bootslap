@@ -15,6 +15,10 @@ source ~/.dothome/shell/bash/gitprompt.sh
 #
 source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
 
+#
+# enable color LS output (bash specific)
+#
+export CLICOLOR=1
 
 #
 # Let these live here instead of main configuration, 
