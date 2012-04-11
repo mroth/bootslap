@@ -25,6 +25,11 @@ Clone the repository into my home directory:
 READONLY MODE:
 `git clone git://github.com/mroth/bootstrapper.git ~/.dothome`
 
+### Bootstrap
+Just do `cd ~/.dothome; rake bootstrap`
+
+## Doing stuff manually instead
+
 ### bash setup
 Run `rake dotfiles:install` which will symlink your .bash_profile and .bashrc to the ones in the repo (as well as any other files).  Old files will be backed up with a .old suffix.
 
@@ -35,25 +40,12 @@ Run `rake homebrew:install` which will install homebrew, update the package list
 
 These tasks are also available individually via `homebrew:brew_install`, `homebrew:brew_update`, and `homebrew:packages_install`.
 
-*TODO: add brew:uninstall sourcing the uninstall_homebrew.sh script?*
-
-### rvm, ruby 1.9.2, rails 3.1, and commonly used gems
-*TODO*
+### rvm, ruby 1.9.x, rails 3.1, and commonly used gems
+*TODO: write description of this*
 
 ### python with virtualenv setup
 Use `rake python:install`. Done.
 
-### setup work stuff
-This part is highly personal and likely to be useless for anyone else except me.  Everything is taken care of via `rake bitly:install`.  Other available tasks below:
-
-```
-rake bitly:prod_src             # Check out the production repo
-rake bitly:prod_vm              # Set up a full development VM mirroring our production environment.
-rake bitly:proto_src            # Check out the prototypes repo
-rake bitly:proto_vm             # Create a virtualenv that has the python stuff we need to run a prototype server
-rake bitly:proto_vm_uninstall   # Delete the virtualenv for bitly prototypes
-rake bitly:uninstall            # Uninstall everything (WARNING: BE SURE YOU DONT HAVE UNCOMMITTED CHANGES!)
-```
 
 ## Inspiration
 Came from various places:
