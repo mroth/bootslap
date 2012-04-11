@@ -3,12 +3,12 @@
 #
 # Run our main shell configuration
 #
-source ~/.dothome/bash/run
+source ~/.dothome/shell/run
 
 #
 # Run stuff to configure nice git prompt in shell (bash specific)
 #
-source ~/.dothome/bash/bash/gitprompt.sh
+source ~/.dothome/shell/bash/gitprompt.sh
 
 #
 # Let these live here instead of main configuration, 

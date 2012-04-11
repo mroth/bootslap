@@ -1,7 +1,7 @@
 #
 # functions needed to run this
 #
-source ~/.dothome/bash/functions.sh
+source ~/.dothome/shell/functions.sh
 
 #
 # get hostname and os
@@ -11,10 +11,10 @@ hostname=`hostname -s`
 #if [ "$hostos" == "darwin" ]; then hostname=`scutil --get LocalHostName`; fi
 
 # source any host specific scripts (if they exist)
-source_if_exists ~/.dothome/bash/host/${hostname}.sh
+source_if_exists ~/.dothome/shell/host/${hostname}.sh
 
 # source any OS specific scripts
-source_if_exists ~/.dothome/bash/os/${hostos}.sh
+source_if_exists ~/.dothome/shell/os/${hostos}.sh
 
 #
 # source git completion from homebrew git install (always brew install git!)
