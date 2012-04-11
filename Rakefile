@@ -42,6 +42,7 @@ task :bootstrap =>  [
                       #'bitly:install' #TODO: update to mermanify script before reactivating
                     ]
 task :update =>     [
+                      'dotfiles:install',
                       'homebrew:brew_upgrade',
                       'node:npm_update',
                       'vim:janus_update',
