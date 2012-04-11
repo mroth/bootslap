@@ -6,6 +6,11 @@
 source ~/.dothome/bash/run
 
 #
+# Run stuff to configure nice git prompt in shell (bash specific)
+#
+source ~/.dothome/bash/bash/gitprompt.sh
+
+#
 # Let these live here instead of main configuration, 
 # cuz rvm installer is annoying and re-adds them!
 #

@@ -57,5 +57,5 @@ export PATH=/usr/local/bin:$PATH
 #convenience 
 source ~/.dothome/bash/aliases.sh
 source ~/.dothome/bash/settings.sh
-source ~/.dothome/bash/gitprompt.sh
+#source ~/.dothome/bash/gitprompt.sh #dont run this globally anymore, zsh dont need it
 
