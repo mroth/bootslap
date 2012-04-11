@@ -29,3 +29,9 @@ plugins=(git gem brew heroku)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+#
+# Let this rvm shit live here instead of main configuration, 
+# cuz rvm installer is annoying and re-adds them!
+#
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

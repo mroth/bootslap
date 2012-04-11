@@ -24,7 +24,7 @@ source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
 #
 # load RVM (assuming a user-scoped install)
 #
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
 #
 # load scm_breeze
@@ -51,6 +51,7 @@ export PATH=/usr/local/bin:$PATH
 #
 # Vim wrappers for RVM with Janus
 #
+# TODO: with most recent version of rvm and janus this seems to be working fine without this.. remove?
 #define_vim_wrappers
 
 #convenience 

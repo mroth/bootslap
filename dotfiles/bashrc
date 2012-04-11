@@ -1,3 +1,12 @@
 # bashrc is executed for all interactive bash shells
 
+#
+# Run our main shell configuration
+#
 source ~/.dothome/bash/run
+
+#
+# Let these live here instead of main configuration, 
+# cuz rvm installer is annoying and re-adds them!
+#
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
