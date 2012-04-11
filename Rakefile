@@ -30,7 +30,7 @@ end
 # Default task
 #########################################
 task :default => [ 'dotfiles:install' ]
-task :bootstrap => [  
+task :bootstrap =>  [
                       'dotfiles:install', 
                       'homebrew:install', 
                       'git:install', 
@@ -40,6 +40,12 @@ task :bootstrap => [
                       'textmate:install', 
                       'solarized:install',
                       'bitly:install'
+                    ]
+task :update =>     [
+                      'homebrew:brew_upgrade',
+                      'node:npm_update',
+                      'vim:janus_update',
+                      'git:update_scmbreeze'
                     ]
 
 #########################################
