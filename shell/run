@@ -50,5 +50,5 @@ export PATH=/usr/local/bin:$PATH
 #define_vim_wrappers
 
 #convenience 
-source ~/.dothome/shell/aliases.sh
-source ~/.dothome/shell/settings.sh
+source ~/.dothome/shell/global/aliases.sh
+source ~/.dothome/shell/global/settings.sh
