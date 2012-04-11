@@ -11,6 +11,12 @@ source ~/.dothome/shell/run
 source ~/.dothome/shell/bash/gitprompt.sh
 
 #
+# source git completion from homebrew git install (always brew install git!)
+#
+source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
+
+
+#
 # Let these live here instead of main configuration, 
 # cuz rvm installer is annoying and re-adds them!
 #

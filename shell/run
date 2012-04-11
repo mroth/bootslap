@@ -17,11 +17,6 @@ source_if_exists ~/.dothome/shell/host/${hostname}.sh
 source_if_exists ~/.dothome/shell/os/${hostos}.sh
 
 #
-# source git completion from homebrew git install (always brew install git!)
-#
-source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
-
-#
 # load scm_breeze
 #
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && . "$HOME/.scm_breeze/scm_breeze.sh"
