@@ -48,6 +48,11 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 #
 export PATH=/usr/local/bin:$PATH
 
+#
+# Vim wrappers for RVM with Janus
+#
+define_vim_wrappers
+
 #convenience 
 source ~/.dothome/bash/aliases.sh
 source ~/.dothome/bash/settings.sh
