@@ -3,8 +3,8 @@
 #
 
 # use textmate
-export BUNDLER_EDITOR=mate
-export GIT_EDITOR='mate -w'
+#export BUNDLER_EDITOR=mate
+#export GIT_EDITOR='vim'
 
 # go to open finder window in terminal
 # http://hints.macworld.com/article.php?story=20110817133623734
