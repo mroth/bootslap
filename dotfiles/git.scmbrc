@@ -1,6 +1,6 @@
 #
 # Git File Shortcuts Config
-# ------------------------------------------------------------------------------
+# ----------------------------------------------
 # - Set your preferred prefix for env variable file shortcuts.
 #   (I chose 'e' because it is easy to slide your finger to it from '$'.)
 export git_env_char="e"
@@ -11,7 +11,7 @@ export ga_auto_remove="yes"
 
 
 # Git Index Config
-# --------------------------
+# ----------------------------------------------
 # Repos will be automatically added from this directory.
 export GIT_REPO_DIR="$HOME/src"
 # Add the full paths of any extra repos to GIT_REPOS, separated with ':'
@@ -19,11 +19,11 @@ export GIT_REPO_DIR="$HOME/src"
 export GIT_REPOS=""
 export git_status_command="git_status_shortcuts"
 # Alias
-git_index_alias="s"    # The 's' stands for 'switch' or 'sourcecode'...
+git_index_alias="c"    # Switch to a repo in the (c)ode directory
 
 
 # Git Aliases
-# ------------------------------------------------------------------------------------
+# ----------------------------------------------
 git_alias="g"
 
 # 1. 'SCM Breeze' functions
@@ -77,7 +77,7 @@ git_show_alias="gsh"
 # Git Keyboard Shortcuts
 # ----------------------------------------------
 # Keyboard shortcuts are on by default. Set this to 'false' to disable them.
-git_keyboard_shortcuts_enabled="true"
+git_keyboard_shortcuts_enabled="false"
 git_commit_all_keys="\C-x "        # CTRL+x, SPACE
 git_add_and_commit_keys="\C-xc"    # CTRL+x, c
 
@@ -86,3 +86,4 @@ git_add_and_commit_keys="\C-xc"    # CTRL+x, c
 # ----------------------------------------------
 # Expand numbered args for common bash commands
 bash_command_wrapping_enabled="true"
+
