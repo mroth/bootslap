@@ -46,3 +46,9 @@ source ~/.dothome/shell/run
 # cuz rvm installer is annoying and re-adds them!
 #
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+#
+# for iterm2 "reuse previous tab's directory" feature, make sure rvmrc is run when new tab opens
+#
+__rvm_project_rvmrc
+
