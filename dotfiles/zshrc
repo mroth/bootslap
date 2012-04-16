@@ -36,6 +36,12 @@ source $ZSH/oh-my-zsh.sh
 source ~/.dothome/shell/run
 
 #
+# rvm insists on .zlogin for this, but that doesnt get called when executing zsh manually from bash
+# TODO: is there a way to do this that makes more sense? (this seems redundant)
+#
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+#
 # Let this rvm shit live here instead of main configuration, 
 # cuz rvm installer is annoying and re-adds them!
 #
