@@ -43,6 +43,10 @@ namespace :ruby do
     
   end
 
+  task :rvm_update do
+      sh "rvm get stable"
+  end
+
   desc "install any rubygems from list"
   task :gems_install do
     sh "xargs gem install --conservative < gems/essential"

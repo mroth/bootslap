@@ -44,6 +44,7 @@ task :bootstrap =>  [
 task :update =>     [
                       'dotfiles:install',
                       'homebrew:brew_upgrade',
+                      'ruby:rvm_update',
                       'node:npm_update',
                       'vim:janus_update',
                       'git:update_scmbreeze'
