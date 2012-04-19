@@ -16,6 +16,12 @@ source ~/.dothome/shell/bash/gitprompt.sh
 source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
 
 #
+# use hub to wrap git
+#
+eval "$(hub alias -s)"
+source_if_exists /usr/local/etc/bash_completion.d/hub.bash_completion.sh
+
+#
 # enable color LS output (bash specific need?)
 #
 export CLICOLOR=1
