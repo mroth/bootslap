@@ -33,7 +33,8 @@ namespace :homebrew do
       end
     end
     
-    package_list.each do |p|
+    installables = package_list - `brew list`.split(/\s/)
+    installables.each do |p|
       sh "brew install #{p}" do |ok, res|
         #do nothing, don't die when brew throws an error if already installed
       end
