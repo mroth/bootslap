@@ -37,7 +37,8 @@ task :bootstrap =>  [
                       'python:install',
                       'ruby:install',
                       'node:install',
-                      'zsh:install'
+                      'zsh:install',
+                      'vim:install'
                       #'textmate:install', #should be no longer needed with textmate2.. or at least needs to be updated
                       #'solarized:install', #TODO: janus handles this now? not for apple color picker tho
                       #'bitly:install' #TODO: update to mermanify script before reactivating
