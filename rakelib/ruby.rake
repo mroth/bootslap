@@ -2,7 +2,7 @@ namespace :ruby do
 
   task :install => [:rvm_install, :gems_install]
 
-  desc "install rvm"
+  desc "Install RVM and current version of Ruby as default"
   task :rvm_install do
     # check if installed already
     if not File.exists? "#{$home}/.rvm/bin/rvm"
@@ -23,6 +23,7 @@ namespace :ruby do
     sh "rvm install #{TARGET_VERSION}"
   end
 
+  desc "Update RVM to latest stable version"
   task :rvm_update do
       sh "rvm get stable"
       sh "rvm reload"

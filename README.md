@@ -4,7 +4,7 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 The main things this handles (thus far):
 
  - installs homebrew and list of packages
- - rvm, ruby 1.9, rails 3.1 and handy gems
+ - rvm, ruby 1.9, rails and handy gems
  - pip, virtualenv and virtualenvwrapper for python
  - node.js and npm package manager
  - setup zsh and oh-my-zsh
@@ -59,4 +59,3 @@ Came from various places:
 
 - dev tools
 - growl
-- textmate
