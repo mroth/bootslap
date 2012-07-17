@@ -28,3 +28,12 @@ alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists t
 # }
 # trap 'timer_start' DEBUG
 # PROMPT_COMMAND=timer_stop
+
+#
+# Go is dumb, needs this for pkg mgmt to work
+# (TODO: make more robust or see if homebrew fixes)
+#
+export GOROOT=`brew --cellar`/go/1.0.2
+export GOBIN=/usr/local/bin
+export GOARCH=amd64
+export GOOS=darwin
