@@ -1,18 +1,19 @@
 namespace :git do
   
-  task :install => [:install_brewgit, :config, :config_github, :install_scmbreeze]
+  task :install => [:install_brewgit, :config, :install_scmbreeze]
   
   desc "configures git variables"
   task :config do
     sh "git config --global user.name 'Matthew Rothenberg'"
     sh "git config --global user.email 'mrothenberg@gmail.com'"
+    sh "git config --global github.user mroth" 
     sh "git config --global color.ui true"
     sh "git config --global merge.tool opendiff"
     sh "git config --global core.excludesfile ~/.gitignore"
   end
   
   desc "configures github username and API token. (interactive)"
-  task :config_github do
+  task :config_github_token do
     sh "git config --global github.user mroth" #no harm in setting this repeatedly
     token = `git config --global github.token`
     if (token.chomp.size < 10) #assume something is funked
