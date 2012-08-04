@@ -18,7 +18,7 @@ namespace :node do
 
   task :npm_install => [:nodejs_install] do
     if not File.exists? "/usr/local/bin/npm"
-      sh "curl http://npmjs.org/install.sh | sh"
+      sh "curl https://npmjs.org/install.sh | sh"
     end
   end
   
