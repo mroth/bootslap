@@ -18,7 +18,7 @@ export git_setup_aliases="yes"
 # Git Index Config
 # ----------------------------------------------
 # Repos will be automatically added from this directory.
-export GIT_REPO_DIR="$HOME/src"
+export GIT_REPO_DIR="$HOME/code"
 # Add the full paths of any extra repos to GIT_REPOS, separated with ':'
 # e.g. "/opt/rails/project:/opt/rails/another project:$HOME/other/repo"
 export GIT_REPOS=""
@@ -36,7 +36,7 @@ git_status_shortcuts_alias="gs"
 git_add_shortcuts_alias="ga"
 git_add_patch_alias="gap"
 git_show_files_alias="gsf"
-exec_git_expand_args_alias="ge"
+exec_scmb_expand_args_alias="ge"
 # 2. Commands that handle paths (with shortcut args expanded)
 git_checkout_alias="gco"
 git_checkout_branch_alias="gcob"
@@ -68,6 +68,8 @@ git_commit_no_msg_alias="gch"
 git_remote_alias="gr"
 git_branch_alias="gb"
 git_branch_all_alias="gba"
+git_branch_move_alias="gbm"
+git_branch_delete_alias="gbd"
 git_rebase_alias="grb"
 git_rebase_alias_continue="grbc"
 git_rebase_alias_abort="grba"
@@ -87,8 +89,9 @@ git_commit_all_keys="\C-x "        # CTRL+x, SPACE
 git_add_and_commit_keys="\C-xc"    # CTRL+x, c
 
 
-# Bash Command Wrapping
+# Shell Command Wrapping
 # ----------------------------------------------
-# Expand numbered args for common bash commands
-bash_command_wrapping_enabled="true"
-
+# Expand numbered args for common shell commands
+shell_command_wrapping_enabled="true"
+# Here you can tweak the list of wrapped commands.
+scmb_wrapped_shell_commands="vim emacs gedit cat rm cp mv ln ls cd"
