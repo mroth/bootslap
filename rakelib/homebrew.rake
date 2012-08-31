@@ -5,7 +5,7 @@ namespace :homebrew do
   task :brew_install do
     if not File.exists? "/usr/local/bin/brew"
       puts "+++ Installing homebrew"
-      sh "/usr/bin/ruby -e \"$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)\""
+      sh "ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
     else
       #puts "*** homebrew already installed."
     end
