@@ -1,7 +1,7 @@
 namespace :node do
   
   desc "install node.js and npm package manager, with coffeescript global"
-  task :install => [:nodejs_install, :npm_install, :coffee_install]
+  task :install => [:nodejs_install, :coffee_install]
   
   desc "uninstall node.js and npm"
   task :uninstall => [:coffee_uninstall, :npm_uninstall, :nodejs_uninstall]
