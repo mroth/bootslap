@@ -71,6 +71,7 @@ git_branch_all_alias="gba"
 git_branch_move_alias="gbm"
 git_branch_delete_alias="gbd"
 git_rebase_alias="grb"
+git_rebase_interactive_alias="grbi"
 git_rebase_alias_continue="grbc"
 git_rebase_alias_abort="grba"
 git_merge_alias="gm"
@@ -79,6 +80,7 @@ git_log_alias="gl"
 git_log_stat_alias="gls"
 git_log_graph_alias="glg"
 git_show_alias="gsh"
+git_show_summary="gsm"  # (gss taken by git status short)
 
 
 # Git Keyboard Shortcuts
@@ -94,4 +96,4 @@ git_add_and_commit_keys="\C-xc"    # CTRL+x, c
 # Expand numbered args for common shell commands
 shell_command_wrapping_enabled="false"
 # Here you can tweak the list of wrapped commands.
-scmb_wrapped_shell_commands="vim emacs gedit cat rm cp mv ln ls cd"
+scmb_wrapped_shell_commands="vim emacs gedit cat rm cp mv ln cd"
