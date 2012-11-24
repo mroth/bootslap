@@ -1,0 +1,41 @@
+cookbook_paths:
+  - ./cookbooks
+
+recipes:
+  ### osx
+  - pivotal_workstation::osx_updates
+  ### shell/cli environment
+  - pivotal_workstation::oh_my_zsh
+  - pivotal_workstation::homebrew
+  - pivotal_workstation::git
+  - pivotal_workstation::ack
+  - pivotal_workstation::ssh_copy_id
+  ### programing environments
+  # - pivotal_workstation::rvm
+  # - pivotal_workstation::node_js
+  # - pivotal_workstation::redis
+  ### libraries
+  - pivotal_workstation::xquartz
+  - pivotal_workstation::imagemagick
+  ### dev applications
+  - pivotal_workstation::virtualbox
+  - pivotal_workstation::vagrant
+  - pivotal_workstation::github_for_mac
+  - pivotal_workstation::chrome
+  - pivotal_workstation::firefox
+  - pivotal_workstation::iterm2
+  #sublimetext
+  #textmate2
+  ### other handy apps
+  - pivotal_workstation::dropbox
+  - pivotal_workstation::skype
+  - pivotal_workstation::sizeup
+
+
+node_attributes:
+  # github_username: checkme
+  rvm:
+    default_ruby: ruby-1.9.3-p327
+    # rubies:
+      # ruby-1.9.3-p327: {}
+
