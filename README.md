@@ -15,6 +15,27 @@ The main things this handles (thus far):
 
 This is still a bit of a mess, but getting cleaned up over time, and is approaching the point where it could be easily customized for your own usage.
 
+
+## VERSION 3 TODO
+ - finish migration of installers to pivatol_workstation/soloist
+ - update documentation
+ - missing things from v2
+   * scm_breeze
+   * python stuff (remove? dont use anymore)
+   * update script
+   * install hub!
+   * heroku-toolbelt
+   * macvim
+   * janus
+   * other important brew packages
+   * important gem packages
+     - bundler/rake (handled by initial bundle here?)
+     - pry/wirble
+     - lolcommits
+
+ - figure out how to handle dotfiles? and cleanup
+
+
 ## Philosophy
 Tasks should be runnable at any time, creating/repairing installations when needed, ignoring stuff if already exists.
 
