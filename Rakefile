@@ -6,9 +6,9 @@ verbose false
 #########################################
 $home = ENV['HOME']
 $installers = "#{$home}/.dothome/installers"
-if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
-  abort "For this to work, we should be located in ~/.dothome"
-end
+# if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
+#   abort "For this to work, we should be located in ~/.dothome"
+# end
 
 
 #########################################
