@@ -94,28 +94,3 @@ namespace :dotfiles do
     #TODO: restore .old files if they exist
   end
 end
-
-
-# desc "setup dirs"
-# task :dirs do |t|
-#   %w[tmp src].each do |d|
-#     if not File.directory? "#{$home}/#{d}"
-#       puts "dir  ~/#{d}"
-#       FileUtils.mkpath "#{$home}/#{d}"
-#     end
-#   end
-# end  
-
-# desc "setup mac stuff"
-# task :mac do |t|
-#   if RUBY_PLATFORM.include?("darwin")
-#     
-#     # hide unixy stuff from finder
-#     sh "chflags hidden ~/var ~/tmp ~/bin"
-#     
-#     # graphite, won't take effect until apps are restarted
-#     # in theory you could send a NSControlTintDidChangeNotification but that's too much work
-#     sh "defaults write -g AppleAquaColorVariant -int 6"
-#     
-#   end
-# end
