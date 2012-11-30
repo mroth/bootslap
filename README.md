@@ -22,7 +22,7 @@ This is still a bit of a mess, but getting cleaned up over time, and is approach
  - missing things from v2
    * scm_breeze
    * python stuff (remove? dont use anymore)
-   * update script
+   * :update script
    * install hub!
    * heroku-toolbelt
    * macvim
@@ -32,8 +32,11 @@ This is still a bit of a mess, but getting cleaned up over time, and is approach
      - bundler/rake (handled by initial bundle here?)
      - pry/wirble
      - lolcommits
-
- - figure out how to handle dotfiles? and cleanup
+ - figure out how to handle dotfiles? and cleanup (homesick? something better maintained? unlinking is nice too)
+ - move "shell" stuff into dotfiles somehow?
+ - some preference setup
+   * aqua color to grey
+   * disable natural scrolling
 
 
 ## Philosophy
