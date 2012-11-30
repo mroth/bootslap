@@ -30,6 +30,9 @@ recipes:
   - pivotal_workstation::dropbox
   - pivotal_workstation::skype
   - pivotal_workstation::sizeup
+  ### system preferences
+  - pivotal_workstation::osx_aqua_color_preferences
+  - pivotal_workstation::osx_natural_scrolling
 
 
 node_attributes:
