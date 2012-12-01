@@ -6,25 +6,29 @@ The main things this handles (thus far):
  - installs homebrew and list of packages
  - rvm, ruby 1.9, rails and handy gems
  - pip, virtualenv and virtualenvwrapper for python
- - node.js and npm package manager
+ - node.js and npm package manager, with coffeescript installed globally
  - setup zsh and oh-my-zsh
  - in case we aren't used to zsh yet, set up bash nicely too (git prompting, etc)
- - textmate plugins, snippits, etc., and solarized color scheme
  - a sane vim and macvim configuration, including solarized color scheme
  - dotfiles are symlinked and kept in a git repository, so they stay up to date across machines (with provisions for host and os-specific files).
 
 This is still a bit of a mess, but getting cleaned up over time, and is approaching the point where it could be easily customized for your own usage.
 
+## VERSION 3
+Moving to using chef recipes for software installation.  Trying to backport all my needed installs into `pivotal_workstation` project so they can benefit others.
+
 
 ## VERSION 3 TODO
  - finish migration of installers to pivatol_workstation/soloist
+   * migrate coffeescript from rake->chef
+   * figure out whats up with sublimetext2
  - update documentation
  - missing things from v2
    * scm_breeze
    * python stuff (remove? dont use anymore)
    * :update script
-   * install hub!
-   * heroku-toolbelt
+   * install hub √
+   * heroku-toolbelt √
    * macvim
    * janus
    * other important brew packages
@@ -33,23 +37,18 @@ This is still a bit of a mess, but getting cleaned up over time, and is approach
      - pry/wirble
      - lolcommits
  - figure out how to handle dotfiles? and cleanup (homesick? something better maintained? unlinking is nice too)
+   * clean up dotfiles
+   * move gitconfig into dotfiles instead of commands
  - move "shell" stuff into dotfiles somehow?
  - some preference setup
-   * aqua color to grey
-   * disable natural scrolling
+   * aqua color to grey √
+   * disable natural scrolling √
 
 
 ## Philosophy
 Tasks should be runnable at any time, creating/repairing installations when needed, ignoring stuff if already exists.
 
 ## Installation
-
-### Get the files
-Clone the repository into my home directory:
-`git clone git@github.com:mroth/bootstrapper.git ~/.dothome`
-
-READONLY MODE:
-`git clone git://github.com/mroth/bootstrapper.git ~/.dothome`
 
 ### Bootstrap
 Just do `cd ~/.dothome; rake bootstrap`
@@ -66,11 +65,6 @@ Run `rake homebrew:install` which will install homebrew, update the package list
 
 These tasks are also available individually via `homebrew:brew_install`, `homebrew:brew_update`, and `homebrew:packages_install`.
 
-### rvm, ruby 1.9.x, rails 3.1, and commonly used gems
-*TODO: write description of this*
-
-### python with virtualenv setup
-Use `rake python:install`. Done.
 
 
 ## Inspiration
