@@ -10,9 +10,11 @@ recipes:
   - pivotal_workstation::git
   - pivotal_workstation::ack
   - pivotal_workstation::ssh_copy_id
+  - pivotal_workstation::heroku_toolbelt #written by me!
+  - pivotal_workstation::hub #written by me!
   ### programing environments
-  # - pivotal_workstation::rvm
-  # - pivotal_workstation::node_js
+  # - pivotal_workstation::rvm #patched by me!
+  - pivotal_workstation::node_js #patched by me!
   # - pivotal_workstation::redis
   ### libraries
   - pivotal_workstation::xquartz
@@ -24,21 +26,21 @@ recipes:
   - pivotal_workstation::chrome
   - pivotal_workstation::firefox
   - pivotal_workstation::iterm2
+  - pivotal_workstation::textmate2
   #sublimetext
-  #textmate2
   ### other handy apps
   - pivotal_workstation::dropbox
   - pivotal_workstation::skype
   - pivotal_workstation::sizeup
   ### system preferences
-  - pivotal_workstation::osx_aqua_color_preferences
-  - pivotal_workstation::osx_natural_scrolling
+  - pivotal_workstation::osx_aqua_color_preferences #written by me!
+  - pivotal_workstation::osx_natural_scrolling #written by me!
 
 
 node_attributes:
   # github_username: checkme
   rvm:
     default_ruby: ruby-1.9.3-p327
-    # rubies:
-      # ruby-1.9.3-p327: {}
+    rubies:
+      ruby-1.9.3-p327: {}
 
