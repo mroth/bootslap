@@ -2,6 +2,18 @@
 # Main dotfiles installer
 #########################################
 
+#
+# Pull the location of dotfiles from environment variables.
+# This makes things flexible but more importantly prevents random people from cloning my
+# dotfiles accidentally. :-)
+#
+$dotfiles_github_user = ENV['DOTFILES_GITHUB_USERNAME'] || ENV['GITHUB_USER'] || ENV['USER']
+$dotfiles_github_repo = ENV['DOTFILES_REPO_NAME'] || "dotfiles"
+$dotfiles_uri = "https://github.com/#{$dotfiles_github_user}/#{$dotfiles_github_repo}.git"
+
+#
+# Tasks
+#
 namespace :dotfiles do
 
   desc "install dotfiles"

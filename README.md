@@ -76,9 +76,8 @@ There are a few for things that haven't been backported into chef recipes in piv
 
 ### Configuration management
 #### Dotfiles
-User dotfiles are now managed via homesick.  Do `rake dotfiles:setup` to get things going.
-By default, we look for $USERNAME/dotfiles on Github, assuming your GitHub username is the same as your system username.
-To override, set an environment variable as thus `DOTFILES_REPO=http://foo.bar rake dotfiles:setup`
+User dotfiles are now managed via homesick.  Do `rake dotfiles:install` to get things going.
+By default, we look for `$USERNAME/dotfiles` on Github, and we try to infer your GitHub username from system environment.  To manually override, you can set `DOTFILES_GITHUB_USERNAME` and/or `DOTFILES_REPO_NAME`, like so `DOTFILES_GITHUB_USERNAME=johndoe rake dotfiles:setup`
 Alternately, you can simply do it manually by following the instructions on the homesick page (or not).
 
 ### Updating ALL THE THINGS

@@ -6,12 +6,6 @@ verbose false
 #########################################
 $home = ENV['HOME']
 $installers = "#{$home}/.dothome/installers"
-# if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
-#   abort "For this to work, we should be located in ~/.dothome"
-# end
-$dotfiles_github_user = ENV['USER']
-$dotfiles_github_repo = "dotfiles"
-$dotfiles_uri = "https://github.com/#{$dotfiles_github_user}/#{$dotfiles_github_repo}.git"
 
 
 #########################################
