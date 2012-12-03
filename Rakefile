@@ -25,6 +25,20 @@ def subdir_clone( directory, name, git_repo )
   end
 end
 
+# Cross-platform way of finding an executable in the $PATH.
+# idea taken from http://bit.ly/qDaTbY
+#
+#   which('ruby') #=> /usr/bin/ruby
+def which(cmd)
+  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
+  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+    exts.each { |ext|
+      exe = "#{path}/#{cmd}#{ext}"
+      return exe if File.executable? exe
+    }
+  end
+  return nil
+end
 
 #########################################
 # Default task
@@ -39,9 +53,7 @@ task :bootstrap =>  [
                       'node:install',
                       'zsh:install',
                       'vim:install'
-                      #'textmate:install', #should be no longer needed with textmate2.. or at least needs to be updated
                       #'solarized:install', #TODO: janus handles this now? not for apple color picker tho
-                      #'bitly:install' #TODO: update to mermanify script before reactivating
                     ]
 task :update =>     [
                       'dotfiles:install',
