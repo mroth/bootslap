@@ -23,7 +23,7 @@ namespace :cookbooks do
   # use this to ensure cookbooks are there, but dont clobber since i am frequently using
   # a dev clone instead
   task :ready do
-    Rake::Task['setup'] unless Directory.exists? "cookbooks/pivotal_workstation"
+    Rake::Task['setup'] unless File.directory? "cookbooks/pivotal_workstation"
   end
 
   desc "Clean out the cookbooks directory entirely"
