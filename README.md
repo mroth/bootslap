@@ -17,6 +17,12 @@ This is still a bit of a mess, but getting cleaned up over time, and is approach
 ## VERSION 3
 Moving to using chef recipes for software installation.  Trying to backport all my needed installs into `pivotal_workstation` project so they can benefit others.
 
+MORE TODO
+ - set dotfiles repo uri at top of rakefile
+ - install_cookbooks_if_dont_exist rake task √
+ - ensure bundler runs with rake
+ - ensure bundler with rvmrc?
+
 
 ## VERSION 3 TODO
  - finish migration of installers to pivatol_workstation/soloist
@@ -49,29 +55,40 @@ Moving to using chef recipes for software installation.  Trying to backport all 
 Tasks should be runnable at any time, creating/repairing installations when needed, ignoring stuff if already exists.
 
 ## Installation
+Make sure you have Apple Dev tools installed because life is impossible on a Mac otherwise (shame this part can't be automated).
+
+Do `bundle install` in this repo directory.  This will get all your pre-dependencies going.
 
 ### Bootstrap
 Just do `cd ~/.dothome; rake bootstrap`
 
 ## Doing stuff manually instead
 
-### bash setup
-Run `rake dotfiles:install` which will symlink your .bash_profile and .bashrc to the ones in the repo (as well as any other files).  Old files will be backed up with a .old suffix.
+### Stuff
+### Other setup (Rake tasks)
+There are a few for things that haven't been backported into chef recipes in pivotal_workstation yet.
 
-Most of the work here happens in `bash/run`.  Note that host and OS specific files will be sourced in `bash/host/*` and `bash/os/*` if they exist, this allows you to have one master repo but still have certain things that only happen on certain OSes or machines.
+  * install coffeescript `node:coffee_install`
 
-### homebrew and packages
-Run `rake homebrew:install` which will install homebrew, update the package list, and install the list of packages found in `brew/*`.
 
-These tasks are also available individually via `homebrew:brew_install`, `homebrew:brew_update`, and `homebrew:packages_install`.
+### Configuration management
+### Dotfiles
+User dotfiles are now managed via homesick.  Do `rake dotfiles:setup` to get things going.
+By default, we look for $USERNAME/dotfiles on Github, assuming your GitHub username is the same as your system username.
+To override, set an environment variable as thus `DOTFILES_REPO=http://foo.bar rake dotfiles:setup`
+Alternately, you can simply do it manually by following the instructions on the homesick page (or not).
+
+### Updating ALL THE THINGS
+Since we're OCD, we need a script update everything.  TODO rewrite for new system
 
 
 
 ## Inspiration
-Came from various places:
+Came from various places at various times:
 
-- The neat setup scripts used internally by Bitly Ops (want to see them? we're hiring!)
+- The setup scripts used internally by Bitly Ops
 - Paul Hammond's dothome scripts https://github.com/paulhammond/dothome
+- pivotal_workstation
 
 ## TODO: Things we need to insure are installed but will be hard to automate
 

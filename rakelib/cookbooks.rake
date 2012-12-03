@@ -20,6 +20,12 @@ namespace :cookbooks do
     subdir_clone "cookbooks", "dmg", "https://github.com/opscode-cookbooks/dmg"
   end
 
+  # use this to ensure cookbooks are there, but dont clobber since i am frequently using
+  # a dev clone instead
+  task :ready do
+    Rake::Task['setup'] unless Directory.exists? "cookbooks/pivotal_workstation"
+  end
+
   desc "Clean out the cookbooks directory entirely"
   task :clobber do
     FileUtils.rm_r Dir.glob("cookbooks/*"), :secure => true
