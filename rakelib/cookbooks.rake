@@ -1,5 +1,12 @@
 namespace :cookbooks do 
 
+  desc "Converge cookbook recipes via soloistrc"
+  task :converge => [:ready] do
+    verbose true
+    sh "soloist"
+    verbose false
+  end
+
   desc "Setup cookbooks"
   task :setup => [:clobber, :setup_dependencies] do
     subdir_clone "cookbooks", "pivotal_workstation", "https://github.com/pivotal/pivotal_workstation"
