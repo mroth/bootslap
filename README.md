@@ -17,19 +17,20 @@ This is still a bit of a mess, but getting cleaned up over time, and is approach
 ## VERSION 3
 Moving to using chef recipes for software installation.  Trying to backport all my needed installs into `pivotal_workstation` project so they can benefit others.
 
-MORE TODO
+### MORE TODO
  - set dotfiles repo uri at top of rakefile
  - install_cookbooks_if_dont_exist rake task √
  - ensure bundler runs with rake
  - ensure bundler with rvmrc?
 
 
-## VERSION 3 TODO
+### VERSION 3 TODO
  - finish migration of installers to pivatol_workstation/soloist
    * migrate coffeescript from rake->chef
    * figure out whats up with sublimetext2
  - update documentation
  - missing things from v2
+   * zsh_syntax_highlighting script
    * scm_breeze
    * python stuff (remove? dont use anymore)
    * :update script
@@ -42,10 +43,9 @@ MORE TODO
      - bundler/rake (handled by initial bundle here?)
      - pry/wirble
      - lolcommits
- - figure out how to handle dotfiles? and cleanup (homesick? something better maintained? unlinking is nice too)
-   * clean up dotfiles
-   * move gitconfig into dotfiles instead of commands
- - move "shell" stuff into dotfiles somehow?
+   * clean up dotfiles √
+   * move gitconfig into dotfiles instead of commands √
+ - move "shell" stuff into dotfiles somehow? √
  - some preference setup
    * aqua color to grey √
    * disable natural scrolling √
@@ -60,11 +60,14 @@ Make sure you have Apple Dev tools installed because life is impossible on a Mac
 Do `bundle install` in this repo directory.  This will get all your pre-dependencies going.
 
 ### Bootstrap
-Just do `cd ~/.dothome; rake bootstrap`
+Just do `rake bootstrap`
 
 ## Doing stuff manually instead
 
-### Stuff
+### Main installation
+
+Want to modify what gets installed?  You can edit the list of recipes in `soloistrc`.
+
 ### Other setup (Rake tasks)
 There are a few for things that haven't been backported into chef recipes in pivotal_workstation yet.
 
@@ -72,7 +75,7 @@ There are a few for things that haven't been backported into chef recipes in piv
 
 
 ### Configuration management
-### Dotfiles
+#### Dotfiles
 User dotfiles are now managed via homesick.  Do `rake dotfiles:setup` to get things going.
 By default, we look for $USERNAME/dotfiles on Github, assuming your GitHub username is the same as your system username.
 To override, set an environment variable as thus `DOTFILES_REPO=http://foo.bar rake dotfiles:setup`
