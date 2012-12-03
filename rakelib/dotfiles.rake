@@ -1,10 +1,30 @@
 #########################################
 # Main dotfiles installer
 #########################################
-namespace :dotfiles do
-  desc "install dotfiles"
-  task :install do
 
+namespace :dotfiles do
+
+  desc "install dotfiles"
+  task :install => [:check_for_homesick] do
+    if not File.directory? "#{$home}/.homesick/repos/#{$dotfiles_github_repo}"
+      verbose true
+      sh "homesick clone #{$dotfiles_uri}"
+      sh "homesick symlink #{$dotfiles_github_repo}"
+    end
+  end
+
+  desc "pull any dotfiles updates from repository"
+  task :update => [:install] do
+    sh "homesick pull #{$dotfiles_github_repo}"
+  end
+
+  task :check_for_homesick do
+    abort("homesick is not installed!  do `gem install homesick` first.") if not which('homesick')
+  end
+
+  #the old way of doing things without homesick!
+  # DEPRECATED!!!!
+  task :deprecated_install do
     FileList["#{$home}/.dothome/dotfiles/*"].each do |file|
     
       base = File.basename(file)

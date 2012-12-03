@@ -9,6 +9,9 @@ $installers = "#{$home}/.dothome/installers"
 # if File.expand_path(File.dirname( __FILE__ )) != "#{$home}/.dothome"
 #   abort "For this to work, we should be located in ~/.dothome"
 # end
+$dotfiles_github_user = ENV['USER']
+$dotfiles_github_repo = "dotfiles"
+$dotfiles_uri = "https://github.com/#{$dotfiles_github_user}/#{$dotfiles_github_repo}.git"
 
 
 #########################################
@@ -45,18 +48,18 @@ end
 #########################################
 task :default => [ 'dotfiles:install' ]
 task :bootstrap =>  [
-                      'dotfiles:install',
                       'homebrew:install',
                       'git:install',
-                      'python:install',
-                      'ruby:install',
-                      'node:install',
+                      # 'python:install',
+                      # 'ruby:install',
+                      # 'node:install',
                       'zsh:install',
-                      'vim:install'
+                      'vim:install',
+                      'dotfiles:install'
                       #'solarized:install', #TODO: janus handles this now? not for apple color picker tho
                     ]
 task :update =>     [
-                      'dotfiles:install',
+                      'dotfiles:update',
                       'homebrew:brew_upgrade',
                       'ruby:rvm_update',
                       'node:npm_update',
