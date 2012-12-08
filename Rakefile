@@ -59,6 +59,7 @@ task :update =>     [
                       # 'ruby:rvm_update',
                       'node:update',
                       'vim:update',
-                      'git:update'
+                      'git:update',
+                      'zsh:update'
                     ]
 
