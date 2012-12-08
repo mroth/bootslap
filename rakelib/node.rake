@@ -4,7 +4,7 @@ namespace :node do
   task :install => [:nodejs_install, :coffee_install]
   
   desc "uninstall node.js and npm"
-  task :uninstall => [:coffee_uninstall, :npm_uninstall, :nodejs_uninstall]
+  task :uninstall => [:coffee_uninstall, :nodejs_uninstall]
   
   task :nodejs_install => ['homebrew:brew_install'] do
     if not File.exists? "/usr/local/bin/node"
@@ -15,6 +15,8 @@ namespace :node do
   task :nodejs_uninstall do
     sh "brew uninstall node"
   end
+
+  task :npm_install => [:nodejs_install]
 
   task :npm_update do
       puts "Updating global npm modules..."
