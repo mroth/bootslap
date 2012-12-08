@@ -39,6 +39,9 @@ Moving to using chef recipes for software installation.  Trying to backport all 
    * macvim
    * janus
    * other important brew packages
+     - nmap
+     - git-extras
+     - wget
    * important gem packages
      - bundler/rake (handled by initial bundle here?)
      - pry/wirble
