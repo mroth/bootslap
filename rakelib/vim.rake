@@ -14,8 +14,7 @@ namespace :vim do
         if (File.exists?(target) && File.exists?(dotgit) )
             remote_url = `cd #{target}; git remote -v | grep fetch | awk '{print $2}'`.chomp
             if remote_url == janusrepo
-                puts "*** bootstrapper: .vim is already part of janus, updating"
-                Rake::Task["vim:janus_update"].execute   
+                puts "*** bootstrapper: .vim is already part of janus" 
             end
         else
             system "curl -Lo- http://bit.ly/janus-bootstrap | bash"
