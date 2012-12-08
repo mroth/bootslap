@@ -1,5 +1,6 @@
 namespace :homebrew do
   task :install => [:brew_install, :brew_update, :packages_install]
+  task :update => [:brew_upgrade]
   
   desc "installs homebrew"
   task :brew_install do
