@@ -42,6 +42,6 @@ node_attributes:
     rubies:
       ruby-1.9.3-p327: {}
   sublime_text_packages:
-    Cucumber: {}
-    Alignment: {}
-
+    - name: Cucumber
+      source: git://github.com/npverni/cucumber-sublime2-bundle.git
+    
