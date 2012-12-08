@@ -44,9 +44,4 @@ namespace :ruby do
       sh "rvm reload"
   end
 
-  desc "install any rubygems from list"
-  task :gems_install do
-    sh "xargs gem install --conservative < gems/essential"
-  end
-
 end
