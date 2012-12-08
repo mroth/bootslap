@@ -1,6 +1,7 @@
 namespace :ruby do
 
   task :install => [:rvm_install, :gems_install]
+  task :update => [:rvm_update]
 
   desc "Install RVM and current version of Ruby as default"
   task :rvm_install do
