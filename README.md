@@ -57,7 +57,7 @@ Tasks should be runnable at any time, creating/repairing installations when need
 ## Installation
 Make sure you have Apple Dev tools installed because life is impossible on a Mac otherwise (shame this part can't be automated).
 
-Do `bundle install` in this repo directory.  This will get all your pre-dependencies going.
+Do `sudo gem install bundler; bundle install` in this repo directory.  This will get all your pre-dependencies going.
 
 ### Bootstrap
 Just do `rake bootstrap`
