@@ -5,6 +5,9 @@ namespace :node do
   
   desc "uninstall node.js and npm"
   task :uninstall => [:coffee_uninstall, :nodejs_uninstall]
+
+  desc "update all node related stuff (currently just npm global)"
+  task :update => [:npm_update]
   
   task :nodejs_install => ['homebrew:brew_install'] do
     if not File.exists? "/usr/local/bin/node"
