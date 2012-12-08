@@ -42,22 +42,23 @@ end
 #########################################
 task :default => [ 'dotfiles:install' ]
 task :bootstrap =>  [
-                      'homebrew:install',
+                      # 'homebrew:install', #handled in cookbooks now
+                      # 'ruby:install',     #handled in cookbooks now
+                      # 'node:install',     #handled in cookbooks now
+                      'cookbooks:converge',
                       'git:install',
-                      # 'python:install',
-                      # 'ruby:install',
-                      # 'node:install',
                       'zsh:install',
                       'vim:install',
+                      # 'python:install',
                       'dotfiles:install'
                       #'solarized:install', #TODO: janus handles this now? not for apple color picker tho
                     ]
 task :update =>     [
                       'dotfiles:update',
-                      'homebrew:brew_upgrade',
-                      'ruby:rvm_update',
-                      'node:npm_update',
-                      'vim:janus_update',
-                      'git:update_scmbreeze'
+                      'homebrew:update',
+                      # 'ruby:rvm_update',
+                      'node:update',
+                      'vim:update',
+                      'git:update'
                     ]
 
