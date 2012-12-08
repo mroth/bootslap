@@ -34,7 +34,7 @@ recipes:
   - pivotal_workstation::sizeup
   ### system preferences
   - pivotal_workstation::osx_aqua_color_preferences #written by me!
-  - pivotal_workstation::osx_natural_scrolling #written by me!
+  - pivotal_workstation::osx_disable_natural_scrolling #written by me!
 
 node_attributes:
   rvm:
