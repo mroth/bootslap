@@ -1,6 +1,7 @@
 namespace :git do
   
   task :install => [:install_brewgit, :install_scmbreeze]
+  task :update => [:update_scmbreeze]
   
   desc "ensure homebrew version of git is installed"
   task :install_brewgit => ["homebrew:brew_install"] do
