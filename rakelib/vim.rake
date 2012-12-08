@@ -1,6 +1,10 @@
 namespace :vim do
 
-    task :install => [:janus_install]
+    task :install => [:macvim_install, :janus_install]
+
+    task :macvim_install do
+        sh "brew install macvim" unless File.exists?("/usr/local/bin/mvim")
+    end 
 
     task :janus_install do
         target = "#{$home}/.vim"
