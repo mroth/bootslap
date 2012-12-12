@@ -40,14 +40,15 @@ end
 #########################################
 # Default task
 #########################################
-task :default => [ ':update' ]
-task :bootstrap => [ 'bootstrap:software', 'bootstrap:configuration' ]
+task :default => [ :update ]
+task :bootstrap => [ 'bootstrap:all' ]
 namespace :bootstrap do
-  task :software =>  [
+  task :all      =>  [:software, :extras, :configuration]
+  task :software =>  ['cookbooks:converge', :extras]
+  task :extras   =>  [
                       # 'homebrew:install', #handled in cookbooks now
                       # 'ruby:install',     #handled in cookbooks now
                       # 'node:install',     #handled in cookbooks now
-                      'cookbooks:converge',
                       'git:install',
                       'zsh:install',
                       'vim:install',

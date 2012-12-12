@@ -44,13 +44,13 @@ Once bundle dependencies are installed, can be run via `cookbooks:converge`.
 Want to modify what gets installed?  You can edit the list of recipes in `soloistrc`.
 
 ### Other software setup (Rake tasks)
-There are a few for things that haven't been backported into chef recipes in pivotal_workstation yet.
+There are a few for things that haven't been backported into chef recipes in pivotal_workstation yet.  Thus, they have their own rake tasks.  For example, some handy ones:
 
-  * install coffeescript `node:coffee_install`
+  * install coffeescript globally `node:coffee_install`
   * zsh syntax highlighting `zsh:syntax_highlighting_install`
-  * install macvim and janus `vim:install`
+  * install macvim with janus `vim:install`
 
-TODO: All of these can be done via task `:extras`
+All of these that are run by default are handled via task `bootstrap:extras`
 
 ### Configuration management
 #### Dotfiles
@@ -62,4 +62,4 @@ Alternately, you can simply do it manually by following the instructions on the 
 To link... TODO DESC
 
 ### Updating ALL THE THINGS
-Since we're OCD, we need a script update everything.  TODO rewrite for new system
+Since we're OCD, we need a script update everything.  This is handled via `rake update`.
