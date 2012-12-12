@@ -27,7 +27,7 @@ recipes:
   - pivotal_workstation::firefox
   - pivotal_workstation::iterm2
   - pivotal_workstation::textmate2
-  #sublimetext
+    #pivotal_workstation::sublime_text
   ### other handy apps
   - pivotal_workstation::dropbox
   - pivotal_workstation::skype
