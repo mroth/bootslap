@@ -60,7 +60,7 @@ end
 task :update =>     [
                       'dotfiles:update',
                       'homebrew:update',
-                      # 'ruby:rvm_update',
+                      'ruby:update',
                       'node:update',
                       'vim:update',
                       'git:update',
