@@ -41,7 +41,9 @@ end
 # Default task
 #########################################
 task :default => [ ':update' ]
-task :bootstrap =>  [
+task :bootstrap => [ 'bootstrap:software', 'bootstrap:configuration' ]
+namespace :bootstrap do
+  task :software =>  [
                       # 'homebrew:install', #handled in cookbooks now
                       # 'ruby:install',     #handled in cookbooks now
                       # 'node:install',     #handled in cookbooks now
@@ -50,9 +52,10 @@ task :bootstrap =>  [
                       'zsh:install',
                       'vim:install',
                       # 'python:install',   #I never use it so not by default anymore
-                      'dotfiles:install'
                       #'solarized:install', #TODO: janus handles this now? not for apple color picker tho
-                    ]
+                      ]
+  task :configuration => ['dotfiles:install']
+end
 task :update =>     [
                       'dotfiles:update',
                       'homebrew:update',

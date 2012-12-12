@@ -28,3 +28,5 @@
    * disable natural scrolling √
    * ensure bundler runs with rake
    * ensure bundler with rvmrc?
+ - handle running ST2 dropboxify prior to DB installation?
+ 
