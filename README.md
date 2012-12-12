@@ -22,16 +22,18 @@ This is still a bit of a mess, but getting cleaned up over time, and is approach
 ## Core Philosophy
 Tasks should be runnable at any time, creating/repairing installations when needed, ignoring stuff if already exists.
 
-## Whats new in version 3?
+## What's new in version 3?
 Moved to using chef recipes for software installation.  Trying to backport all my needed installs into `pivotal_workstation` project so they can benefit others!
 
 ## Installation
+
+### Dependencies
 Make sure you have Apple Dev Tools installed because life is impossible on a Mac otherwise (shame this part can't be automated!).
 
 Then do `sudo gem install bundler; bundle install` in this repo directory.  This will get all your pre-dependencies going.
 
-### Bootstrap
-Just do `rake bootstrap`
+### Bootstrap it!
+Just do `rake bootstrap` and make yourself a coffee.
 
 To just do software installation (in case you don't have a dotfile repo), you can do `bootstrap:software` which will get the entire environment up and going but won't mess with configuration management.
 
