@@ -1,4 +1,4 @@
-(Looking for the old version? Check out the version2 branch!)
+(Looking for the old version? Check out the [version2](https://github.com/mroth/bootstrapper/tree/version2) branch!)
 
 # Bootstrapper
 Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't happen all too often, but in between home, work, desktops, laptops, catastrophic hardware failures, etc., it happens more often than I'd like!
@@ -11,7 +11,7 @@ The main things this handles (thus far):
  - Common libraries: XQuartz, ImageMagick
  - zsh shell with oh-my-zsh and syntax highlighting
  - Installs a bunch of common applications for dev types: Chrome, Firefox, MacVim, TextMate, SublimeText, Dropbox, VirtualBox/Vagrant, SizeUp...
- - Easy dotfile management via homesick
+ - Easy dotfile management via [homesick](https://github.com/technicalpickles/homesick)
  - A macro-update task to update *everything* for us OCD-compulsives. 
  - Everything should easily customizeable
 
@@ -32,18 +32,18 @@ Do `sudo gem install bundler; bundle install` in this repo directory.  This will
 ### Bootstrap
 Just do `rake bootstrap`
 
-bootstrap:software 
+To just do software installation (in case you don't have a dotfile repo), you can do bootstrap:software which will get the entire environment up and going but won't mess with configuration management.
 
 ## Doing stuff manually instead
-You shouldn't have to do any of this.
+Tasks can be run invidually if needed.
 
-### Main installation
+### Main software installation
 
-Once bundle dependencies are installed, can be run via `cookbooks
+Once bundle dependencies are installed, can be run via `cookbooks:converge`.
 
 Want to modify what gets installed?  You can edit the list of recipes in `soloistrc`.
 
-### Other setup (Rake tasks)
+### Other software setup (Rake tasks)
 There are a few for things that haven't been backported into chef recipes in pivotal_workstation yet.
 
   * install coffeescript `node:coffee_install`
@@ -63,11 +63,3 @@ To link... TODO DESC
 
 ### Updating ALL THE THINGS
 Since we're OCD, we need a script update everything.  TODO rewrite for new system
-
-## Inspiration
-Came from various places at various times:
-
-- The setup scripts used internally by Bitly Ops
-- Paul Hammond's dothome scripts https://github.com/paulhammond/dothome
-- pivotal_workstation
-
