@@ -40,22 +40,19 @@ end
 #########################################
 # Default task
 #########################################
-task :default => [ :update ]
-task :bootstrap => [ 'bootstrap:all' ]
+task :default    =>  [:update]
+task :bootstrap  =>  ['bootstrap:all']
 namespace :bootstrap do
   task :all      =>  [:software, :extras, :configuration]
   task :software =>  ['cookbooks:converge', :extras]
   task :extras   =>  [
-                      # 'homebrew:install', #handled in cookbooks now
-                      # 'ruby:install',     #handled in cookbooks now
-                      # 'node:install',     #handled in cookbooks now
+                      # now handled in cookbooks: homebrew, ruby, node
+                      # purposefully disabled for now: python, solarized
                       'git:install',
                       'zsh:install',
-                      'vim:install',
-                      # 'python:install',   #I never use it so not by default anymore
-                      #'solarized:install', #TODO: janus handles this now? not for apple color picker tho
-                      ]
-  task :configuration => ['dotfiles:install']
+                      'vim:install'
+                     ]
+  task :config   =>  ['dotfiles:install']
 end
 task :update =>     [
                       'dotfiles:update',
