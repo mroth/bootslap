@@ -1,6 +1,7 @@
 namespace :ruby do
 
   task :install => [:rvm_install, :gems_install]
+  task :update => [:rvm_update]
 
   desc "Install RVM and current version of Ruby as default"
   task :rvm_install do
@@ -41,11 +42,6 @@ namespace :ruby do
   task :rvm_update do
       sh "rvm get stable"
       sh "rvm reload"
-  end
-
-  desc "install any rubygems from list"
-  task :gems_install do
-    sh "xargs gem install --conservative < gems/essential"
   end
 
 end
