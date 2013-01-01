@@ -28,7 +28,7 @@ recipes:
   - pivotal_workstation::firefox
   - pivotal_workstation::iterm2
   - pivotal_workstation::textmate2
-    #pivotal_workstation::sublime_text
+  - pivotal_workstation::sublime_text
   ### other handy apps
   - pivotal_workstation::dropbox
   - pivotal_workstation::skype
@@ -39,10 +39,10 @@ recipes:
 
 node_attributes:
   rvm:
-    default_ruby: ruby-1.9.3-p327
+    default_ruby: ruby-1.9.3-p362
     rubies:
-      ruby-1.9.3-p327: {}
-  sublime_text_packages:
-    - name: Cucumber
-      source: git://github.com/npverni/cucumber-sublime2-bundle.git
+      ruby-1.9.3-p362: {}
+  # sublime_text_packages:
+  #   - name: Cucumber
+  #     source: git://github.com/npverni/cucumber-sublime2-bundle.git
     
