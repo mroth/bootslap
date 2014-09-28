@@ -103,6 +103,9 @@
       # heroku style development
       - heroku-toolbelt
       - forego
+      # scm tools I don't care about but Go ends up requiring to pull packages
+      - hg
+      - bzr
       # networking tools
       - curl
       - wget
