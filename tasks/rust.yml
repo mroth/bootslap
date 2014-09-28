@@ -1,0 +1,3 @@
+---
+- name: install Rust platform
+  homebrew: name=rust state=present

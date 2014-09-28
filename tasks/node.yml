@@ -1,0 +1,7 @@
+---
+- name: install NodeJS platform
+  homebrew: name=node state=present
+
+- name: install NodeJS global dev tools
+  npm: state=present name={{ item }} global=yes
+  with_items: global_modules

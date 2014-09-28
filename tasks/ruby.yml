@@ -1,0 +1,44 @@
+---
+- name: install rbenv to manage installed ruby versions
+  homebrew: name=rbenv state=present
+
+- name: install ruby-build to build/install different ruby versions
+  homebrew: name=ruby-build state=present
+
+- name: install needed rbenv plugins
+  homebrew: name={{ item }} state=present
+  with_items:
+    # rbenv-aliases is helpful for versions of ruby <2.1, as it will have
+    # ruby-build automatically symlink the major version to the pathchlevel on
+    # installs, e.g. 1.9.3 -> 1.9.3-p456.  That way you don't need to use the
+    # full thing in your .ruby-version files.
+    - rbenv-aliases
+    # rbenv-default-gems lets use define certain gems that we always want
+    # installed when a new ruby is installed via `rbenv installed`.
+    # Used here to make sure all rubies have bundler installed, instead of doing
+    # it with ansible directly, so that it will also apply to any done manually.
+    - rbenv-default-gems
+
+- name: register config for rbenv-default-gems plugin
+  lineinfile: dest=~/.rbenv/default-gems line='{{item}}' state=present create=yes
+  with_items: default_gems
+
+# - name: install shell env file to be loaded
+# source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/auto.sh
+
+- name: rbenv | check ruby version is installed
+  shell: rbenv versions | grep {{ item }}
+  with_items: rubies
+  register: rubies_installed
+  # failed_when: False
+  changed_when: False
+  ignore_errors: yes
+
+- name: rbenv | install missing versions of ruby
+  command: rbenv install {{ item.item }}
+  when: item.rc != 0 and item.item != '2.1.3'
+  with_items: rubies_installed.results
+
+- name: rbenv | set global ruby for system
+  command: rbenv global {{ global_ruby }}

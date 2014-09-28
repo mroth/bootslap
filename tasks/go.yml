@@ -1,0 +1,5 @@
+---
+- name: install Go platform
+  homebrew: name=go state=present
+
+#TODO: add additional go tools (see brew recipe)

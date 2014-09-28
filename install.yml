@@ -1,0 +1,117 @@
+---
+- name: set up sources
+  hosts: all
+  tags: casks
+  sudo: false
+  tasks:
+  - name: get homebrew taps setup
+    homebrew_tap: tap={{ item }} state=present
+    with_items:
+      - caskroom/cask
+      - homebrew/binary
+
+  - name: get homebrew sources setup
+    homebrew: name=brew-cask  state=present
+
+- name: essential tools for shell environment
+  hosts: all
+  tags: essential
+  sudo: false
+  tasks:
+  - name: install essential shell brews
+    homebrew: name={{ item }} state=present
+    with_items:
+      - git
+      - gh #formerly hub
+      - ssh-copy-id
+      - imagemagick
+
+  - name: install essential shell casks
+    homebrew_cask: name={{ item }} state=present
+    with_items:
+      - xquartz
+
+
+- name: Programming languages and environment platforms
+  hosts: all
+  tasks:
+    - include: tasks/go.yml      tags=go
+    - include: tasks/elixir.yml  tags=elixir
+    - include: tasks/haskell.yml tags=haskell
+    - include: tasks/rust.yml    tags=rust
+    - include: tasks/node.yml
+      tags: node
+      vars:
+        global_modules:
+          - coffee-script
+          - bower
+          - grunt-cli
+          - yo
+
+    - include: tasks/ruby.yml
+      tags: ruby
+      vars:
+        global_ruby: 2.1.3
+        default_gems:
+          - bundler
+        rubies:
+          - 1.9.3-p547
+          - 2.1.3
+
+
+- name: Applications and tools
+  hosts: all
+  tasks:
+  - name: install brewcask applications
+    tags: casks
+    homebrew_cask: state=present name={{ item }}
+    with_items:
+      # webdevs need all the webs (except opera lol)
+      - google-chrome
+      - firefox
+      # text editors i hate the least
+      - atom
+      - macvim
+      - mou
+      # virtual machine management
+      - vagrant
+      - virtualbox
+      - vmware-fusion
+      # other dev tools
+      - dash
+      - github
+      # non-dev stuff for general productivity
+      - dropbox
+      - caffeine
+      - sizeup
+      - vlc
+      - flux
+      - transmission
+      # - evernote #TODO possible to get rid of this bloated POS?
+      - cloud
+      # non-dev stuff for general unproductivity
+      - steam
+      - spotify
+
+  - name: install homebrew tools
+    tags: brews
+    homebrew: state=present name={{ item }}
+    with_items:
+      # dev tools
+      - ack
+      - jq
+      # heroku style development
+      - heroku-toolbelt
+      - forego
+      # networking tools
+      - curl
+      - wget
+      - speedtest_cli
+      # security tools
+      - gnupg
+      - nmap
+      - pwgen
+      # media related tools
+      - imagesnap
+      - pianobar
+      # - ffmpeg #TODO: enable on switch
