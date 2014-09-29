@@ -1,16 +1,24 @@
 ---
 - name: configure shell environment for current user
   hosts: all
+  gather_facts: yes
   tags: shell
-  tasks:
-    - name:     compare user current shell to /bin/zsh
-      command:  dscl . -read /Users/{{ ansible_user_id }} UserShell
-      register: usershell
-      changed_when: usershell.stdout.find(' /bin/zsh') == -1
+  vars:
+    desired_shell: /bin/zsh
 
-    - name:  change default shell to /bin/zsh
-      shell: chsh -s /bin/zsh {{ ansible_user_id }}
-      when:  usershell.stdout.find(' /bin/zsh') == -1
+  tasks:
+    - name:     compare user current shell to {{ desired_shell }}
+      shell:    dscl . -read ~ UserShell | awk '{print $2}'
+      register: usershell
+      changed_when: usershell.stdout != "{{ desired_shell }}"
+
+    # Note: if make this sudo: yes, then playbook will require being run with
+    # -K argument and password up front, but won't prompt user when changing
+    # this step.
+    - name:  change default shell to {{ desired_shell }}
+      sudo:  no
+      shell: chsh -s {{ desired_shell }} {{ ansible_user_id }}
+      when:  usershell|changed
 
 
 - name: install ohmyzsh for current user
