@@ -39,7 +39,7 @@
 
 - name: dotfiles
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   tags: dotfiles
   tasks:
     - name: homeshick | homeshick cloned
@@ -52,9 +52,8 @@
             dest=~/.homeshick
             state=link
 
-    # TODO: parameterize
     - name: homeshick | dotfiles cloned
-      git:  repo=https://github.com/mroth/dotfiles.git
+      git:  repo=https://github.com/{{ ansible_user_id }}/dotfiles.git
             dest=~/.homesick/repos/dotfiles
             update=no
       register: dotfiles_cloned
