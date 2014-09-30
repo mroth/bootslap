@@ -1,4 +1,6 @@
-(Looking for the old version? Check out the [version2](https://github.com/mroth/bootstrapper/tree/version2) branch!)
+(Note: This version is pretty old, active development for a replacement is
+currently happening in the [version5](https://github.com/mroth/bootstrapper/tree/version5)
+ branch! :eyes:)
 
 # Bootstrapper
 Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't happen all too often, but in between home, work, desktops, laptops, catastrophic hardware failures, etc., it happens more often than I'd like!
@@ -13,7 +15,7 @@ The main things this handles (thus far):
  - Installs a bunch of common applications for dev types: Chrome, Firefox, MacVim, TextMate, SublimeText, Dropbox, GitHub for Mac, VirtualBox/Vagrant, SizeUp...
  - Sets some very minimal non-annoying default preferences, like disabling "natural scrolling" and setting the Aqua color to graphite rather than candy-colored.
  - Easy dotfile management via [homesick](https://github.com/technicalpickles/homesick)
- - A macro-update task to update *everything* for us OCD-compulsives. 
+ - A macro-update task to update *everything* for us OCD-compulsives.
  - Everything should easily customizeable
 
 This is still a bit of a mess, but getting cleaned up over time, and is approaching the point where it could be easily customized for your own usage.
@@ -59,7 +61,7 @@ All of these that are run by default are handled via task `bootstrap:extras`.
 #### Dotfiles
 User dotfiles are now managed via [homesick](https://github.com/technicalpickles/homesick).  Do `rake dotfiles:install` to get things going.
 
-By default, we look for `$USERNAME/dotfiles` on GitHub, and we try to infer your GitHub username from your system environment.  To manually override, you can set `DOTFILES_GITHUB_USERNAME` and/or `DOTFILES_REPO_NAME`, For example, like so: 
+By default, we look for `$USERNAME/dotfiles` on GitHub, and we try to infer your GitHub username from your system environment.  To manually override, you can set `DOTFILES_GITHUB_USERNAME` and/or `DOTFILES_REPO_NAME`, For example, like so:
 
 ```
 DOTFILES_GITHUB_USERNAME=johndoe rake dotfiles:setup
