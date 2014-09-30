@@ -52,7 +52,16 @@ automatically install for me).
 
 ## Simple Installation
 
-### Dependencies
+### Boostrap script
+
+For an absolute pristine new Mac, it should be possible to just clone the repo
+and then run `bootstrap.sh`.  This will install XCode Command Line Dev Tools,
+Homebrew, Ansible, and then run all the playbooks.  
+
+Be sure to stick around for first minute or two so you can give Ansible your
+sudo password when it starts running playbooks.
+
+### Manual installation
 Make sure you have Apple Dev Tools installed because life is impossible on a
 Mac otherwise (the Homebrew install should check on this for you automatically).
 
@@ -64,10 +73,9 @@ Mac otherwise (the Homebrew install should check on this for you automatically).
 
     `brew install ansible`
 
-### Bootstrap it!
- 1. Run the playbooks you want and go make yourself a coffee.
+ 3. Clone this repo, run the playbooks you want and go make yourself a coffee.
 
-    `ansible-playbook install.yml shell.yml configure.yml`
+    `ansible-playbook -K install.yml shell.yml configure.yml`
 
 
 ## More complex installation topics
