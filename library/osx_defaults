@@ -76,6 +76,10 @@ description: Disable drop shadow in screencapture
 - osx_defaults: domain=com.apple.screencapture key=disable-shadow type=boolean value=true state=present
   notify: killall SystemUIServer
 
+description: Set icon tile size in dock
+- osx_defaults: domain=com.apple.dock key=tilesize type=int value=42 state=present
+  notify: killall Dock
+
 define in handlers/main.yml
 - name: killall SystemUIServer
   command: killall SystemUIServer
@@ -138,6 +142,40 @@ class OSXString(object):
     def from_arg(cls, value):
         return OSXString(value)
 
+class OSXInteger(object):
+    def __init__(self, value):
+        self.value = value
+
+    def __eq__(self, other):
+        return self.to_arg() == other.to_arg()
+
+    def to_arg(self):
+        return self.value
+
+    @classmethod
+    def from_arg(cls, value):
+        try:
+          return OSXInteger(int(value))
+        except ValueError:
+          return None
+
+class OSXFloat(object):
+    def __init__(self, value):
+        self.value = value
+
+    def __eq__(self, other):
+        return self.to_arg() == other.to_arg()
+
+    def to_arg(self):
+        return self.value
+
+    @classmethod
+    def from_arg(cls, value):
+        try:
+          return OSXFloat(float(value))
+        except ValueError:
+          return None
+
 class OSXDefaults(object):
     def __init__(self, module, **kwargs):
         self.module = module
@@ -154,8 +192,12 @@ class OSXDefaults(object):
             self.osx_value = OSXString(self.value)
         elif self.type == 'bool' or self.type == 'boolean':
             self.osx_value = OSXBool(self.module.boolean(self.value))
+        elif self.type == 'int' or self.type == 'integer':
+            self.osx_value = OSXInteger(self.value)
+        elif self.type == 'float':
+            self.osx_value = OSXFloat(self.value)
         else:
-            self.module.fail_json(msg='Currently only type=bool[ean] or string are supported. Pull requests are welcome!')
+            self.module.fail_json(msg='Currently only type=bool[ean], int[eger], float or string are supported. Pull requests are welcome!')
 
     def _exec(self, args, run_in_check_mode=False, check_rc=True):
         if not self.module.check_mode or (self.module.check_mode and run_in_check_mode):
@@ -174,8 +216,12 @@ class OSXDefaults(object):
             return OSXString.from_arg(data)
         elif type == 'bool' or type == 'boolean':
             return OSXBool.from_arg(data)
+        elif type == 'int' or type == 'integer':
+            return OSXInteger.from_arg(data)
+        elif type == 'float':
+            return OSXFloat.from_arg(data)
         else:
-            self.module.fail_json(msg='Currently only type=bool[ean] or string are supported. Pull requests are welcome!')
+            self.module.fail_json(msg='Currently only type=bool[ean], int[eger], float or string are supported. Pull requests are welcome!')
 
     def read(self):
         rc, type_out = self._exec(['read-type', self.domain, self.key], True, False)
@@ -199,10 +245,10 @@ class OSXDefaults(object):
             return False
         else:
             return self.osx_value == current_value
-        
+
     def write(self):
         self._exec(['write', self.domain, self.key, '-' + self.type, self.osx_value.to_arg()])
-        
+
     def delete(self):
         self._exec(['delete', self.domain, self.key])
 
