@@ -30,8 +30,6 @@ The main things this handles (thus far):
    .DS_Store, etc.) {TODO}
 
 
-This is still a bit of a mess, but getting cleaned up over time, and is approaching the point where it could be easily customized for your own usage.
-
 Note that this repo is only half the story, some of magic happens in my
 [dotfiles](https://github.com/mroth/dotfiles) as well. (Which these scripts
 automatically install for me).
@@ -107,8 +105,8 @@ for historical purposes:
 
  - version5: Current ansible script solution. Rename to bootslap.
  - [version4][v4] A year of working with the Boxen project instead.
- - [version3][v3]: Moved to using chef recipes for software installation, backporting
-   recipes into the `pivotal_workstation` project.
+ - [version3][v3]: Moved to using chef recipes for software installation,
+   backporting recipes into the `pivotal_workstation` project.
  - [version2][v2]: Fancy Rakefiles version.
  - version1: Mostly just shell scripts (lost to time)
 
