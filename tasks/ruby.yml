@@ -1,9 +1,16 @@
 ---
 - name: install rbenv to manage installed ruby versions
-  homebrew: name=rbenv state=present
+  homebrew: name=rbenv state=latest update_homebrew=yes
 
 - name: install ruby-build to build/install different ruby versions
-  homebrew: name=ruby-build state=present
+  homebrew: name=ruby-build state=latest
+
+- name: make sure libraries for building rubies are around
+  homebrew: name={{ item }} state=latest
+  with_items:
+    - openssl
+    - libyaml
+    - readline
 
 - name: install needed rbenv plugins
   homebrew: name={{ item }} state=present
