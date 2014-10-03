@@ -3,7 +3,9 @@ Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 happen all too often, but in between home, work, desktops, laptops, catastrophic
 hardware failures, etc., it happens more often than I'd like!
 
-The main things this handles (thus far):
+![factory](http://f.cl.ly/items/1u3a1A1X0K2k0y0K3a0z/giphy.gif)
+
+**The main things this handles (thus far):**
 
  - Setup Zsh shell with a bunch of extras:
     - _oh-my-zsh_ and _zsh syntax highlighting_.
