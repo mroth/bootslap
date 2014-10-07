@@ -10,7 +10,9 @@
     - bzr
 
 - name: install additional Go tools
-  shell: GOPATH={{ gopath | expanduser }} go get {{ item }}
+  command: go get {{ item }}
+  environment:
+    GOPATH:  "{{ gopath | expanduser }}"
   args:
     creates: "{{ gopath | expanduser }}/src/{{ item }}/"
   with_items:
