@@ -35,12 +35,14 @@
 - name: Programming languages and environment platforms
   hosts: all
   tasks:
-    - include: tasks/go.yml      tags=go
     - include: tasks/elixir.yml  tags=elixir
     - include: tasks/haskell.yml tags=haskell
     - include: tasks/rust.yml    tags=rust
-    - include: tasks/node.yml
-      tags: node
+    - include: tasks/go.yml      tags=go
+      vars:
+        gopath: ~/src/go
+
+    - include: tasks/node.yml    tags=node
       vars:
         global_modules:
           - coffee-script
@@ -48,8 +50,7 @@
           - grunt-cli
           - yo
 
-    - include: tasks/ruby.yml
-      tags: ruby
+    - include: tasks/ruby.yml    tags=ruby
       vars:
         global_ruby: 2.1.3
         default_gems:
@@ -105,9 +106,6 @@
       # heroku style development
       - heroku-toolbelt
       - forego
-      # scm tools I don't care about but Go ends up requiring to pull packages
-      - hg
-      - bzr
       # networking tools
       - curl
       - wget
