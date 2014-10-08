@@ -1,6 +1,6 @@
 ---
 - name: install rbenv to manage installed ruby versions
-  homebrew: name=rbenv state=latest update_homebrew=yes
+  homebrew: name=rbenv state=latest
 
 - name: install ruby-build to build/install different ruby versions
   homebrew: name=ruby-build state=latest
