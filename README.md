@@ -1,4 +1,4 @@
-# Bootstrapper
+# bootslap
 Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
 happen all too often, but in between home, work, desktops, laptops, catastrophic
 hardware failures, etc., it happens more often than I'd like!
@@ -59,7 +59,7 @@ and then run `bootslap.sh`.  This will install XCode Command Line Dev Tools,
 Homebrew, Ansible, and then run all the playbooks.  You can even do it without
 cloning the repo first (useful since MacOSX still doesn't have git by default):
 
-    curl -sL http://git.io/wdjLOw > /tmp/bootslap; bash /tmp/bootslap
+    curl -sL http://git.io/bootslap > /tmp/bootslap; bash /tmp/bootslap
 
 Be sure to stick around for first minute or two so you can give Ansible your
 sudo password when it starts running playbooks.

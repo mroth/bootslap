@@ -3,7 +3,7 @@
 ##############################################################
 # Script to bootstrap dependencies for the bootslap project. #
 ##############################################################
-REPO=https://github.com/${USER}/bootstrapper.git
+REPO=https://github.com/${USER}/bootslap.git
 DEST=~/src/bootslap
 ##############################################################
 
