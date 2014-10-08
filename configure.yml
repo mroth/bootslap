@@ -1,0 +1,189 @@
+---
+- name: System Configuration
+  hosts: all
+  tags:
+    - config
+    - system
+  tasks:
+
+    #- enable ssh
+    # - name: SSH | check if remote login status is on
+    #   sudo: yes
+    #   command: systemsetup -getremotelogin
+    #   register: remotelogin
+    #   changed_when: "remotelogin.stdout.startswith('Remote Login: On') == False"
+    #
+    # - name: SSH | enable remote login
+    #   sudo: yes
+    #   command: systemsetup -setremotelogin on
+    #   when: remotelogin|changed
+
+    # Enable the OSX default firewall
+    # https://coderwall.com/p/zt8aqa
+    - name: System | enable firewall
+      osx_defaults: domain=/Library/Preferences/com.apple.alf
+                    key=globalstate
+                    type=int
+                    value=1
+      # notify: restart firewall
+
+    # Note: due to Apple weirdness, this value is expected to be a string rather
+    # then a bool, despite the fact it's a boolean value!, e.g. "true" as a str.
+    - name: System | disable network .DS_Store
+      osx_defaults: domain=com.apple.desktopservices
+                    key=DSDontWriteNetworkStores
+                    type=string
+                    value=true
+
+
+    # TODO: check for full disk encryption! (maybe dont manually install)
+
+
+    # TODO: set recovery message
+    # # in case of lost device (yeah right)
+    # # also gives my phone number to the entire interweb yay opensource
+    # osx::recovery_message { 'If found, please call +1 5102067426': }
+    # https://github.com/boxen/puppet-osx/blob/master/manifests/recovery_message.pp
+
+  handlers:
+    - name: restart firewall
+      sudo: yes
+      shell: >
+        launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+        launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+
+
+
+- name: Account Configuration
+  hosts: all
+  tags:
+    - config
+    - account
+  vars:
+    # Preferred location to find your user avatar and where to store it on the
+    # system.  If file is not found, will ignore tasks related to setting user
+    # avatar gracefully.
+    avatar:
+      src:  "./files/avatars/{{ansible_user_id}}.jpg"
+      dest: "~/Library/User Pictures/{{ansible_user_id}}.jpg"
+
+  tasks:
+
+    - name:     Account Photo | Check to make sure we have local user avatar file
+      stat:     path="{{ avatar.src }}"
+      register: avatar_present
+      failed_when: not avatar_present.stat.exists
+      ignore_errors: true
+
+    - name:     Account Photo | Display helpful debug message when can't find file
+      debug:    msg="A user avatar file was not found, we looked @ {{ avatar.src }}. All account photo tasks will be skipped."
+      when:     avatar_present|failed
+
+    - name:     Account Photo | Make sure user-specific User Pictures dir exists
+      file:     path="{{ avatar.dest  | dirname }}" state=directory mode=0755
+      when:     avatar_present.stat.exists
+
+    - name:     Account Photo | Store user avatar in ~/Library/User Pictures
+      copy:     src="{{ avatar.src }}"
+                dest={{ avatar.dest | expanduser }}
+      when:     avatar_present.stat.exists
+
+    - name:     Account Photo | DirectoryServices | Check value for JPEGPhoto absent
+      command:  dscl . -read /Users/{{ ansible_user_id }} JPEGPhoto
+      register: dsclJPEGPhoto
+      changed_when: "dsclJPEGPhoto.stderr != 'No such key: JPEGPhoto'"
+      when:     avatar_present.stat.exists
+
+    - name:     Account Photo | DirectoryServices | Clear JPEGPhoto if exists
+      command:  dscl . delete /Users/mroth JPEGPhoto
+      when:     dsclJPEGPhoto|changed
+
+    - name:     Account Photo | DirectoryServices | Check current value of Picture
+      command:  dscl . -read /Users/{{ ansible_user_id }} Picture
+      when:     avatar_present.stat.exists
+      register: dsclPicture
+      changed_when: not dsclPicture.stdout.endswith('{{ avatar.dest | expanduser }}')
+
+    - debug:    msg="{{ dsclPicture }}"
+    - debug:    msg="{{avatar.dest}}"
+
+    - name:     Account Photo | DirectoryServices | Set Picture if differs
+      sudo:     yes
+      command:  dscl . create /Users/{{ ansible_user_id }} Picture "{{ avatar.dest | expanduser }}"
+      when:     dsclPicture|changed
+
+
+- name: Apps/GUI Configuration
+  hosts: all
+  vars:
+    dock:
+      icon_size: 42
+
+  tasks:
+    #
+    # Configuration related to the GUI
+    #
+    - name: UI | Dock | dim hidden apps
+      osx_defaults: domain=com.apple.dock
+                    key=showhidden
+                    type=bool
+                    value=true
+      notify: killall Dock
+
+    - name: UI | Dock | set icon size to {{ dock.icon_size }}
+      osx_defaults: domain=com.apple.dock
+                    key=tilesize
+                    type=int
+                    value={{ dock.icon_size }}
+      # notify: killall Dock
+      # TODO: need to fix integer value change check in osx_defaults script,
+      # so this doesnt fire every time.
+
+    - name: UI | Dock | enable auto-hide
+      osx_defaults: domain=com.apple.dock
+                    key=autohide
+                    type=boolean
+                    value=true
+      notify: killall Dock
+
+    - name: UI | Keyboard | enable full keyboard access
+      osx_defaults: domain=NSGlobalDomain
+                    key=AppleKeyboardUIMode
+                    type=int
+                    value=3
+
+    - name: UI | Trackpad | enable tap to click
+      osx_defaults: domain=com.apple.driver.AppleBluetoothMultitouch.trackpad
+                    key=Clicking
+                    type=boolean
+                    value=true
+
+
+
+    #
+    # Configuration related to GUI apps
+    #
+    - name: Apps | Safari | enable Develop menu
+      osx_defaults: domain=com.apple.safari
+                    key=IncludeDevelopMenu
+                    type=boolean
+                    value=true
+
+
+    # TODO: install solarized theme for terminal.app
+    # see https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+
+
+  handlers:
+    - name:    killall Finder
+      command: killall Finder
+    - name:    killall Dock
+      command: killall Dock
+    - name:    killall SystemUIServer
+      command: killall SystemUIServer
+
+    - name: restart firewall
+      sudo: yes
+      shell: >
+        launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+        launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist

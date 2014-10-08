@@ -1,0 +1,7 @@
+---
+# The brew haskell-platform package was discontinued.  So we use the binary
+# installer which is nicer than just using `ghc` and `cabal` from brew.
+- name: install Haskell platform
+  homebrew_cask: name=haskell-platform state=present
+
+# TODO: install hlint?

@@ -1,0 +1,91 @@
+---
+- name: configure shell environment for current user
+  hosts: all
+  gather_facts: yes
+  tags: shell
+  vars:
+    desired_shell: /bin/zsh
+
+  tasks:
+    - name:     compare user current shell to {{ desired_shell }}
+      shell:    dscl . -read ~ UserShell | awk '{print $2}'
+      register: usershell
+      changed_when: usershell.stdout != "{{ desired_shell }}"
+
+    # Note: if make this sudo: yes, then playbook will require being run with
+    # -K argument and password up front, but won't prompt user when changing
+    # this step.
+    - name:  change default shell to {{ desired_shell }}
+      sudo:  no
+      shell: chsh -s {{ desired_shell }} {{ ansible_user_id }}
+      when:  usershell|changed
+
+
+- name: install ohmyzsh for current user
+  hosts: all
+  gather_facts: no
+  tags: ohmyzsh
+  tasks:
+    - name: install oh-my-zsh
+      git:  repo=git://github.com/robbyrussell/oh-my-zsh.git
+            dest=~/.oh-my-zsh
+            update=no
+
+    - name: install syntax highlight plugin for ohmyzsh
+      git:  repo=git://github.com/zsh-users/zsh-syntax-highlighting.git
+            dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+            update=yes
+
+
+- name: dotfiles
+  hosts: all
+  gather_facts: yes
+  tags: dotfiles
+  tasks:
+    - name: homeshick | homeshick cloned
+      git:  repo=https://github.com/andsens/homeshick.git
+            dest=~/.homesick/repos/homeshick
+            update=no
+
+    - name: homeshick | homeshick symlinked
+      file: src=~/.homesick/repos/homeshick/home/.homeshick
+            dest=~/.homeshick
+            state=link
+
+    - name: homeshick | dotfiles cloned
+      git:  repo=https://github.com/{{ ansible_user_id }}/dotfiles.git
+            dest=~/.homesick/repos/dotfiles
+            update=no
+      register: dotfiles_cloned
+
+    - name: homeshick | dotfiles force link if just first installed
+      when: dotfiles_cloned|changed
+      command: ~/.homeshick link dotfiles --force
+
+
+- name: vim-janus
+  hosts: all
+  gather_facts: no
+  tags: vimjanus
+  tasks:
+    - name: install vim-janus
+      git: repo=https://github.com/carlhuda/janus.git
+           dest=~/.vim
+           update=no
+           recursive=no
+      register: janus_cloned
+
+    - name: bootstrap vim-janus if just first installed
+      when: janus_cloned|changed
+      command: rake chdir=~/.vim
+
+
+- name: install scm_breeze
+  hosts: all
+  gather_facts: no
+  tags: scmbreeze
+  tasks:
+    - name: install scm_breeze
+      git: repo=https://github.com/ndbroadbent/scm_breeze.git
+           dest=~/.scm_breeze
+           update=yes

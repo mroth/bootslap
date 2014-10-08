@@ -1,76 +1,154 @@
-(Note: This version is pretty old, active development for a replacement is
-currently happening in the [version5](https://github.com/mroth/bootstrapper/tree/version5)
- branch! :eyes:)
-
 # Bootstrapper
-Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't happen all too often, but in between home, work, desktops, laptops, catastrophic hardware failures, etc., it happens more often than I'd like!
+Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
+happen all too often, but in between home, work, desktops, laptops, catastrophic
+hardware failures, etc., it happens more often than I'd like!
 
-The main things this handles (thus far):
+![factory](http://f.cl.ly/items/1u3a1A1X0K2k0y0K3a0z/giphy.gif)
 
- - RVM and Ruby 1.9.x
- - Node.js and NPM, with global CoffeeScript
- - Other handy CLI stuff: homebrew, git, ack, ssh-copy-id, etc...
- - Common libraries: XQuartz, ImageMagick
- - zsh shell with oh-my-zsh and syntax highlighting
- - Installs a bunch of common applications for dev types: Chrome, Firefox, MacVim, TextMate, SublimeText, Dropbox, GitHub for Mac, VirtualBox/Vagrant, SizeUp...
- - Sets some very minimal non-annoying default preferences, like disabling "natural scrolling" and setting the Aqua color to graphite rather than candy-colored.
- - Easy dotfile management via [homesick](https://github.com/technicalpickles/homesick)
- - A macro-update task to update *everything* for us OCD-compulsives.
- - Everything should easily customizeable
+**The main things this handles (thus far):**
 
-This is still a bit of a mess, but getting cleaned up over time, and is approaching the point where it could be easily customized for your own usage.
+ - Setup Zsh shell with a bunch of extras:
+    - _oh-my-zsh_ and _zsh syntax highlighting_.
+    - _scm-breeze_ for nicer CLI git.
+    - _gh_ (formerly _hub_) for better CLI git integration with GitHub.
+    - Heroku style local development with the _heroku toolbelt_ and _forego_.
+    - Collection of vim plugins via _Janus_.
+    - Awesome dotfile management via _homeshick_.
+ - Programming environments:
+    - _Ruby_ (rbenv with all common rubies and bundler).
+    - _NodeJS_ (CoffeeScript, Grunt, Bower, Yeoman).
+    - _Go_.
+    - _Erlang/Elixir_.
+    - _Haskell_.
+    - and _Rust_.
+ - Common libraries you want to have around: _XQuartz_, _ImageMagick_.
+ - Installs a bunch of common applications for dev types: Chrome, Firefox,
+   MacVim, TextMate, SublimeText, Dropbox, GitHub for Mac, VirtualBox/Vagrant,
+   SizeUp...  
+ - A bunch of common GUI applications (browsers, text editors, music players,
+   etc.)
+ - Other handy CLI stuff: git, ack, ssh-copy-id, etc...
+ - Configure MacOSX to be less annoying (configure dock, disable networked
+   .DS_Store, etc.) {TODO}
 
+
+Note that this repo is only half the story, some of magic happens in my
+[dotfiles](https://github.com/mroth/dotfiles) as well. (Which these scripts
+automatically install for me).
 
 ## Core Philosophy
-Tasks should be runnable at any time, creating/repairing installations when needed, ignoring stuff if already exists.
 
-## What's new in version 3?
-Moved to using chef recipes for software installation.  Trying to backport all my needed installs into `pivotal_workstation` project so they can benefit others!
+ - **Stand on the shoulders of giants.** Install as much as possible via default
+   tools in default locations  
+ - **Do everything in an idempotent way.** (Tasks should be runnable at any time,
+   creating/repairing installations when needed, ignoring stuff if already
+   exists.)  
+ - **Favor "smallest amount of code" over configuration flexibility whenever
+   makes sense.** Goal is for the entire codebase to be understandable and
+   *modifiable* directly by anyone seeking to repurpose this, instead of them
+   relying on me building in configuration options for whatever they might want
+   to do.
 
-## Installation
 
-### Dependencies
-Make sure you have Apple Dev Tools installed because life is impossible on a Mac otherwise (shame this part can't be automated!).
+## Simple Installation
 
-Then do `sudo gem install bundler; bundle install` in this repo directory.  This will get all your pre-dependencies going.
+### Boostrap script
 
-### Bootstrap it!
-Just do `rake bootstrap` and make yourself a coffee.
+For an absolute pristine new Mac, it should be possible to just clone the repo
+and then run `bootslap.sh`.  This will install XCode Command Line Dev Tools,
+Homebrew, Ansible, and then run all the playbooks.  You can even do it without
+cloning the repo first (useful since MacOSX still doesn't have git by default):
 
-To just do software installation (in case you don't have a dotfile repo), you can do `bootstrap:software` which will get the entire environment up and going but won't mess with configuration management.
+    curl -sL http://git.io/wdjLOw > /tmp/bootslap; bash /tmp/bootslap
 
-## Doing stuff manually instead
-Tasks can be run invidually if needed.
+Be sure to stick around for first minute or two so you can give Ansible your
+sudo password when it starts running playbooks.
 
-### Main software installation
+### Manual installation
+Make sure you have Apple Dev Tools installed because life is impossible on a
+Mac otherwise (the Homebrew install should check on this for you automatically).
 
-Once bundle dependencies are installed, can be run via `cookbooks:converge`.
+ 1. Install Homebrew
 
-Want to modify what gets installed?  Edit the list of recipes in `soloistrc`.  The recipes for this are managed via the [`pivotal_workstation`](https://github.com/pivotal/pivotal_workstation) project.
+    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-### Other software setup (Rake tasks)
-There are a few for things that haven't been backported into chef recipes in pivotal_workstation yet.  Thus, they have their own rake tasks.  For example, some handy ones:
+ 2. Install Ansible via Homebrew
 
-  * install coffeescript globally `node:coffee_install`
-  * zsh syntax highlighting `zsh:syntax_highlighting_install`
-  * install macvim with janus `vim:install`
+    `brew install ansible`
 
-All of these that are run by default are handled via task `bootstrap:extras`.
+ 3. Clone this repo, run the playbooks you want and go make yourself a coffee.
+
+    `ansible-playbook -K install.yml shell.yml configure.yml`
+
+
+## More complex installation topics
+
+### Manual playbook runs
+Plays can be run individually if needed.
+
+For example, to just do software installation (in case you don't have a dotfile
+repo), you can do run the `install.yml` playbook.  Individual tasks are also
+tagged within the playbook so you can even do a
+`ansible-playbook install.yml --tags ruby` for example.
 
 ### Configuration management
-#### Dotfiles
-User dotfiles are now managed via [homesick](https://github.com/technicalpickles/homesick).  Do `rake dotfiles:install` to get things going.
+User dotfiles are managed via [homeshick](https://github.com/andsens/homeshick).
 
-By default, we look for `$USERNAME/dotfiles` on GitHub, and we try to infer your GitHub username from your system environment.  To manually override, you can set `DOTFILES_GITHUB_USERNAME` and/or `DOTFILES_REPO_NAME`, For example, like so:
-
-```
-DOTFILES_GITHUB_USERNAME=johndoe rake dotfiles:setup
-```
-
-Alternately, you can simply do it manually by following the instructions on [the homesick page](https://github.com/technicalpickles/homesick) (or not).
-
-#### SublimeText user folder
-To link... TODO DESC
+By default we look for `$USERNAME/dotfiles` on GitHub when getting things setup,
+and we infer your GitHub username from your system environment. You can manually
+override this in the `shell.yml` playbook is desired.
 
 ### Updating ALL THE THINGS
-Since we're OCD, we need a script update everything.  This is handled via `rake update`.
+Since we're OCD, we need a script update everything.  
+TODO: This needs to be updated for v5.
+
+## What's New in version 5?
+
+### Version History
+I've investigated many possible approaches to this over time. A rough chronology
+for historical purposes:
+
+ - version5: Current ansible script solution. Rename to bootslap.
+ - [version4][v4] A year of working with the Boxen project instead.
+ - [version3][v3]: Moved to using chef recipes for software installation,
+   backporting recipes into the `pivotal_workstation` project.
+ - [version2][v2]: Fancy Rakefiles version.
+ - version1: Mostly just shell scripts (lost to time)
+
+[v4]: https://github.com/mroth/my-boxen
+[v3]: https://github.com/mroth/bootstrapper/tree/version3
+[v2]: https://github.com/mroth/bootstrapper/tree/version2
+
+
+### So why didn't you use?....
+In other words, alternatives.
+
+#### Boxen
+After a year of struggling with Boxen for year (and contributing to the project)
+I've decided to abandon it.  Some of the "highlights":
+
+ - Relies upon **custom versions of common packages** (e.g. git) that lag behind
+   official point releases.
+ - **Needs to own way too much of the system configuration.** Uses it's own git
+   credential helper, for example, and overrides your `.gitconfig` to enable it.
+ - **Way too much enabled by default.** Much of it to support the GitHub way of
+   doing project development (dnsmasq and nginx for project switching). I
+   stripped most of it out, but it was quite a lot of effort to do so.
+ - **PITA to maintain updates.**  Require constant management of versions in
+   Puppetfile.
+ - **Custom configurations for many tools.** This results in difficulty
+   troubleshooting due to a nonstandard configuration.  Also it breaks lots of
+   stuff, for example, Homebrew can't use precompiled bottles due to nonstandard
+   paths.
+ - **Complex codebase.** Sure, it's mostly puppet recipes, but the way
+   everything is strung together makes it complex to understand whats happening
+   when something goes wrong.
+
+That said, some of the stuff Boxen does is _very cool_ for large organizations
+(automatic GitHub Issue filing on install errors, for example).  If you have a
+fulltime sysadmin to manage your configuration and deployments it's probably
+worth looking into.
+
+#### Battleschool
+Pretty close to what I want, but utilizes its own playbooks for installing
+common software.  I'd much rather just depend on homebrew and homebrew-cask.

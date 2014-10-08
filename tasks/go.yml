@@ -1,0 +1,21 @@
+---
+- name: install Go platform
+  homebrew: name=go state=present
+
+- name: install tools needed for `go get` to function as expected
+  homebrew: name={{ item }} state=present
+  with_items:
+    - git
+    - hg
+    - bzr
+
+- name: install additional Go tools
+  command: go get {{ item }}
+  environment:
+    GOPATH:  "{{ gopath | expanduser }}"
+  args:
+    creates: "{{ gopath | expanduser }}/src/{{ item }}/"
+  with_items:
+    - code.google.com/p/go.tools/cmd/godoc
+    - code.google.com/p/go.tools/cmd/vet
+    - github.com/tools/godep
