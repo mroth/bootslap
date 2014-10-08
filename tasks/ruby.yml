@@ -13,18 +13,24 @@
     - readline
 
 - name: install needed rbenv plugins
-  homebrew: name={{ item }} state=present
+  homebrew: name={{item.name}} state=present install_options={{item.options}}
   with_items:
     # rbenv-aliases is helpful for versions of ruby <2.1, as it will have
     # ruby-build automatically symlink the major version to the pathchlevel on
     # installs, e.g. 1.9.3 -> 1.9.3-p456.  That way you don't need to use the
     # full thing in your .ruby-version files.
-    - rbenv-aliases
+    - name: rbenv-aliases
+      options:
     # rbenv-default-gems lets use define certain gems that we always want
     # installed when a new ruby is installed via `rbenv installed`.
     # Used here to make sure all rubies have bundler installed, instead of doing
     # it with ansible directly, so that it will also apply to any done manually.
-    - rbenv-default-gems
+    - name: rbenv-default-gems
+      options: --head
+      # FIXME: we need to use --head because important fix has not been tagged
+      # for release yet, sigh.  See GitHub Issue here:
+      # https://github.com/sstephenson/rbenv-default-gems/issues/12
+
 
 - name: register config for rbenv-default-gems plugin
   lineinfile: dest=~/.rbenv/default-gems line='{{item}}' state=present create=yes
