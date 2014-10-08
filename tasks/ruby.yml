@@ -36,10 +36,6 @@
   lineinfile: dest=~/.rbenv/default-gems line='{{item}}' state=present create=yes
   with_items: default_gems
 
-# - name: install shell env file to be loaded
-# source /usr/local/share/chruby/chruby.sh
-# source /usr/local/share/chruby/auto.sh
-
 - name: rbenv | check which ruby versions are installed
   shell: rbenv versions --bare
   register: rubies_installed
