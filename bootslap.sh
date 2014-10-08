@@ -1,8 +1,11 @@
 #!/bin/bash
 
-#####################################
-# Script to bootstrap dependencies. #
-#####################################
+##############################################################
+# Script to bootstrap dependencies for the bootslap project. #
+##############################################################
+REPO=https://github.com/${USER}/bootstrapper.git
+DEST=~/src/bootslap
+##############################################################
 
 echo -ne "\x1b[37m"
 cat <<'EOF'
@@ -29,7 +32,7 @@ As a reminder, essentially all this script does is:
   1. Installs MacOSX Command Line Dev Tools (if needed).
   2. Installs HomeBrew.
   3. Uses Homebrew to install Ansible.
-  4. Clones my bootstrapper repository.
+  4. Clones the bootslap repository.
   5. Runs the default playbooks (which do all the real work).
 "
 
@@ -71,15 +74,16 @@ brew install git ansible
 # Clone my repo to somewhere useful, and chdir to it
 #
 printf "\n🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕    CLONING PLAYBOOKS    🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕\n"
-if [ ! -d  "$HOME/src/bootslap" ]; then
-  mkdir -p ~/src
-  git clone https://github.com/mroth/bootstrapper.git ~/src/bootslap
+if [ ! -d  $DEST ]; then
+  mkdir -p $DEST
+  git clone $REPO $DEST
 else
   echo "Already cloned, updating to latest."
-  (cd ~/src/bootslap && git pull)
+  (cd $DEST && git pull)
 fi
 
 #
 # Run all relevant playbooks
 #
-# ansible-playbook -K install.yml shell.yml
+printf "\n💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰    RUNNING PLAYBOOKS    💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰\n"
+(cd $DEST && ansible-playbook -K install.yml shell.yml configure.yml)
