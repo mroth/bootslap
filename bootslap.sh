@@ -9,6 +9,7 @@ DEST=~/src/bootslap
 
 echo -ne "\x1b[37m"
 cat <<'EOF'
+
                                                      _  / |
                                                     / \ | | /\
                                                      \ \| |/ /
