@@ -55,8 +55,11 @@ automatically install for me).
 ### Boostrap script
 
 For an absolute pristine new Mac, it should be possible to just clone the repo
-and then run `bootstrap.sh`.  This will install XCode Command Line Dev Tools,
-Homebrew, Ansible, and then run all the playbooks.  
+and then run `bootslap.sh`.  This will install XCode Command Line Dev Tools,
+Homebrew, Ansible, and then run all the playbooks.  You can even do it without
+cloning the repo first (useful since MacOSX still doesn't have git by default):
+
+    curl -sL http://git.io/wdjLOw > /tmp/bootslap; bash /tmp/bootslap
 
 Be sure to stick around for first minute or two so you can give Ansible your
 sudo password when it starts running playbooks.
@@ -112,9 +115,9 @@ for historical purposes:
  - [version2][v2]: Fancy Rakefiles version.
  - version1: Mostly just shell scripts (lost to time)
 
-[v4]: #
-[v3]: #
-[v2]: #
+[v4]: https://github.com/mroth/my-boxen
+[v3]: https://github.com/mroth/bootstrapper/tree/version3
+[v2]: https://github.com/mroth/bootstrapper/tree/version2
 
 
 ### So why didn't you use?....

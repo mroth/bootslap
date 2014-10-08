@@ -34,6 +34,7 @@ As a reminder, essentially all this script does is:
 "
 
 read -n1 -p  $'\e[0;1m👻  Party Ghost sez: "SooOOoOo... R u rdy 2 party"?  \e[2m[y/N] ' yn
+
 if [[ $yn != [Yy] ]]; then
   printf "\nSo long sucker.\n"; exit;
 fi
