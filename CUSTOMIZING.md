@@ -2,6 +2,8 @@
 Bootslap is intended to be modified to suit your needs, here are some helpful
 pointers.
 
+![hammertime](http://media.giphy.com/media/12bVDtXPOzYwda/giphy.gif)
+
 ## Where to make changes
 Things are designed to be fairly easy to read and understand, so you might want
 to just delve into the source.  That said, there are a few things I can point
