@@ -117,7 +117,7 @@ of time obsessing about tooling and coming up with what I think they best tools
 and configuration for the job are, you probably have a different opinion.  These
 scripts are designed and written in a way to hopefully be a good starting point
 to write your own version, that sets  up things the way _you_ like them.  Check
-out the nascent [Customization Guide](CUSTOMIZATION.md) for pointers.
+out the nascent [Customization Guide](CUSTOMIZING.md) for pointers.
 
 
 ## More complex installation topics
