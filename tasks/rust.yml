@@ -1,3 +1,6 @@
 ---
-- name: install Rust platform
-  homebrew: name=rust state=present
+- name: make sure Homebrew version of Rust is uninstalled
+  homebrew: name=rust state=absent
+
+- name: install Rust platform (nightly binary) via brewcask
+  homebrew_cask: name=rust state=present
