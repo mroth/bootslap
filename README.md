@@ -1,56 +1,54 @@
 # bootslap
-Scripts and walkthroughs to bootstrap my new Macs when I get them.  This doesn't
-happen all too often, but in between home, work, desktops, laptops, catastrophic
-hardware failures, etc., it happens more often than I'd like!
+Opinionated scripts to bootstrap my new Mac workstations when I get them. This
+doesn't happen all too often, but in between home, work, desktops, laptops,
+catastrophic hardware failures, etc., it happens more often than I'd like!
 
-![factory](http://f.cl.ly/items/1u3a1A1X0K2k0y0K3a0z/giphy.gif)
-
-**The main things this handles (thus far):**
-
- - Setup Zsh shell with a bunch of extras:
-    - _oh-my-zsh_ and _zsh syntax highlighting_.
-    - _scm-breeze_ for nicer CLI git.
-    - _gh_ (formerly _hub_) for better CLI git integration with GitHub.
-    - Heroku style local development with the _heroku toolbelt_ and _forego_.
-    - Collection of vim plugins via _Janus_.
-    - Awesome dotfile management via _homeshick_.
- - Programming environments:
-    - _Ruby_ (rbenv with all common rubies and bundler).
-    - _NodeJS_ (CoffeeScript, Grunt, Bower, Yeoman).
-    - _Go_.
-    - _Erlang/Elixir_.
-    - _Haskell_.
-    - and _Rust_.
- - Common libraries you want to have around: _XQuartz_, _ImageMagick_.
- - Installs a bunch of common applications for dev types: Chrome, Firefox,
-   MacVim, TextMate, SublimeText, Dropbox, GitHub for Mac, VirtualBox/Vagrant,
-   SizeUp...  
- - A bunch of common GUI applications (browsers, text editors, music players,
-   etc.)
- - Other handy CLI stuff: git, ack, ssh-copy-id, etc...
- - Configure MacOSX to be less annoying (configure dock, disable networked
-   .DS_Store, etc.) {TODO}
-
-
-Note that this repo is only half the story, some of magic happens in my
-[dotfiles](https://github.com/mroth/dotfiles) as well. (Which these scripts
-automatically install for me).
+![screenshot](http://f.cl.ly/items/31330I131q0R201m3h0K/Image%202014-10-08%20at%207.03.09%20PM.png)
 
 ## Core Philosophy
+After years of messing with various solutions for this problem, I've tried a lot
+of different solutions and evaluated a bunch of different approaches.
 
- - **Stand on the shoulders of giants.** Install as much as possible via default
-   tools in default locations  
- - **Do everything in an idempotent way.** (Tasks should be runnable at any time,
-   creating/repairing installations when needed, ignoring stuff if already
-   exists.)  
- - **Favor "smallest amount of code" over configuration flexibility whenever
-   makes sense.** Goal is for the entire codebase to be understandable and
-   *modifiable* directly by anyone seeking to repurpose this, instead of them
-   relying on me building in configuration options for whatever they might want
-   to do.
+As a result of these forays, there are a few things bootslap is opinionated
+about:
+
+ - **Stand on the shoulders of giants.**  
+   [Homebrew][homebrew] is the best way to manage CLI tools on OSX.
+   [Homebrew Cask][brewcask] is the best way to manage binary applications on OSX.
+   Make sure these providers are used for automatic installations as well, so
+   that we can take advantage of their expansive and well maintained libraries.
+
+ - **Install as much as possible via default tools in default locations.**  
+   Doing things in a nonstandard way or putting files in a nonstandard location
+   means you might hit state bugs the general populace won't. This also means
+   you aren't tied to bootslap in the future -- you can use it once to set stuff
+   up and then throw it away later.
+
+ - **Do everything in an idempotent way.**  
+   Tasks should be runnable at any time, creating/repairing installations when
+   needed, ignoring stuff if already exists.  You should be able to run the
+   bootstrap script on a fully up-to-date workstation after making a single
+   change, only only that one change will be applied to the machine, and it will
+   happen _fast_.
+
+ - **Favor simplicity over modularity.**  
+   Goal is for the entire codebase to be understandable and *modifiable*
+   directly by anyone seeking to repurpose this, instead of them relying on me
+   building in configuration options for whatever they might want to do.
+
+ - **Use the same tools for automatic and interactive modes.**  
+   Want to remove something later?  Don't need to mess with finding an uninstall
+   script (assuming one even exists) or going searching all over the hard disk
+   to figure out where your clever bootstrapper script put stuff.  Just `brew
+   uninstall foo` and it's gone.
+
+[homebrew]: http://brew.sh
+[brewcask]: http://caskroom.io
 
 
-## Simple Installation
+## Quick Installation
+
+![factory](http://f.cl.ly/items/1u3a1A1X0K2k0y0K3a0z/giphy.gif)
 
 ### Boostrap script
 
@@ -64,21 +62,62 @@ cloning the repo first (useful since MacOSX still doesn't have git by default):
 Be sure to stick around for first minute or two so you can give Ansible your
 sudo password when it starts running playbooks.
 
-### Manual installation
-Make sure you have Apple Dev Tools installed because life is impossible on a
-Mac otherwise (the Homebrew install should check on this for you automatically).
 
- 1. Install Homebrew
+### Manual bootstrapping
+Don't like running bash scripts piped off the interwebs? Or maybe you hate ASCII
+art and emoji? Either way, you can bootstrap the initial steps by hand as well
+too.
 
+ 1. Install Homebrew:
     `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-
- 2. Install Ansible via Homebrew
-
+ 2. Install Ansible via Homebrew:
     `brew install ansible`
-
  3. Clone this repo, run the playbooks you want and go make yourself a coffee.
-
     `ansible-playbook -K install.yml shell.yml configure.yml`
+
+
+## So what gets installed?
+
+Well, _in my particular scripts_, this is what I have shoved onto the SSD:
+
+ - Sets my default shell to zsh with a bunch of extras:
+    - _oh-my-zsh_ and _zsh syntax highlighting_.
+    - _scm_breeze_ for nicer CLI git.
+    - _gh_ (previously _hub_) for better CLI git integration with GitHub.
+    - Heroku style local development via _heroku toolbelt_ and _forego_.
+    - Collection of good default vim plugins via _Janus_.
+    - Awesome dotfile management via _homeshick_.
+ - Configures a bunch of programming environments:
+    - _Ruby_ (rbenv with all common rubies and Bundler).
+    - _NodeJS_ (CoffeeScript, Grunt, Bower, Yeoman).
+    - _Go_ (godoc, vet, Godeps).
+    - _Erlang/Elixir_.
+    - _Haskell Platform_.
+    - and _Rust_ (nightly builds).
+ - Common libraries you probably want to have around:
+    - _XQuartz_, _ImageMagick_.
+ - Installs a bunch of common applications for dev types:
+    - Chrome, Firefox, MacVim, TextMate, SublimeText, Atom, Dropbox,
+      GitHub for Mac, VirtualBox/Vagrant, f.lux, SizeUp...  
+ - ...and bunch of common GUI applications:
+    - browsers, text editors, music players, even Steam for when I want to
+      procrastinate by playing a game.
+ - Other handy CLI stuff:
+    - git, ack, ssh-copy-id, etc...
+ - Configure MacOSX to be less annoying:
+    - configure dock, disable network .DS_Store, etc.)
+
+
+Note that this repo is only half the story, some of magic happens in my
+[dotfiles](https://github.com/mroth/dotfiles) as well. (Which these scripts
+automatically install for me).
+
+But that's just what mine does! While I've certainly spent an inordinate amount
+of time obsessing about tooling and coming up with what I think they best tools
+and configuration for the job are, you probably have a different opinion.  These
+scripts are designed and written in a way to hopefully be a good starting point
+to write your own version, that sets  up things the way _you_ like them.  Check
+out the nascent [Customization Guide](CUSTOMIZATION.md) for pointers.
 
 
 ## More complex installation topics
