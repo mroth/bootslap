@@ -50,7 +50,7 @@ about:
 
 ![factory](http://f.cl.ly/items/1u3a1A1X0K2k0y0K3a0z/giphy.gif)
 
-### Boostrap script
+### Boostrap script :dizzy:
 
 For an absolute pristine new Mac, it should be possible to just clone the repo
 and then run `bootslap.sh`.  This will install XCode Command Line Dev Tools,
@@ -63,7 +63,7 @@ Be sure to stick around for first minute or two so you can give Ansible your
 sudo password when it starts running playbooks.
 
 
-### Manual bootstrapping
+### Manual bootstrapping :hammer:
 Don't like running bash scripts piped off the interwebs? Or maybe you hate ASCII
 art and emoji? Either way, you can bootstrap the initial steps by hand as well
 too.
