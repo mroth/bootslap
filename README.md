@@ -3,7 +3,7 @@ Opinionated scripts to bootstrap my new Mac workstations when I get them. This
 doesn't happen all too often, but in between home, work, desktops, laptops,
 catastrophic hardware failures, etc., it happens more often than I'd like!
 
-![screenshot](http://f.cl.ly/items/31330I131q0R201m3h0K/Image%202014-10-08%20at%207.03.09%20PM.png)
+![screenshot](http://f.cl.ly/items/1x272t2F3M073C200R0V/bootslap_banner_v1.png)
 
 ## Core Philosophy
 After years of messing with various solutions for this problem, I've tried a lot
