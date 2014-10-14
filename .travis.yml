@@ -1,0 +1,13 @@
+os:
+  - osx
+
+before_install:
+  - brew update
+  - brew list
+
+install:
+  - curl -sL http://git.io/bootslap > /tmp/bootslap
+
+script:
+  - yes | bash /tmp/bootslap
+
