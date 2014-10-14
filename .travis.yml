@@ -1,6 +1,10 @@
 os:
   - osx
 
+# a little white lie below, to try to force osx on travis-ci
+language:
+  - objective-c
+
 before_install:
   - brew update
   - brew list
