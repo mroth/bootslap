@@ -87,4 +87,11 @@ fi
 # Run all relevant playbooks
 #
 printf "\n💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰    RUNNING PLAYBOOKS    💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰\n"
-(cd $DEST && ansible-playbook -K install.yml shell.yml configure.yml)
+if [ "$TRAVIS" == "true" ]; then
+  # if we are running on travis-ci, run the tests in check mode instead
+  echo "Detected run on travis-ci, running playbooks in check mode for dry-run."
+  cd $DEST
+  ansible-playbook --check -K install.yml shell.yml configure.yml
+else
+  (cd $DEST && ansible-playbook -K install.yml shell.yml configure.yml)
+fi

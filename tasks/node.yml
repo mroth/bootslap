@@ -1,6 +1,9 @@
 ---
+# we need to force always_run on this because otherwise the npm-tasks following
+# will barf in check-mode.
 - name: install NodeJS platform
   homebrew: name=node state=present
+  always_run: true
 
 - name: install NodeJS global dev tools
   npm: state=present name={{ item }} global=yes

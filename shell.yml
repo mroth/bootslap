@@ -11,12 +11,13 @@
       shell:    dscl . -read ~ UserShell | awk '{print $2}'
       register: usershell
       changed_when: usershell.stdout != "{{ desired_shell }}"
+      always_run: yes
 
     # Note: if make this sudo: yes, then playbook will require being run with
     # -K argument and password up front, but won't prompt user when changing
     # this step.
     - name:  change default shell to {{ desired_shell }}
-      sudo:  no
+      sudo:  yes
       shell: chsh -s {{ desired_shell }} {{ ansible_user_id }}
       when:  usershell|changed
 
