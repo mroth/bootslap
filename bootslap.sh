@@ -3,7 +3,9 @@
 ##############################################################
 # Script to bootstrap dependencies for the bootslap project. #
 ##############################################################
-REPO=https://github.com/${USER}/bootslap.git
+# Guess default repo path unless $BOOTSLAP_REPO is present.
+DEFAULT_REPO=https://github.com/${USER}/bootslap.git
+REPO=${BOOTSLAP_REPO:-$DEFAULT_REPO}
 DEST=~/src/bootslap
 ##############################################################
 
@@ -76,7 +78,7 @@ brew install git ansible
 #
 printf "\n🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕    CLONING PLAYBOOKS    🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕\n"
 if [ ! -d  $DEST ]; then
-  mkdir -p $DEST
+  mkdir -p `dirname $DEST`
   git clone $REPO $DEST
 else
   echo "Already cloned, updating to latest."

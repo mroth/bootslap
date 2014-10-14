@@ -8,10 +8,15 @@ language:
 before_install:
   - brew update
   - brew list
+# Use environment vars to override default bootslap repo location, otherwise
+# bootslap.sh is going to guess based on a username of "travis."
+#
+# We could also change that username for travis but let's not, that way we can
+# make sure our scripts don't rely on hard coded usernames anywhere.)
+env: BOOTSLAP_REPO=https://github.com/mroth/bootslap.git
 
 install:
   - curl -sL http://git.io/bootslap > /tmp/bootslap
 
 script:
   - yes | bash /tmp/bootslap
-
