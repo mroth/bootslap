@@ -28,12 +28,12 @@
   tags: ohmyzsh
   tasks:
     - name: install oh-my-zsh
-      git:  repo=git://github.com/robbyrussell/oh-my-zsh.git
+      git:  repo=https://github.com/robbyrussell/oh-my-zsh.git
             dest=~/.oh-my-zsh
             update=no
 
     - name: install syntax highlight plugin for ohmyzsh
-      git:  repo=git://github.com/zsh-users/zsh-syntax-highlighting.git
+      git:  repo=https://github.com/zsh-users/zsh-syntax-highlighting.git
             dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
             update=yes
 
