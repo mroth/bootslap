@@ -6,12 +6,14 @@
   tasks:
   - name: get homebrew taps setup
     homebrew_tap: tap={{ item }} state=present
+    always_run: yes
     with_items:
       - caskroom/cask
       - homebrew/binary
 
   - name: get homebrew sources setup
     homebrew: name=brew-cask  state=present
+    always_run: yes
 
 - name: essential tools for shell environment
   hosts: all
