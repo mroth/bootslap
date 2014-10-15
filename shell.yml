@@ -43,15 +43,20 @@
   gather_facts: yes
   tags: dotfiles
   tasks:
-    - name: homeshick | homeshick cloned
+    - name: homeshick | clone homeshick
       git:  repo=https://github.com/andsens/homeshick.git
             dest=~/.homesick/repos/homeshick
             update=no
 
-    - name: homeshick | homeshick symlinked
+    - name: homshick | stat homeshick script to verify installed
+      stat: path=~/.homesick/repos/homeshick/home/.homeshick
+      register: homeshick_installed
+
+    - name: homeshick | symlink homeshick
       file: src=~/.homesick/repos/homeshick/home/.homeshick
             dest=~/.homeshick
             state=link
+      when: homeshick_installed.stat.exists
 
     - name: homeshick | dotfiles cloned
       git:  repo=https://github.com/{{ ansible_user_id }}/dotfiles.git
