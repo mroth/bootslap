@@ -1,13 +1,31 @@
-os:
-  - osx
+# The os: directive should work to set the proper operating system, but it
+# appears this is a beta feature only on some accounts?
+#
+# To get around that for now, we tell a little white lie about what language
+# we are using, which forces travis-ci to use a OSX box.
+os: osx
+language: objective-c
 
-# a little white lie below, to try to force osx on travis-ci
-language:
-  - objective-c
-
+# Travis CI does a lot to get their OSX image all nice and ready to go.
+#
+# That's great, but not so great for testing our own bootstrapping script.
+#
+# So let's do a few things to *undo* that, in order to make sure our script will
+# work on a semi virgin setup.
 before_install:
-  - brew update
-  - brew list
+  # uninstall rvm
+  - rvm implode
+
+  # uninstall homebrew
+  - git clone https://gist.github.com/1173223.git /tmp/hombrew-uninstaller
+  - sh /tmp/hombrew-uninstaller/uninstall_homebrew.sh
+
+  # TODO: it would be great if we could uninstall the XCode Dev Tools and CLI
+  # dev tools to ensure at least the CLI version gets reinstalled, but I think
+  # that the automated ways to install it still require the user to click a
+  # button on a popup, so might not work here.  Figure this out.
+  - ls -lh /var/db/receipts
+
 # Use environment vars to override default bootslap repo location, otherwise
 # bootslap.sh is going to guess based on a username of "travis."
 #
