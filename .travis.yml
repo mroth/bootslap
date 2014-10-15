@@ -17,8 +17,20 @@ before_install:
   - yes "yes" | rvm implode
 
   # uninstall homebrew
-  - git clone https://gist.github.com/1173223.git /tmp/hombrew-uninstaller
-  - sh /tmp/hombrew-uninstaller/uninstall_homebrew.sh
+  # based on: https://gist.github.com/mxcl/1173223
+  # slight modifications (deletes with impudence)
+  - cd `brew --prefix`
+  - git checkout master
+  - git ls-files -z | pbcopy
+  - rm -rf Cellar
+  - bin/brew prune
+  - pbpaste | xargs -0 rm
+  - rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
+  - rm -rf bin library share/man/man1 2> /dev/null
+  - rm -rf .git
+  - rm -rf ~/Library/Caches/Homebrew
+  - rm -rf ~/Library/Logs/Homebrew
+  - rm -rf /Library/Caches/Homebrew
 
   # TODO: it would be great if we could uninstall the XCode Dev Tools and CLI
   # dev tools to ensure at least the CLI version gets reinstalled, but I think
