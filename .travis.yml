@@ -14,7 +14,7 @@ language: objective-c
 # work on a semi virgin setup.
 before_install:
   # uninstall rvm
-  - rvm implode
+  - yes "yes" | rvm implode
 
   # uninstall homebrew
   - git clone https://gist.github.com/1173223.git /tmp/hombrew-uninstaller
