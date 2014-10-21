@@ -169,6 +169,18 @@
                     type=boolean
                     value=true
 
+    - name: Apps | Safari | set cookie policy "Allow from current website only"
+      osx_defaults: domain=com.apple.safari
+                    key=BlockStoragePolicy
+                    type=int
+                    value=3
+
+    - name: Apps | Safari | enable DoNotTrack header
+      osx_defaults: domain=com.apple.safari
+                    key=SendDoNotTrackHTTPHeader
+                    type=boolean
+                    value=true
+
 
     # TODO: install solarized theme for terminal.app
     # see https://github.com/mathiasbynens/dotfiles/blob/master/.osx
