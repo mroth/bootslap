@@ -7,16 +7,16 @@
   tasks:
 
     #- enable ssh
-    # - name: SSH | check if remote login status is on
-    #   sudo: yes
-    #   command: systemsetup -getremotelogin
-    #   register: remotelogin
-    #   changed_when: "remotelogin.stdout.startswith('Remote Login: On') == False"
-    #
-    # - name: SSH | enable remote login
-    #   sudo: yes
-    #   command: systemsetup -setremotelogin on
-    #   when: remotelogin|changed
+    - name: SSH | check if remote login status is on
+      sudo: yes
+      command: systemsetup -getremotelogin
+      register: remotelogin
+      changed_when: "remotelogin.stdout.startswith('Remote Login: On') == False"
+
+    - name: SSH | enable remote login
+      sudo: yes
+      command: systemsetup -setremotelogin on
+      when: remotelogin|changed
 
     # Enable the OSX default firewall
     # https://coderwall.com/p/zt8aqa
