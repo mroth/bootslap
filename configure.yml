@@ -21,6 +21,7 @@
     # Enable the OSX default firewall
     # https://coderwall.com/p/zt8aqa
     - name: System | enable firewall
+      sudo: yes
       osx_defaults: domain=/Library/Preferences/com.apple.alf
                     key=globalstate
                     type=int
