@@ -77,9 +77,11 @@
       - macvim
       - mou
       # virtual machine management
-      - vagrant
-      - virtualbox
       - vmware-fusion
+      # TODO: not currently doing any VM based development, reenable below when
+      # doing so.
+      # - vagrant
+      # - virtualbox
       # other dev tools
       - dash
       - github
