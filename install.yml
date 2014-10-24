@@ -121,4 +121,4 @@
       # media related tools
       - imagesnap
       - pianobar
-      # - ffmpeg #TODO: enable on switch
+      - ffmpeg
