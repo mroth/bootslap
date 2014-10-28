@@ -54,12 +54,12 @@
 
     - include: tasks/ruby.yml    tags=ruby
       vars:
-        global_ruby: 2.1.3
+        global_ruby: 2.1.4
         default_gems:
           - bundler
         rubies:
           - 1.9.3-p547
-          - 2.1.3
+          - 2.1.4
 
 
 - name: Applications and tools
