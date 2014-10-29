@@ -95,3 +95,10 @@
       git: repo=https://github.com/ndbroadbent/scm_breeze.git
            dest=~/.scm_breeze
            update=yes
+
+- name: xtra placeholder (prevents error condition on --skip-tags=xtra)
+  hosts: all
+  gather_facts: no
+  tags: xtra
+  tasks:
+    - debug: msg="nothing to see here, move along"

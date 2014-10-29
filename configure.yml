@@ -60,6 +60,7 @@
   tags:
     - config
     - account
+    - xtra
   vars:
     # Preferred location to find your user avatar and where to store it on the
     # system.  If file is not found, will ignore tasks related to setting user

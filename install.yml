@@ -39,7 +39,7 @@
   tasks:
     - include: tasks/elixir.yml  tags=elixir
     - include: tasks/haskell.yml tags=haskell
-    - include: tasks/rust.yml    tags=rust
+    - include: tasks/rust.yml    tags=rust,xtra
     - include: tasks/go.yml      tags=go
       vars:
         gopath: ~/src/go
