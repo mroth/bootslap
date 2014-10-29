@@ -5,6 +5,8 @@ catastrophic hardware failures, etc., it happens more often than I'd like!
 
 ![screenshot](http://f.cl.ly/items/1x272t2F3M073C200R0V/bootslap_banner_v1.png)
 
+[![Build Status](https://travis-ci.org/mroth/bootslap.svg?branch=master)](https://travis-ci.org/mroth/bootslap)
+
 ## Core Philosophy
 After years of messing with various solutions for this problem, I've tried a lot
 of different solutions and evaluated a bunch of different approaches.
