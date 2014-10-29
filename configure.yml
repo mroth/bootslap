@@ -117,6 +117,7 @@
 
 - name: Apps/GUI Configuration
   hosts: all
+  tags: gui
   vars:
     dock:
       icon_size: 42
@@ -155,7 +156,7 @@
                     value=3
 
     - name: UI | Trackpad | enable tap to click
-      osx_defaults: domain=com.apple.driver.AppleBluetoothMultitouch.trackpad
+      osx_defaults: domain=com.apple.MultiTouchTrackpad
                     key=Clicking
                     type=boolean
                     value=true
