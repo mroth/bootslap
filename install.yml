@@ -108,6 +108,7 @@
       # dev tools
       - ack
       - jq
+      - gist
       # heroku style development
       - heroku-toolbelt
       - forego
