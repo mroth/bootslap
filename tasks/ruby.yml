@@ -14,14 +14,13 @@
     - readline
 
 - name: install needed rbenv plugins
-  homebrew: name={{item.name}} state=present install_options={{item.options}}
+  homebrew: name={{item.name}} state=present install_options={{item.options|default(omit)}}
   with_items:
     # rbenv-aliases is helpful for versions of ruby <2.1, as it will have
     # ruby-build automatically symlink the major version to the pathchlevel on
     # installs, e.g. 1.9.3 -> 1.9.3-p456.  That way you don't need to use the
     # full thing in your .ruby-version files.
     - name: rbenv-aliases
-      options:
     # rbenv-default-gems lets use define certain gems that we always want
     # installed when a new ruby is installed via `rbenv installed`.
     # Used here to make sure all rubies have bundler installed, instead of doing
