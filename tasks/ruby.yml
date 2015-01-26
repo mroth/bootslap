@@ -31,6 +31,8 @@
       # for release yet, sigh.  See GitHub Issue here:
       # https://github.com/sstephenson/rbenv-default-gems/issues/12
 
+- name: make sure ~/.rbenv directory exists
+  file: path=~/.rbenv state=directory
 
 - name: register config for rbenv-default-gems plugin
   lineinfile: dest=~/.rbenv/default-gems line='{{item}}' state=present create=yes
