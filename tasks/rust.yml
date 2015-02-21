@@ -1,6 +1,9 @@
 ---
-- name: make sure Homebrew version of Rust is uninstalled
-  homebrew: name=rust state=absent
+- name: install homebrew bottle of rust
+  homebrew: name=rust state=present
 
-- name: install Rust platform (nightly binary) via brewcask
-  homebrew_cask: name=rust state=present
+# TODO: cargo is still needed, but is not in homebrew yet
+# https://github.com/rust-lang/cargo/issues/808
+
+- name: no longer use cask binary of rust nightlies
+  homebrew_cask: name=rust state=absent
