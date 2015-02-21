@@ -24,9 +24,14 @@
     homebrew: name={{ item }} state=present
     with_items:
       - git
-      - gh #formerly hub
+      - hub
       - ssh-copy-id
       - imagemagick
+
+  - name: remove legacy shell brews
+    homebrew: name={{ item }} state=absent
+    with_items:
+      - gh #gh is now hub
 
   - name: install essential shell casks
     homebrew_cask: name={{ item }} state=present
