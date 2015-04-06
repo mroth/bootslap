@@ -100,10 +100,8 @@
       - sizeup
       # bloated business shit
       - skype
-      # - evernote #TODO possible to get rid of this bloated POS?
       # non-dev stuff for general unproductivity
       - steam
-      - spotify
       - transmission
       - vlc
 
