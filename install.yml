@@ -125,6 +125,5 @@
       - nmap
       - pwgen
       # media related tools
-      - imagesnap
       - pianobar
       - ffmpeg
