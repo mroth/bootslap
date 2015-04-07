@@ -55,64 +55,20 @@
 
 
 
-- name: Account Configuration
-  hosts: all
-  tags:
-    - config
-    - account
-    - xtra
-  vars:
-    # Preferred location to find your user avatar and where to store it on the
-    # system.  If file is not found, will ignore tasks related to setting user
-    # avatar gracefully.
-    avatar:
-      src:  "./files/avatars/{{ansible_user_id}}.jpg"
-      dest: "~/Library/User Pictures/{{ansible_user_id}}.jpg"
-
-  tasks:
-
-    - name:     Account Photo | Check to make sure we have local user avatar file
-      stat:     path="{{ avatar.src }}"
-      register: avatar_present
-      failed_when: not avatar_present.stat.exists
-      ignore_errors: true
-
-    - name:     Account Photo | Display helpful debug message when can't find file
-      debug:    msg="A user avatar file was not found, we looked @ {{ avatar.src }}. All account photo tasks will be skipped."
-      when:     avatar_present|failed
-
-    - name:     Account Photo | Make sure user-specific User Pictures dir exists
-      file:     path="{{ avatar.dest  | dirname }}" state=directory mode=0755
-      when:     avatar_present.stat.exists
-
-    - name:     Account Photo | Store user avatar in ~/Library/User Pictures
-      copy:     src="{{ avatar.src }}"
-                dest={{ avatar.dest | expanduser }}
-      when:     avatar_present.stat.exists
-
-    - name:     Account Photo | DirectoryServices | Check value for JPEGPhoto absent
-      command:  dscl . -read /Users/{{ ansible_user_id }} JPEGPhoto
-      register: dsclJPEGPhoto
-      changed_when: "dsclJPEGPhoto.stderr != 'No such key: JPEGPhoto'"
-      when:     avatar_present.stat.exists
-
-    - name:     Account Photo | DirectoryServices | Clear JPEGPhoto if exists
-      command:  dscl . delete /Users/mroth JPEGPhoto
-      when:     dsclJPEGPhoto|changed
-
-    - name:     Account Photo | DirectoryServices | Check current value of Picture
-      command:  dscl . -read /Users/{{ ansible_user_id }} Picture
-      when:     avatar_present.stat.exists
-      register: dsclPicture
-      changed_when: not dsclPicture.stdout.endswith('{{ avatar.dest | expanduser }}')
-
-    - debug:    msg="{{ dsclPicture }}"
-    - debug:    msg="{{avatar.dest}}"
-
-    - name:     Account Photo | DirectoryServices | Set Picture if differs
-      sudo:     yes
-      command:  dscl . create /Users/{{ ansible_user_id }} Picture "{{ avatar.dest | expanduser }}"
-      when:     dsclPicture|changed
+# - name: Account Configuration
+#   hosts: all
+#   tags:
+#     - config
+#     - account
+#     - xtra
+#   vars:
+#     # Preferred location to find your user avatar and where to store it on the
+#     # system.  If file is not found, will ignore tasks related to setting user
+#     # avatar gracefully.
+#     avatar:
+#       src:  "./files/avatars/{{ansible_user_id}}.jpg"
+#       dest: "~/Library/User Pictures/{{ansible_user_id}}.jpg"
+#   tasks:
 
 
 - name: Apps/GUI Configuration
