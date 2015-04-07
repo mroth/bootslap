@@ -95,5 +95,5 @@ if [ "$TRAVIS" == "true" ]; then
   cd $DEST
   ansible-playbook --check install.yml shell.yml configure.yml
 else
-  (cd $DEST && ansible-playbook -K install.yml shell.yml configure.yml)
+  (cd $DEST && ansible-playbook -K install.yml shell.yml configure.yml --skip-tags "xtra")
 fi
