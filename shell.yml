@@ -48,16 +48,6 @@
             dest=~/.homesick/repos/homeshick
             update=no
 
-    - name: homshick | stat homeshick script to verify installed
-      stat: path=~/.homesick/repos/homeshick/home/.homeshick
-      register: homeshick_installed
-
-    - name: homeshick | symlink homeshick
-      file: src=~/.homesick/repos/homeshick/home/.homeshick
-            dest=~/.homeshick
-            state=link
-      when: homeshick_installed.stat.exists
-
     - name: homeshick | dotfiles cloned
       git:  repo=https://github.com/{{ ansible_user_id }}/dotfiles.git
             dest=~/.homesick/repos/dotfiles
@@ -66,7 +56,7 @@
 
     - name: homeshick | dotfiles force link if just first installed
       when: dotfiles_cloned|changed
-      command: ~/.homeshick link dotfiles --force
+      command: ~/.homesick/repos/homeshick/bin/homeshick link dotfiles --force
 
 
 - name: vim-janus
