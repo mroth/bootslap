@@ -113,6 +113,9 @@
       - ack
       - jq
       - gist
+      # text editor assistance
+      - ctags
+      - shellcheck
       # heroku style development
       - heroku-toolbelt
       - forego
