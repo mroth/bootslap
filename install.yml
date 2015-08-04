@@ -25,6 +25,7 @@
     with_items:
       - git
       - hub
+      - scmpuff
       - ssh-copy-id
       - imagemagick
 
