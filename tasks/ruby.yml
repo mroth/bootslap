@@ -44,6 +44,11 @@
   changed_when: false
   always_run: true
 
+- name: rbenv | uninstall any legacy versions of ruby
+  command: rbenv uninstall -f {{ item }}
+  when: rubies_installed.stdout | search( '{{ item }}' )
+  with_items: legacy_rubies
+
 - name: rbenv | install any missing versions of ruby
   command: rbenv install {{ item }}
   when: not rubies_installed.stdout | search( '{{ item }}' )
