@@ -94,7 +94,7 @@
       # - virtualbox
       # other dev tools
       - dash
-      - github
+      - github-desktop
       # non-dev stuff for general productivity
       - caffeine
       - cloud
