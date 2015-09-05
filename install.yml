@@ -101,8 +101,6 @@
       - daisydisk
       - dropbox
       - flux
-      # bloated business shit
-      - skype
       # non-dev stuff for general unproductivity
       - steam
       - transmission
