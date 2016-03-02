@@ -121,6 +121,7 @@
       - wget
       - speedtest_cli
       # security tools
+      - keybase
       - gnupg
       - nmap
       - pwgen
