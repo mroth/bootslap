@@ -56,8 +56,6 @@
         global_modules:
           - coffee-script
           - bower
-          - grunt-cli
-          - yo
 
     - include: tasks/ruby.yml    tags=ruby
       vars:
