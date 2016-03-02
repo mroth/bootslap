@@ -76,16 +76,6 @@
       command: rake chdir=~/.vim
 
 
-- name: install scm_breeze
-  hosts: all
-  gather_facts: no
-  tags: scmbreeze
-  tasks:
-    - name: install scm_breeze
-      git: repo=https://github.com/ndbroadbent/scm_breeze.git
-           dest=~/.scm_breeze
-           update=yes
-
 - name: xtra placeholder (prevents error condition on --skip-tags=xtra)
   hosts: all
   gather_facts: no
