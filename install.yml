@@ -59,18 +59,20 @@
 
     - include: tasks/ruby.yml    tags=ruby
       vars:
-        global_ruby: 2.2.4
+        global_ruby: 2.3.1
         default_gems:
           - bundler
         rubies:
-          - 1.9.3-p551
-          - 2.2.4
+          # - 1.9.3-p551
+          - 2.3.1
         legacy_rubies:
           - 2.1.5
           - 2.2.0
           - 2.2.1
           - 2.2.2
           - 2.2.3
+          - 2.2.4
+          - 2.3.0
 
 - name: Applications and tools
   hosts: all
