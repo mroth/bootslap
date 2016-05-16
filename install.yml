@@ -43,7 +43,7 @@
 - name: Programming languages and environment platforms
   hosts: all
   tasks:
-    - include: tasks/docker.yml  tags=docker
+    - include: tasks/docker.yml  tags=docker,xtra
     - include: tasks/elixir.yml  tags=elixir
     - include: tasks/haskell.yml tags=haskell,xtra
     - include: tasks/rust.yml    tags=rust,xtra
