@@ -36,7 +36,7 @@
 
 - name: register config for rbenv-default-gems plugin
   lineinfile: dest=~/.rbenv/default-gems line='{{item}}' state=present create=yes
-  with_items: default_gems
+  with_items: "{{default_gems}}"
 
 - name: rbenv | check which ruby versions are installed
   shell: rbenv versions --bare
@@ -47,12 +47,12 @@
 - name: rbenv | uninstall any legacy versions of ruby
   command: rbenv uninstall -f {{ item }}
   when: rubies_installed.stdout | search( '{{ item }}' )
-  with_items: legacy_rubies
+  with_items: "{{legacy_rubies}}"
 
 - name: rbenv | install any missing versions of ruby
   command: rbenv install {{ item }}
   when: not rubies_installed.stdout | search( '{{ item }}' )
-  with_items: rubies
+  with_items: "{{rubies}}"
 
 - name: rbenv | check current global ruby
   command: rbenv global
