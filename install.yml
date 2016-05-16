@@ -64,6 +64,7 @@
           - bundler
         rubies:
           # - 1.9.3-p551
+          # - 2.2.5
           - 2.3.1
         legacy_rubies:
           - 2.1.5
