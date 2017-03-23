@@ -62,7 +62,6 @@
       include: tasks/node.yml
       vars:
         global_modules:
-          - coffee-script
           - bower
 
     - tags: ruby
