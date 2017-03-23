@@ -1,65 +1,17 @@
 ---
-- name: install rbenv to manage installed ruby versions
-  homebrew: name=rbenv state=latest
-  always_run: yes
+- name: install latest homebrew Ruby
+  homebrew: name=ruby state=latest
 
-- name: install ruby-build to build/install different ruby versions
-  homebrew: name=ruby-build state=latest
+- name: install desired global RubyGems
+  gem: name={{ item }} state=present executable='/usr/local/bin/gem' # make sure we use homebrew version
+  with_items: "{{ default_gems }}"
 
-- name: make sure libraries for building rubies are around
-  homebrew: name={{ item }} state=latest
+- name: cleanup old brews from when I was using rbenv
+  homebrew: name={{ item }} state=absent
   with_items:
-    - openssl
-    - libyaml
-    - readline
+    - rbenv
+    - ruby-build
+    - rbenv-default-gems
 
-- name: install needed rbenv plugins
-  homebrew: name={{item.name}} state=present install_options={{item.options|default(omit)}}
-  with_items:
-    # rbenv-aliases is helpful for versions of ruby <2.1, as it will have
-    # ruby-build automatically symlink the major version to the pathchlevel on
-    # installs, e.g. 1.9.3 -> 1.9.3-p456.  That way you don't need to use the
-    # full thing in your .ruby-version files.
-    - name: rbenv-aliases
-    # rbenv-default-gems lets use define certain gems that we always want
-    # installed when a new ruby is installed via `rbenv installed`.
-    # Used here to make sure all rubies have bundler installed, instead of doing
-    # it with ansible directly, so that it will also apply to any done manually.
-    - name: rbenv-default-gems
-      options: --head
-      # FIXME: we need to use --head because important fix has not been tagged
-      # for release yet, sigh.  See GitHub Issue here:
-      # https://github.com/sstephenson/rbenv-default-gems/issues/12
-
-- name: make sure ~/.rbenv directory exists
-  file: path=~/.rbenv state=directory
-
-- name: register config for rbenv-default-gems plugin
-  lineinfile: dest=~/.rbenv/default-gems line='{{item}}' state=present create=yes
-  with_items: "{{default_gems}}"
-
-- name: rbenv | check which ruby versions are installed
-  shell: rbenv versions --bare
-  register: rubies_installed
-  changed_when: false
-  always_run: true
-
-- name: rbenv | uninstall any legacy versions of ruby
-  command: rbenv uninstall -f {{ item }}
-  when: rubies_installed.stdout | search( '{{ item }}' )
-  with_items: "{{legacy_rubies}}"
-
-- name: rbenv | install any missing versions of ruby
-  command: rbenv install {{ item }}
-  when: not rubies_installed.stdout | search( '{{ item }}' )
-  with_items: "{{rubies}}"
-
-- name: rbenv | check current global ruby
-  command: rbenv global
-  register: rbenv_global_version
-  changed_when: rbenv_global_version.stdout != '{{ global_ruby }}'
-
-
-- name: rbenv | set global ruby if differs
-  command: rbenv global {{ global_ruby }}
-  when: rbenv_global_version|changed
+- name: cleanup old ~/.rbenv data 
+  file: path=~/.rbenv state=absent
