@@ -43,21 +43,32 @@
 - name: Programming languages and environment platforms
   hosts: all
   tasks:
-    - include: tasks/docker.yml  tags=docker,xtra
-    - include: tasks/elixir.yml  tags=elixir
-    - include: tasks/haskell.yml tags=haskell,xtra
-    - include: tasks/rust.yml    tags=rust,xtra
-    - include: tasks/go.yml      tags=go
+    - tags: [docker,xtra]
+      include: tasks/docker.yml
+
+    - tags: elixir
+      include: tasks/elixir.yml
+
+    - tags: [haskell,xtra]
+      include: tasks/haskell.yml
+
+    - tags: [rust,xtra]
+      include: tasks/rust.yml
+
+    - tags: go
+      include: tasks/go.yml
       vars:
         gopath: ~/src/go
 
-    - include: tasks/node.yml    tags=node
+    - tags: node
+      include: tasks/node.yml
       vars:
         global_modules:
           - coffee-script
           - bower
 
-    - include: tasks/ruby.yml    tags=ruby
+    - tags: ruby
+      include: tasks/ruby.yml
       vars:
         global_ruby: 2.3.1
         default_gems:
