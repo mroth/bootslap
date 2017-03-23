@@ -69,7 +69,6 @@
       vars:
         default_gems:
           - bundler
-          - rake
 
 - name: Applications and tools
   hosts: all
