@@ -1,0 +1,19 @@
+---
+- name: Docker Development Environment
+  hosts: all
+  tags: docker
+
+  tasks:
+    - name: install virtualbox for virtual machines
+      homebrew_cask: name=virtualbox state=present
+
+    - name: install docker components
+      homebrew: name={{ item }} state=present
+      with_items:
+        - docker
+        - docker-machine
+        - docker-compose
+
+    # TODO: automatically create default machine if does not exist
+    # check existing with `docker-machine list -q`; what is exit status when none exists?
+    # install new with `docker-machine create -d virtualbox`

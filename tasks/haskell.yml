@@ -1,8 +1,0 @@
----
-- name: install GHC compiler
-  homebrew: name=ghc state=present
-
-- name: install Cabal for dependency management
-  homebrew: name=cabal-install state=present
-
-# TODO: install hlint?

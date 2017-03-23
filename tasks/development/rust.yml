@@ -1,0 +1,14 @@
+---
+- name: Rust Development Environment
+  hosts: all
+  tags: rust
+
+  tasks:
+    - name: install homebrew bottle of rust
+      homebrew: name=rust state=present
+
+    # TODO: cargo is still needed, but is not in homebrew yet
+    # https://github.com/rust-lang/cargo/issues/808
+
+    - name: no longer use cask binary of rust nightlies
+      homebrew_cask: name=rust state=absent

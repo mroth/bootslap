@@ -1,0 +1,6 @@
+- include: development/docker.yml
+- include: development/elixir.yml
+- include: development/go.yml
+# - include: development/haskell.yml
+- include: development/node.yml
+- include: development/ruby.yml

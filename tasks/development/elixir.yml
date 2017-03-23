@@ -1,0 +1,11 @@
+---
+- name: Elixir Development Environment
+  hosts: all
+  tags: elxir
+
+  tasks:
+    - name: install Elixir platform
+      homebrew: state=present name={{ item }}
+      with_items:
+        - erlang
+        - elixir
