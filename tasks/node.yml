@@ -3,8 +3,8 @@
 # will barf in check-mode.
 - name: install NodeJS platform
   homebrew: name=node state=present
-  always_run: true
+  check_mode: false
 
 - name: install NodeJS global dev tools
   npm: state=present name={{ item }} global=yes
-  with_items: global_modules
+  with_items: "{{ global_modules }}"
