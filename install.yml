@@ -2,7 +2,6 @@
 - name: set up sources
   hosts: all
   tags: casks
-  sudo: false
   tasks:
   - name: get homebrew taps setup
     homebrew_tap: tap={{ item }} state=present
@@ -18,7 +17,6 @@
 - name: essential tools for shell environment
   hosts: all
   tags: essential
-  sudo: false
   tasks:
   - name: install essential shell brews
     homebrew: name={{ item }} state=present
