@@ -3,7 +3,11 @@
   homebrew: name=ruby state=latest
 
 - name: install desired global RubyGems
-  gem: name={{ item }} state=present executable='/usr/local/bin/gem' # make sure we use homebrew version
+  gem:
+    name: "{{ item }}"
+    state: present
+    user_install: no
+    executable: '/usr/local/bin/gem' # make sure we use homebrew version
   with_items: "{{ default_gems }}"
 
 - name: cleanup old brews from when I was using rbenv
