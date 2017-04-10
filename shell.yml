@@ -22,27 +22,14 @@
       when:  usershell|changed
 
 
-- name: install ohmyzsh for current user
-  hosts: all
-  gather_facts: no
-  tags: ohmyzsh
-  tasks:
-    - name: install oh-my-zsh
-      git:  repo=https://github.com/robbyrussell/oh-my-zsh.git
-            dest=~/.oh-my-zsh
-            update=no
-
-    - name: install syntax highlight plugin for ohmyzsh
-      git:  repo=https://github.com/zsh-users/zsh-syntax-highlighting.git
-            dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-            update=yes
-
-
 - name: dotfiles
   hosts: all
   gather_facts: yes
   tags: dotfiles
   tasks:
+    - name: install antigen
+      homebrew: name=antigen state=present
+
     - name: homeshick | clone homeshick
       git:  repo=https://github.com/andsens/homeshick.git
             dest=~/.homesick/repos/homeshick
