@@ -13,9 +13,6 @@ language: objective-c
 # So let's do a few things to *undo* that, in order to make sure our script will
 # work on a semi virgin setup.
 before_install:
-  # uninstall rvm
-  - yes "yes" | rvm implode
-
   # uninstall homebrew
   # based on: https://gist.github.com/mxcl/1173223
   # slight modifications (deletes with impudence)
