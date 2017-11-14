@@ -17,6 +17,7 @@
     homebrew: name={{ item }} state=present
     with_items:
       - git
+      - coreutils
       - hub
       - scmpuff
       - ssh-copy-id
@@ -27,10 +28,10 @@
     with_items:
       - gh #gh is now hub
 
-  - name: install essential shell casks
-    homebrew_cask: name={{ item }} state=present
-    with_items:
-      - xquartz
+  # - name: install essential shell casks
+  #   homebrew_cask: name={{ item }} state=present
+  #   with_items:
+  #     - xquartz
 
 
 # Manually include the development playbooks here for reverse compatibility
@@ -49,23 +50,26 @@
       - firefox
       # text editors i hate the least
       - atom
-      - macvim
-      - mou
-      # virtual machines
+      - visual-studio-code
+      # VMs and containers
       - vmware-fusion
       # other dev tools
       - dash
       - github-desktop
+      - gitup
+      - imageoptim
+      - licecap
       # non-dev stuff for general productivity
-      - caffeine
       - cloud
       - daisydisk
-      - dropbox
-      - flux
+      - mroth/formulas/readtime
+      - mroth/formulas/timeduration
       # non-dev stuff for general unproductivity
-      - steam
+      - brogue
+      - dungeon-crawl-stone-soup-tiles
       - transmission
       - vlc
+      - iina
 
   - name: install homebrew tools
     tags: brews
@@ -73,10 +77,10 @@
     with_items:
       # dev tools
       - ack
+      - ripgrep
       - jq
       - gist
       # text editor assistance
-      - ctags
       - shellcheck
       # heroku style development
       - heroku-toolbelt
@@ -91,5 +95,4 @@
       - nmap
       - pwgen
       # media related tools
-      - pianobar
       - ffmpeg
