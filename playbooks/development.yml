@@ -4,3 +4,4 @@
 # - include: development/haskell.yml
 - include: development/node.yml
 - include: development/ruby.yml
+- include: development/ios.yml

@@ -1,0 +1,14 @@
+---
+- name: iOS Development Stuff
+  hosts: all
+  tags: ios
+
+  tasks:
+    - homebrew: name={{ item }} state=present
+      with_items:
+        - carthage
+        - swiftlint
+
+    - homebrew_cask: name={{ item }} state=present
+      with_items:
+        - fastlane
