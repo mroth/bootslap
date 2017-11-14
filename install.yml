@@ -80,6 +80,8 @@
       - ripgrep
       - jq
       - gist
+      # let us avoid global gems as distribution tool
+      - brew-gem
       # text editor assistance
       - shellcheck
       # heroku style development
