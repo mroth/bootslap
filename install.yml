@@ -35,7 +35,7 @@
 
 # Manually include the development playbooks here for reverse compatibility
 # Probably will change the overall structure of things soon though...
-- include: playbooks/development.yml
+- import_playbook: playbooks/development.yml
 
 - name: Applications and tools
   hosts: all
