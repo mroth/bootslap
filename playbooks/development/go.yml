@@ -19,8 +19,9 @@
     - name: install tools for less sucky Go dependency management
       homebrew: name={{ item }} state=present
       with_items:
-        - godep
-        - glide
+        - dep   # current best practice!
+        - godep # want to deprecate, but still using on some old projects
+        - glide # want to deprecate, but still using on some old projects
 
     - name: install additional Go tools
       command: go get {{ item }}
