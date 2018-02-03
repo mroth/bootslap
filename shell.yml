@@ -5,22 +5,12 @@
   tags: shell
   vars:
     desired_shell: /bin/zsh
-
   tasks:
-    - name:     compare user current shell to {{ desired_shell }}
-      shell:    dscl . -read ~ UserShell | awk '{print $2}'
-      register: usershell
-      changed_when: usershell.stdout != "{{ desired_shell }}"
-      always_run: yes
-
-    # Note: if make this sudo: yes, then playbook will require being run with
-    # -K argument and password up front, but won't prompt user when changing
-    # this step.
-    - name:  change default shell to {{ desired_shell }}
-      sudo:  yes
-      shell: chsh -s {{ desired_shell }} {{ ansible_user_id }}
-      when:  usershell|changed
-
+    - name: "set current user shell to {{ desired_shell }}"
+      become: yes
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: "{{ desired_shell }}"
 
 - name: dotfiles
   hosts: all
