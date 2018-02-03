@@ -23,9 +23,16 @@
       - ssh-copy-id
       - imagemagick
 
-# Manually include the development playbooks here for reverse compatibility
-# Probably will change the overall structure of things soon though...
-- import_playbook: playbooks/development.yml
+
+# More complex development environments I manage with their own playbooks,
+# import the ones I want installed here.
+- import_playbook: development/docker.yml
+- import_playbook: development/elixir.yml
+- import_playbook: development/go.yml
+- import_playbook: development/node.yml
+- import_playbook: development/ruby.yml
+- import_playbook: development/ios.yml
+
 
 - name: Applications and tools
   hosts: all

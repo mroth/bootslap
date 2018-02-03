@@ -1,7 +1,0 @@
-- import_playbook: development/docker.yml
-- import_playbook: development/elixir.yml
-- import_playbook: development/go.yml
-# - import_playbook: development/haskell.yml
-- import_playbook: development/node.yml
-- import_playbook: development/ruby.yml
-- import_playbook: development/ios.yml
