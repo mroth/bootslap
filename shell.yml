@@ -27,9 +27,18 @@
   gather_facts: yes
   tags: dotfiles
   tasks:
+    # my dotfiles rely upon antigen to manage shell plugins, so make sure it is
+    # installed and ready for our usage!
     - name: install antigen
       homebrew: name=antigen state=present
 
+    # whereas the dotfiles themselves are stored and synced via homeshick,
+    # so install that as well.
+    #
+    # NOTE: I personally don't love that homeshick tool itself is managed as a
+    # git repo, and self-updated that way (I'd prefer a binary style tool that
+    # doesn't need to be sourced), but it's the best for my usage I've found
+    # currently.
     - name: homeshick | clone homeshick
       git:  repo=https://github.com/andsens/homeshick.git
             dest=~/.homesick/repos/homeshick

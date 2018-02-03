@@ -14,31 +14,31 @@ of different solutions and evaluated a bunch of different approaches.
 As a result of these forays, there are a few things bootslap is opinionated
 about:
 
- - **Stand on the shoulders of giants.**  
+ - **Stand on the shoulders of giants.**
    [Homebrew][homebrew] is the best way to manage CLI tools on OSX.
    [Homebrew Cask][brewcask] is the best way to manage binary applications on OSX.
    Make sure these providers are used for automatic installations as well, so
    that we can take advantage of their expansive and well maintained libraries.
 
- - **Install as much as possible via default tools in default locations.**  
+ - **Install as much as possible via default tools in default locations.**
    Doing things in a nonstandard way or putting files in a nonstandard location
    means you might hit state bugs the general populace won't. This also means
    you aren't tied to bootslap in the future -- you can use it once to set stuff
    up and then throw it away later.
 
- - **Do everything in an idempotent way.**  
+ - **Do everything in an idempotent way.**
    Tasks should be runnable at any time, creating/repairing installations when
    needed, ignoring stuff if already exists.  You should be able to run the
    bootstrap script on a fully up-to-date workstation after making a single
    change, only only that one change will be applied to the machine, and it will
    happen _fast_.
 
- - **Favor simplicity over modularity.**  
+ - **Favor simplicity over modularity.**
    Goal is for the entire codebase to be understandable and *modifiable*
    directly by anyone seeking to repurpose this, instead of them relying on me
    building in configuration options for whatever they might want to do.
 
- - **Use the same tools for automatic and interactive modes.**  
+ - **Use the same tools for automatic and interactive modes.**
    Want to remove something later?  Don't need to mess with finding an uninstall
    script (assuming one even exists) or going searching all over the hard disk
    to figure out where your clever bootstrapper script put stuff.  Just `brew
@@ -82,33 +82,26 @@ too.
 
 Well, _in my particular scripts_, this is what I have shoved onto the SSD:
 
- - Sets my default shell to zsh with a bunch of extras:
-    - _oh-my-zsh_ and _zsh syntax highlighting_.
-    - _scm_breeze_ for nicer CLI git.
-    - _gh_ (previously _hub_) for better CLI git integration with GitHub.
-    - Heroku style local development via _heroku toolbelt_ and _forego_.
-    - Collection of good default vim plugins via _Janus_.
-    - Awesome dotfile management via _homeshick_.
- - Configures a bunch of programming environments:
-    - _Ruby_ (rbenv with all common rubies and Bundler).
-    - _NodeJS_ (CoffeeScript, Grunt, Bower, Yeoman).
-    - _Go_ (godoc, vet, Godeps).
-    - _Erlang/Elixir_.
-    - _Haskell Platform_.
-    - and _Rust_ (nightly builds).
- - Common libraries you probably want to have around:
-    - _XQuartz_, _ImageMagick_.
+ - Sets my default shell to zsh with a bunch of extras.
+ - Installs and configures a bunch of programming development environments.
+ - Installs some common libraries you probably want to have around.
  - Installs a bunch of common applications for dev types:
     - Chrome, Firefox, MacVim, TextMate, SublimeText, Atom, Dropbox,
-      GitHub for Mac, VirtualBox/Vagrant, f.lux, SizeUp...  
+      GitHub for Mac, VirtualBox/Vagrant, f.lux, SizeUp...
  - ...and bunch of common GUI applications:
-    - browsers, text editors, music players, even Steam for when I want to
-      procrastinate by playing a game.
+    - web browsers, text editors, media players, etc.
  - Other handy CLI stuff:
     - git, ack, ssh-copy-id, etc...
  - Configure MacOSX to be less annoying:
     - configure dock, disable network .DS_Store, etc.)
 
+Note, I don't keep the above description up to date, so it's probably not
+accurate for my individual installer. But that shouldn't matter, since the
+actual files are easy to read and modify.  As a starting point, look at:
+
+- `install.yml` for everything that I "install" to the machine
+- `shell.yml` for my shell setup and modifications
+- `configure.yml` for macOS system configuration twiddling
 
 Note that this repo is only half the story, some of magic happens in my
 [dotfiles](https://github.com/mroth/dotfiles) as well. (Which these scripts
@@ -139,9 +132,6 @@ By default we look for `$USERNAME/dotfiles` on GitHub when getting things setup,
 and we infer your GitHub username from your system environment. You can manually
 override this in the `shell.yml` playbook is desired.
 
-### Updating ALL THE THINGS
-Since we're OCD, we need a script update everything.  
-TODO: This needs to be updated for v5.
 
 ## What's New in version 5?
 

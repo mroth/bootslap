@@ -23,16 +23,19 @@
       - ssh-copy-id
       - imagemagick
 
-
 # More complex development environments I manage with their own playbooks,
 # import the ones I want installed here.
-- import_playbook: development/docker.yml
 - import_playbook: development/elixir.yml
 - import_playbook: development/go.yml
 - import_playbook: development/node.yml
 - import_playbook: development/ruby.yml
 - import_playbook: development/ios.yml
 
+# More and more these days, I'm actually avoring using Docker to manage local
+# dev environments, making the playbooks like the above unnecessary (but it's
+# still nice to have the ability to do local dev, hence I still have them for
+# more frequently used environments.)
+- import_playbook: development/docker.yml
 
 - name: Applications and tools
   hosts: all
@@ -58,9 +61,7 @@
       # non-dev stuff for general productivity
       - cloud
       - daisydisk
-      - mroth/formulas/readtime
-      - mroth/formulas/timeduration
-      # non-dev stuff for general unproductivity
+      # non-dev stuff for general unproductivity (games, media, torrents)
       - brogue
       - dungeon-crawl-stone-soup-tiles
       - transmission
@@ -71,16 +72,21 @@
     tags: brews
     homebrew: state=present name={{ item }}
     with_items:
-      # dev tools
+      # General dev tools useful on the command line.
       - ack
       - ripgrep
       - jq
       - gist
+      # Some small custom tools I use for command line productivity,
+      # but not in enough demand to actually submit to homebrew central.
+      - mroth/formulas/readtime     # see github.com/mroth/readtime
+      - mroth/formulas/timeduration # see github.com/mroth/timeduration
       # let us avoid global gems as distribution tool
       - brew-gem
-      # text editor assistance
+      # Linters, etc that aren't part of a general dev environment.
       - shellcheck
-      # heroku style development
+      # Tools to aide Heroku deployments.  I do this less often these days,
+      # but still handy to have around.
       - heroku-toolbelt
       - forego
       # networking tools
