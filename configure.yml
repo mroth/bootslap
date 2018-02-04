@@ -92,7 +92,7 @@
     - name: UI | Dock | set icon size to {{ dock.icon_size }}
       osx_defaults: domain=com.apple.dock
                     key=tilesize
-                    type=int
+                    type=float
                     value={{ dock.icon_size }}
       # notify: killall Dock
       # TODO: need to fix integer value change check in osx_defaults script,
