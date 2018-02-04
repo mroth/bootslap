@@ -25,17 +25,17 @@
 
 # More complex development environments I manage with their own playbooks,
 # import the ones I want installed here.
-- import_playbook: development/elixir.yml
-- import_playbook: development/go.yml
-- import_playbook: development/node.yml
-- import_playbook: development/ruby.yml
-- import_playbook: development/ios.yml
+- import_playbook: playbooks/development/elixir.yml
+- import_playbook: playbooks/development/go.yml
+- import_playbook: playbooks/development/node.yml
+- import_playbook: playbooks/development/ruby.yml
+- import_playbook: playbooks/development/ios.yml
 
 # More and more these days, I'm actually avoring using Docker to manage local
 # dev environments, making the playbooks like the above unnecessary (but it's
 # still nice to have the ability to do local dev, hence I still have them for
 # more frequently used environments.)
-- import_playbook: development/docker.yml
+- import_playbook: playbooks/development/docker.yml
 
 - name: Applications and tools
   hosts: all
