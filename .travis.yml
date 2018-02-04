@@ -14,8 +14,9 @@ language: objective-c
 # work on a semi virgin setup.
 before_install:
   # uninstall homebrew
-  # based on: https://gist.github.com/mxcl/1173223
-  - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+  - wget https://raw.githubusercontent.com/Homebrew/install/master/uninstall
+  - chmod +x ./uninstall
+  - ./uninstall --force --quiet
 
   # TODO: it would be great if we could uninstall the XCode Dev Tools and CLI
   # dev tools to ensure at least the CLI version gets reinstalled, but I think
