@@ -132,8 +132,9 @@
     - name: Apps | Safari | Privacy - 'Prevent cross-site tracking'
       osx_defaults: domain=com.apple.safari
                     key=WebKitStorageBlockingPolicy
-                    type=boolean
-                    value=true
+                    type=int
+                    value=1
+      # ^^^ sigh, yes, this is an int, rather than a bool, no consistency from apple here
 
     - name: Apps | Safari | Privacy - 'Ask websites not to track me'
       osx_defaults: domain=com.apple.safari
