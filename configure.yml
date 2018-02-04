@@ -28,12 +28,15 @@
                     value=1
       # notify: restart firewall
 
-    # Note: due to Apple weirdness, this value is expected to be a string rather
+    # Don't litter external network mounts with our metadata.
+    #
+    # NOTE: due to Apple weirdness, this value used to be a be a string rather
     # then a bool, despite the fact it's a boolean value!, e.g. "true" as a str.
+    # However, this is now fixed as of macOS 10.13
     - name: System | disable network .DS_Store
       osx_defaults: domain=com.apple.desktopservices
                     key=DSDontWriteNetworkStores
-                    type=string
+                    type=bool
                     value=true
 
 
