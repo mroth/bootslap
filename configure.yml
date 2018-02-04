@@ -71,70 +71,76 @@
 #   tasks:
 
 
-- name: Apps/GUI Configuration
+- name: UI Configuration
   hosts: all
-  tags: gui
+  tags: ui
   vars:
     dock:
-      icon_size: 42
-
+      showhidden: true
+      tilesize: 42
+      autohide: true
+  handlers:
+    # - name:    killall Finder
+    #   command: killall Finder
+    - name:    killall Dock
+      command: killall Dock
+    # - name:    killall SystemUIServer
+    #   command: killall SystemUIServer
   tasks:
-    #
-    # Configuration related to the GUI
-    #
-    - name: UI | Dock | dim hidden apps
+    - name: UI | Dock | dim hidden apps is {{ dock.showhidden }}
       osx_defaults: domain=com.apple.dock
                     key=showhidden
                     type=bool
-                    value=true
+                    value={{ dock.showhidden }}
       notify: killall Dock
 
     - name: UI | Dock | set icon size to {{ dock.icon_size }}
       osx_defaults: domain=com.apple.dock
                     key=tilesize
                     type=float
-                    value={{ dock.icon_size }}
-      # notify: killall Dock
-      # TODO: need to fix integer value change check in osx_defaults script,
-      # so this doesnt fire every time.
+                    value={{ dock.tilesize }}
+      notify: killall Dock
 
-    - name: UI | Dock | enable auto-hide
+    - name: UI | Dock | auto-hide is {{ dock.autohide }}
       osx_defaults: domain=com.apple.dock
                     key=autohide
                     type=boolean
-                    value=true
+                    value={{ dock.autohide }}
       notify: killall Dock
 
-    - name: UI | Keyboard | enable full keyboard access
-      osx_defaults: domain=NSGlobalDomain
-                    key=AppleKeyboardUIMode
-                    type=int
-                    value=3
+    # - name: UI | Keyboard | enable full keyboard access
+    #   osx_defaults: domain=NSGlobalDomain
+    #                 key=AppleKeyboardUIMode
+    #                 type=int
+    #                 value=3
 
-    - name: UI | Trackpad | enable tap to click
-      osx_defaults: domain=com.apple.MultiTouchTrackpad
-                    key=Clicking
-                    type=boolean
-                    value=true
+    # TODO: see what the current defaults are on a a new machine and if I can live with them
+    # - name: UI | Trackpad | enable tap to click
+    #   osx_defaults: domain=com.apple.MultiTouchTrackpad
+    #                 key=Clicking
+    #                 type=boolean
+    #                 value=true
+
+    # TODO: enable night shift if not on by default?
 
 
-
-    #
-    # Configuration related to GUI apps
-    #
-    - name: Apps | Safari | enable Develop menu
+- name: Apps (GUI) Configuration
+  hosts: all
+  tags: apps
+  tasks:
+    - name: Apps | Safari | Enable Develop menu
       osx_defaults: domain=com.apple.safari
                     key=IncludeDevelopMenu
                     type=boolean
                     value=true
 
-    - name: Apps | Safari | set cookie policy "Allow from current website only"
+    - name: Apps | Safari | Privacy - 'Prevent cross-site tracking'
       osx_defaults: domain=com.apple.safari
-                    key=BlockStoragePolicy
-                    type=int
-                    value=3
+                    key=WebKitStorageBlockingPolicy
+                    type=boolean
+                    value=true
 
-    - name: Apps | Safari | enable DoNotTrack header
+    - name: Apps | Safari | Privacy - 'Ask websites not to track me'
       osx_defaults: domain=com.apple.safari
                     key=SendDoNotTrackHTTPHeader
                     type=boolean
@@ -143,18 +149,3 @@
 
     # TODO: install solarized theme for terminal.app
     # see https://github.com/mathiasbynens/dotfiles/blob/master/.osx
-
-
-  handlers:
-    - name:    killall Finder
-      command: killall Finder
-    - name:    killall Dock
-      command: killall Dock
-    - name:    killall SystemUIServer
-      command: killall SystemUIServer
-
-    - name: restart firewall
-      sudo: yes
-      shell: >
-        launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
-        launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
