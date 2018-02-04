@@ -29,6 +29,7 @@
 - import_playbook: playbooks/development/go.yml
 - import_playbook: playbooks/development/node.yml
 - import_playbook: playbooks/development/ruby.yml
+- import_playbook: playbooks/development/rust.yml
 - import_playbook: playbooks/development/ios.yml
 
 # More and more these days, I'm actually avoring using Docker to manage local

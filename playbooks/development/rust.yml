@@ -7,4 +7,7 @@
     - name: install homebrew stub for rustup
       homebrew: name=rustup-init state=present
 
-    # TODO: rustup-init -y --no-modify-path
+    - name: use rustup-init to bootstrap rustup (& stable rust automaticaly)
+      command: rustup-init -y --no-modify-path
+      args:
+        creates: ~/.cargo/bin/rustc
