@@ -21,7 +21,7 @@
     # Enable the OSX default firewall
     # https://coderwall.com/p/zt8aqa
     - name: System | enable firewall
-      sudo: yes
+      become: yes
       osx_defaults: domain=/Library/Preferences/com.apple.alf
                     key=globalstate
                     type=int
@@ -43,7 +43,7 @@
 
   handlers:
     - name: restart firewall
-      sudo: yes
+      become: yes
       shell: >
         launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
         launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
