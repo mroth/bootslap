@@ -38,12 +38,7 @@
 
 
     # TODO: check for full disk encryption! (maybe dont manually install)
-
-
-    # TODO: set recovery message
-    # # in case of lost device (yeah right)
-    # # also gives my phone number to the entire interweb yay opensource
-    # osx::recovery_message { 'If found, please call +1 5102067426': }
+    # TODO: set recovery message in case of lost device (yeah right)
     # https://github.com/boxen/puppet-osx/blob/master/manifests/recovery_message.pp
 
   handlers:
@@ -145,7 +140,3 @@
                     key=SendDoNotTrackHTTPHeader
                     type=boolean
                     value=true
-
-
-    # TODO: install solarized theme for terminal.app
-    # see https://github.com/mathiasbynens/dotfiles/blob/master/.osx
