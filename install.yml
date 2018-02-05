@@ -55,7 +55,7 @@
       - vmware-fusion
       # other dev tools
       - dash
-      - github-desktop
+      - github
       - gitup
       - imageoptim
       - licecap
