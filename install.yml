@@ -60,7 +60,6 @@
       - imageoptim
       - licecap
       # non-dev stuff for general productivity
-      - cloud
       - daisydisk
       # non-dev stuff for general unproductivity (games, media, torrents)
       - brogue
