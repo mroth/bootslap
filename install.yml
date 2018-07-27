@@ -82,6 +82,7 @@
       # but not in enough demand to actually submit to homebrew central.
       - mroth/formulas/readtime     # see github.com/mroth/readtime
       - mroth/formulas/timeduration # see github.com/mroth/timeduration
+      - mroth/formulas/consider     # see github.com/mroth/consider
       # let us avoid global gems as distribution tool
       - brew-gem
       # Linters, etc that aren't part of a general dev environment.
