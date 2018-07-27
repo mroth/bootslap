@@ -98,5 +98,3 @@
       - gnupg
       - nmap
       - pwgen
-      # media related tools
-      - ffmpeg
