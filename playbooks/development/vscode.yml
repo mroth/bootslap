@@ -21,6 +21,7 @@
     - name: gathering existing installed extensions
       shell: code --list-extensions
       register: currentextraw
+      check_mode: false
       changed_when: false
 
     - set_fact:
