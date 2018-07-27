@@ -1,0 +1,35 @@
+---
+- name: VSCode Development Environment
+  hosts: all
+  tags: vscode
+  vars:
+    extensions:
+      - EditorConfig.EditorConfig
+      - PeterJausovec.vscode-docker
+      - mikestead.dotenv
+      - bierner.markdown-emoji
+      - bierner.markdown-preview-github-styles
+      - esbenp.prettier-vscode
+      - ms-vscode.Go
+      - stkb.rewrap
+
+  tasks:
+    - name: install vscode
+      homebrew_cask: name=visual-studio-code state=present
+      check_mode: false
+
+    - name: gathering existing installed extensions
+      shell: code --list-extensions
+      register: currentextraw
+      changed_when: false
+
+    - set_fact:
+        missing_extensions: "{{ extensions | difference(currentextraw.stdout_lines) }}"
+        untracked_extensions: "{{ currentextraw.stdout_lines | difference(extensions) }}"
+
+    - name: install missing extensions
+      shell: code --install-extension {{item}}
+      with_items: "{{ missing_extensions }}"
+
+    # show us what we have installed that isn't managed here, in case we want to add it
+    - debug: var=untracked_extensions

@@ -34,6 +34,7 @@
 - import_playbook: playbooks/development/ruby.yml
 - import_playbook: playbooks/development/rust.yml
 - import_playbook: playbooks/development/ios.yml
+- import_playbook: playbooks/development/vscode.yml
 
 # More and more these days, I'm actually avoring using Docker to manage local
 # dev environments, making the playbooks like the above unnecessary (but it's
@@ -51,9 +52,6 @@
       # webdevs need all the webs (except opera lol)
       - google-chrome
       - firefox
-      # text editors i hate the least
-      - atom
-      - visual-studio-code
       # VMs and containers
       - vmware-fusion
       # other dev tools
