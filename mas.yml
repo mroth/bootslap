@@ -1,0 +1,37 @@
+# Some boilerplate towards starting to work with Mac App Store stuff.
+# WIP, not really using yet, but starting to document here for posterity.
+
+# https://github.com/geerlingguy/ansible-role-mas
+# https://github.com/geerlingguy/ansible-role-mas/blob/master/tasks/main.yml
+- name: Mac App Store
+  hosts: all
+  tags: mas
+  vars:
+    # prompt in ansible occurs way too early, so would either need to code in
+    # file or have passed at command line, ugh...
+    - mas_email: mrothenberg@gmail.com
+  tasks:
+    - homebrew: state=present name=mas
+    - name: verify MAS logged in status
+      shell: "mas account"
+      register: mas_account_result
+      failed_when: mas_account_result.rc > 1
+      changed_when: false
+
+    - command: mas list
+      register: mas_list
+      check_mode: no
+      changed_when: false
+
+    - name: install MAS apps
+      tags: mas
+      command: mas install "{{ item.id|default(item) }}"
+      when: (item.id | default(item) | string) not in mas_list.stdout
+      with_items:
+        - { id: 497799835,  name: "Xcode" }
+        - { id: 611658502,  name: "Boxy SVG" }
+        - { id: 411643860,  name: "DaisyDisk" }
+        - { id: 1180442868, name: "SmileAllDay" }
+        - { id: 1160374471, name: "PiPifier" }
+        - { id: 409183694,  name: "Keynote" }
+        - { id: 803453959,  name: "Slack" }
