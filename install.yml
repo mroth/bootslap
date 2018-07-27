@@ -1,13 +1,16 @@
 ---
-- name: set up sources
-  hosts: all
-  tags: casks
-  tasks:
-  - name: get homebrew taps setup
-    homebrew_tap: tap={{ item }} state=present
-    always_run: yes
-    with_items:
-      - homebrew/binary
+# This should no longer be necessary now that homebrew autotaps based on FQ name
+# TODO: remove me once I verify a full install run worked properly without it.
+#
+# - name: set up sources
+#   hosts: all
+#   tags: casks
+#   tasks:
+#   - name: get homebrew taps setup
+#     homebrew_tap: tap={{ item }} state=present
+#     always_run: yes
+#     with_items:
+#       - homebrew/binary
 
 - name: essential tools for shell environment
   hosts: all
