@@ -4,7 +4,8 @@
   tags: node
   vars:
     global_modules:
-      - bower
+      - github-email
+      - serve
 
   tasks:
     # we need to force always_run on this because otherwise the npm-tasks following
