@@ -60,7 +60,7 @@
       - imageoptim
       - licecap
       # non-dev stuff for general productivity
-      - daisydisk
+      # - daisydisk (I bought this in MAS whoops)
       # non-dev stuff for general unproductivity (games, media, torrents)
       - brogue
       - dungeon-crawl-stone-soup-tiles
