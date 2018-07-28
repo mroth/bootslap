@@ -30,6 +30,7 @@
       with_items:
         - { id: 497799835,  name: "Xcode" }
         - { id: 611658502,  name: "Boxy SVG" }
+        - { id: 407963104,  name: "Pixelmator" }
         - { id: 411643860,  name: "DaisyDisk" }
         - { id: 1180442868, name: "SmileAllDay" }
         - { id: 1160374471, name: "PiPifier" }
