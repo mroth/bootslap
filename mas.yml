@@ -28,7 +28,6 @@
       command: mas install "{{ item.id|default(item) }}"
       when: (item.id | default(item) | string) not in mas_list.stdout
       with_items:
-        - { id: 497799835,  name: "Xcode" }
         - { id: 611658502,  name: "Boxy SVG" }
         - { id: 407963104,  name: "Pixelmator" }
         - { id: 411643860,  name: "DaisyDisk" }
@@ -37,3 +36,4 @@
         - { id: 409183694,  name: "Keynote" }
         - { id: 803453959,  name: "Slack" }
         - { id: 1153157709, name: "Speedtest" }
+        - { id: 497799835,  name: "Xcode" }
