@@ -33,7 +33,8 @@
 - import_playbook: playbooks/development/node.yml
 - import_playbook: playbooks/development/ruby.yml
 - import_playbook: playbooks/development/rust.yml
-- import_playbook: playbooks/development/ios.yml
+# TODO: ios playbook doesnt install without full xcode, really want in initial install?
+# - import_playbook: playbooks/development/ios.yml
 - import_playbook: playbooks/development/vscode.yml
 
 # More and more these days, I'm actually avoring using Docker to manage local
