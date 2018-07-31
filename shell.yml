@@ -41,7 +41,7 @@
       register: dotfiles_cloned
 
     - name: homeshick | dotfiles force link if just first installed
-      when: dotfiles_cloned|changed
+      when: dotfiles_cloned is changed
       command: ~/.homesick/repos/homeshick/bin/homeshick link dotfiles --force
 
 
@@ -58,7 +58,7 @@
       register: janus_cloned
 
     - name: bootstrap vim-janus if just first installed
-      when: janus_cloned|changed
+      when: janus_cloned is changed
       command: rake chdir=~/.vim
 
 
