@@ -16,10 +16,11 @@
         - hg
         - bzr
 
-    - name: install tools for less sucky Go dependency management
+    - name: install brew managed Go tooling
       homebrew: name={{ item }} state=present
       with_items:
-        - dep   # current best practice!
+        - golangci/tap/golangci-lint
+        - goreleaser/tap/goreleaser
 
     - name: install additional Go tools
       command: go get {{ item }}
@@ -28,9 +29,5 @@
       args:
         creates: "{{ gopath | expanduser }}/src/{{ item }}/"
       with_items:
-        #- golang.org/x/tools/cmd/godoc
-        #- golang.org/x/tools/cmd/vet
-        #- golang.org/x/tools/cmd/cover
-        - github.com/kisielk/errcheck
-        - golang.org/x/tools/cmd/benchcmp
+        - golang.org/x/perf/cmd/benchstat
         - github.com/ajstarks/svgo/benchviz
