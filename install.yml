@@ -69,7 +69,6 @@
       - dungeon-crawl-stone-soup-tiles
       - transmission
       - vlc
-      - iina
 
   - name: install homebrew tools
     tags: brews
@@ -80,6 +79,7 @@
       - ripgrep
       - jq
       - gist
+      - github/gh/gh
       # Some small custom tools I use for command line productivity,
       # but not in enough demand to actually submit to homebrew central.
       - mroth/formulas/readtime     # see github.com/mroth/readtime
@@ -91,7 +91,7 @@
       - shellcheck
       # Tools to aide Heroku deployments.  I do this less often these days,
       # but still handy to have around.
-      - heroku-toolbelt
+      - heroku
       - forego
       # networking tools
       - curl
