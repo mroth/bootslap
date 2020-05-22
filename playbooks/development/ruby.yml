@@ -1,4 +1,9 @@
 ---
+# For the most part, I primarily would do any Ruby development within a Docker
+# container these days to handle versioning easier.
+#
+# So this playbook is now changed to basically just get rid of anything else
+# and install bundler into global gems for system ruby.
 - name: Ruby Development Environment
   hosts: all
   tags: ruby
@@ -7,23 +12,13 @@
       - bundler
 
   tasks:
-    - name: install latest homebrew Ruby
-      homebrew: name=ruby state=latest
+    - name: dont use homebrew ruby
+      homebrew: name=ruby state=absent
 
     - name: install desired global RubyGems
       gem:
         name: "{{ item }}"
         state: present
         user_install: no
-        executable: '/usr/local/bin/gem' # make sure we use homebrew version
+        executable: '/usr/bin/gem' # make sure we use system version
       with_items: "{{ default_gems }}"
-
-    - name: cleanup old brews from when I was using rbenv
-      homebrew: name={{ item }} state=absent
-      with_items:
-        - rbenv
-        - ruby-build
-        - rbenv-default-gems
-
-    - name: cleanup old ~/.rbenv data 
-      file: path=~/.rbenv state=absent
