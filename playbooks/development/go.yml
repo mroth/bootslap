@@ -10,17 +10,19 @@
       homebrew: name=go state=present
 
     - name: install tools needed for `go get` to function as expected
-      homebrew: name={{ item }} state=present
-      with_items:
-        - git
-        - hg
-        - bzr
+      homebrew:
+        state: present
+        name:
+          - git
+          - hg
+          - bzr  
 
     - name: install brew managed Go tooling
-      homebrew: name={{ item }} state=present
-      with_items:
-        - golangci/tap/golangci-lint
-        - goreleaser/tap/goreleaser
+      homebrew:
+        state: present
+        name:
+          - golangci/tap/golangci-lint
+          - goreleaser/tap/goreleaser
 
     - name: install additional Go tools
       command: go get {{ item }}

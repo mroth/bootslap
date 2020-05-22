@@ -17,14 +17,15 @@
   tags: essential
   tasks:
   - name: install essential shell brews
-    homebrew: name={{ item }} state=present
-    with_items:
-      - git
-      - coreutils
-      - hub
-      - scmpuff
-      - ssh-copy-id
-      - imagemagick
+    homebrew:
+      state: present
+      name:
+        - git
+        - coreutils
+        - hub
+        - scmpuff
+        - ssh-copy-id
+        - imagemagick
 
 # More complex development environments I manage with their own playbooks,
 # import the ones I want installed here.
@@ -72,32 +73,33 @@
 
   - name: install homebrew tools
     tags: brews
-    homebrew: state=present name={{ item }}
-    with_items:
-      # General dev tools useful on the command line.
-      - ack
-      - ripgrep
-      - jq
-      - gist
-      - github/gh/gh
-      # Some small custom tools I use for command line productivity,
-      # but not in enough demand to actually submit to homebrew central.
-      - mroth/formulas/readtime     # see github.com/mroth/readtime
-      - mroth/formulas/timeduration # see github.com/mroth/timeduration
-      - mroth/formulas/consider     # see github.com/mroth/consider
-      # let us avoid global gems as distribution tool
-      - brew-gem
-      # Linters, etc that aren't part of a general dev environment.
-      - shellcheck
-      # Tools to aide Heroku deployments.  I do this less often these days,
-      # but still handy to have around.
-      - heroku
-      - forego
-      # networking tools
-      - curl
-      - wget
-      - speedtest_cli
-      # security tools
-      - gnupg
-      - nmap
-      - pwgen
+    homebrew:
+      state: present
+      name:
+        # General dev tools useful on the command line.
+        - ack
+        - ripgrep
+        - jq
+        - gist
+        - github/gh/gh
+        # Some small custom tools I use for command line productivity,
+        # but not in enough demand to actually submit to homebrew central.
+        - mroth/formulas/readtime     # see github.com/mroth/readtime
+        - mroth/formulas/timeduration # see github.com/mroth/timeduration
+        - mroth/formulas/consider     # see github.com/mroth/consider
+        # let us avoid global gems as distribution tool
+        - brew-gem
+        # Linters, etc that aren't part of a general dev environment.
+        - shellcheck
+        # Tools to aide Heroku deployments.  I do this less often these days,
+        # but still handy to have around.
+        - heroku
+        - forego
+        # networking tools
+        - curl
+        - wget
+        - speedtest_cli
+        # security tools
+        - gnupg
+        - nmap
+        - pwgen
