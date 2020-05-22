@@ -48,12 +48,12 @@ fi
 
 printf "\n\e[0m
 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉
-                        FUCK YEAH HOMEY, LET'S ROLL!
+                        ALRIGHT, LET'S DO THIS!
 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉
 "
 
-echo "Hey, my homeboy Homebrew is probably going to ask you for your sudo password
-so he can mess with some stuff.  Don't worry about it, he's chill."
+echo "Hey, my main squeeze Homebrew is probably going to ask you for your sudo password
+so they can mess with some stuff.  Don't worry about it, they're cool."
 
 #
 # Install Mac Dev Tools
@@ -78,8 +78,8 @@ brew install git ansible
 #
 printf "\n🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕    CLONING PLAYBOOKS    🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕\n"
 if [ ! -d  $DEST ]; then
-  mkdir -p `dirname $DEST`
-  git clone $REPO $DEST
+  mkdir -p "$(dirname $DEST)"
+  git clone "$REPO" "$DEST"
 else
   echo "Already cloned, updating to latest."
   (cd $DEST && git pull)
@@ -92,8 +92,7 @@ printf "\n💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰    RU
 if [ "$TRAVIS" == "true" ]; then
   # if we are running on travis-ci, run the tests in check mode instead
   echo "Detected run on travis-ci, running playbooks in check mode for dry-run."
-  cd $DEST
-  ansible-playbook --check install.yml shell.yml configure.yml
+  (cd $DEST && ansible-playbook --check install.yml shell.yml configure.yml)
 else
   (cd $DEST && ansible-playbook -K install.yml shell.yml configure.yml)
 fi
