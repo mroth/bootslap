@@ -65,7 +65,7 @@ so they can mess with some stuff.  Don't worry about it, they're cool."
 # Install homebrew
 #
 printf "\n🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺   INSTALLING HOMEBREW   🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺\n"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 #
 # Install ansible via homebrew
