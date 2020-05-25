@@ -44,24 +44,6 @@
       when: dotfiles_cloned is changed
       command: ~/.homesick/repos/homeshick/bin/homeshick link dotfiles --force
 
-
-- name: vim-janus
-  hosts: all
-  gather_facts: no
-  tags: vimjanus
-  tasks:
-    - name: install vim-janus
-      git: repo=https://github.com/carlhuda/janus.git
-           dest=~/.vim
-           update=no
-           recursive=no
-      register: janus_cloned
-
-    - name: bootstrap vim-janus if just first installed
-      when: janus_cloned is changed
-      command: rake chdir=~/.vim
-
-
 - name: xtra placeholder (prevents error condition on --skip-tags=xtra)
   hosts: all
   gather_facts: no
