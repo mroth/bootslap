@@ -25,7 +25,6 @@
         - hub
         - scmpuff
         - ssh-copy-id
-        - imagemagick
 
 # More complex development environments I manage with their own playbooks,
 # import the ones I want installed here.
