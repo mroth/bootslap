@@ -33,3 +33,4 @@
       with_items:
         - golang.org/x/perf/cmd/benchstat
         - github.com/ajstarks/svgo/benchviz
+        - github.com/oligot/go-mod-upgrade
