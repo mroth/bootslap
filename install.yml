@@ -83,9 +83,13 @@
         - github/gh/gh
         # Some small custom tools I use for command line productivity,
         # but not in enough demand to actually submit to homebrew central.
-        - mroth/formulas/readtime     # see github.com/mroth/readtime
-        - mroth/formulas/timeduration # see github.com/mroth/timeduration
-        - mroth/formulas/consider     # see github.com/mroth/consider
+        - mroth/formulas/readtime             # see github.com/mroth/readtime
+        - mroth/formulas/timeduration         # see github.com/mroth/timeduration
+        - mroth/formulas/consider             # see github.com/mroth/consider
+        - mroth/formulas/deepclean            # see github.com/mroth/deepclean
+        - mroth/formulas/bump                 # see github.com/mroth/bump
+        - mroth/formulas/git-semver-describe  # see github.com/mroth/semverdesc
+        - mroth/formulas/ramdisk              # see github.com/mroth/ramdisk
         # let us avoid global gems as distribution tool
         - brew-gem
         # Linters, etc that aren't part of a general dev environment.
