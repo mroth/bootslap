@@ -80,24 +80,8 @@ too.
 
 ## So what gets installed?
 
-Well, _in my particular scripts_, this is what I have shoved onto the SSD:
-
- - Sets my default shell to zsh with a bunch of extras.
- - Installs and configures a bunch of programming development environments.
- - Installs some common libraries you probably want to have around.
- - Installs a bunch of common applications for dev types:
-    - Chrome, Firefox, MacVim, TextMate, SublimeText, Atom, Dropbox,
-      GitHub for Mac, VirtualBox/Vagrant, f.lux, SizeUp...
- - ...and bunch of common GUI applications:
-    - web browsers, text editors, media players, etc.
- - Other handy CLI stuff:
-    - git, ack, ssh-copy-id, etc...
- - Configure MacOSX to be less annoying:
-    - configure dock, disable network .DS_Store, etc.)
-
-Note, I don't keep the above description up to date, so it's probably not
-accurate for my individual installer. But that shouldn't matter, since the
-actual files are easy to read and modify.  As a starting point, look at:
+I no longer keep an up to date summary list. But that shouldn't matter, since
+the actual files are easy to read and modify.  As a starting point, look at:
 
 - `install.yml` for everything that I "install" to the machine
 - `shell.yml` for my shell setup and modifications
