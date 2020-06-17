@@ -71,7 +71,7 @@ art and emoji? Either way, you can bootstrap the initial steps by hand as well
 too.
 
  1. Install Homebrew:
-    `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+    `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
  2. Install Ansible via Homebrew:
     `brew install ansible`
  3. Clone this repo, run the playbooks you want and go make yourself a coffee.
