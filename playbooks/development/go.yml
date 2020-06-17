@@ -23,6 +23,8 @@
         name:
           - golangci/tap/golangci-lint
           - goreleaser/tap/goreleaser
+          - protobuf
+          - protoc-gen-go
 
     - name: install additional Go tools
       command: go get {{ item }}

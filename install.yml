@@ -1,17 +1,4 @@
 ---
-# This should no longer be necessary now that homebrew autotaps based on FQ name
-# TODO: remove me once I verify a full install run worked properly without it.
-#
-# - name: set up sources
-#   hosts: all
-#   tags: casks
-#   tasks:
-#   - name: get homebrew taps setup
-#     homebrew_tap: tap={{ item }} state=present
-#     always_run: yes
-#     with_items:
-#       - homebrew/binary
-
 - name: essential tools for shell environment
   hosts: all
   tags: essential
@@ -33,9 +20,9 @@
 - import_playbook: playbooks/development/node.yml
 - import_playbook: playbooks/development/ruby.yml
 - import_playbook: playbooks/development/rust.yml
+- import_playbook: playbooks/development/vscode.yml
 # TODO: ios playbook doesnt install without full xcode, really want in initial install?
 # - import_playbook: playbooks/development/ios.yml
-- import_playbook: playbooks/development/vscode.yml
 
 # More and more these days, I'm actually avoring using Docker to manage local
 # dev environments, making the playbooks like the above unnecessary (but it's
@@ -50,12 +37,12 @@
     tags: casks
     homebrew_cask: state=present name={{ item }}
     with_items:
-      # webdevs need all the webs (except opera lol)
+      # Extra web browsers
       - google-chrome
       - firefox
-      # VMs and containers
+      # Windows emulation
       - vmware-fusion
-      # other dev tools
+      # Other GUI dev-ish tools
       - dash
       - github
       - gitup
@@ -81,6 +68,13 @@
         - jq
         - gist
         - github/gh/gh
+        - scc
+        - hyperfine
+        - git-sizer
+        # better replacements for standard coreutils etc
+        - hexyl # better hexdump
+        - bat   # better less
+        - fd    # better find
         # Some small custom tools I use for command line productivity,
         # but not in enough demand to actually submit to homebrew central.
         - mroth/formulas/readtime             # see github.com/mroth/readtime
