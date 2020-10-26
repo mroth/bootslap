@@ -32,8 +32,8 @@ but I guarantee it will be quicker than doing it yourself.
 
 As a reminder, essentially all this script does is:
 
-  1. Installs MacOSX Command Line Dev Tools (if needed).
-  2. Installs HomeBrew.
+  1. Installs macOS Command Line Developer Tools (if needed).
+  2. Installs Homebrew.
   3. Uses Homebrew to install Ansible.
   4. Clones the bootslap repository.
   5. Runs the default playbooks (which do all the real work).
@@ -47,9 +47,9 @@ fi
 
 
 printf "\n\e[0m
-🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉
+🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉
                         ALRIGHT, LET'S DO THIS!
-🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉 🎉
+🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉
 "
 
 echo "Hey, my main squeeze Homebrew is probably going to ask you for your sudo password
@@ -64,19 +64,19 @@ so they can mess with some stuff.  Don't worry about it, they're cool."
 #
 # Install homebrew
 #
-printf "\n🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺   INSTALLING HOMEBREW   🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺 🍺\n"
+printf "\n🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺  INSTALLING HOMEBREW   🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺🍺\n"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 #
 # Install ansible via homebrew
 #
-printf "\n🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻   INSTALLING ANSIBLE    🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻 🍻\n"
+printf "\n🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻  INSTALLING ANSIBLE    🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻\n"
 brew install git ansible
 
 #
 # Clone my repo to somewhere useful, and chdir to it
 #
-printf "\n🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕    CLONING PLAYBOOKS    🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕 🍕\n"
+printf "\n🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕   CLONING PLAYBOOKS    🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕\n"
 if [ ! -d  $DEST ]; then
   mkdir -p "$(dirname $DEST)"
   git clone "$REPO" "$DEST"
@@ -88,7 +88,7 @@ fi
 #
 # Run all relevant playbooks
 #
-printf "\n💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰    RUNNING PLAYBOOKS    💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰 💰\n"
+printf "\n💰💰💰💰💰💰💰💰💰💰💰💰💰   RUNNING PLAYBOOKS    💰💰💰💰💰💰💰💰💰💰💰💰💰\n"
 if [ "$TRAVIS" == "true" ]; then
   # if we are running on travis-ci, run the tests in check mode instead
   echo "Detected run on travis-ci, running playbooks in check mode for dry-run."
