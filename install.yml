@@ -1,30 +1,16 @@
 ---
-- name: essential tools for shell environment
-  hosts: all
-  tags: essential
-  tasks:
-  - name: install essential shell brews
-    homebrew:
-      state: present
-      name:
-        - git
-        - coreutils
-        - hub
-        - scmpuff
-        - ssh-copy-id
-
 # More complex development environments I manage with their own playbooks,
 # import the ones I want installed here.
-- import_playbook: playbooks/development/elixir.yml
+#
+# Some of these I no longer install by default, so see the development directory
+# for the entire list.
 - import_playbook: playbooks/development/go.yml
 - import_playbook: playbooks/development/node.yml
 - import_playbook: playbooks/development/ruby.yml
 - import_playbook: playbooks/development/rust.yml
 - import_playbook: playbooks/development/vscode.yml
-# TODO: ios playbook doesnt install without full xcode, really want in initial install?
-# - import_playbook: playbooks/development/ios.yml
 
-# More and more these days, I'm actually avoring using Docker to manage local
+# More and more these days, I'm actually favoring using Docker to manage local
 # dev environments, making the playbooks like the above unnecessary (but it's
 # still nice to have the ability to do local dev, hence I still have them for
 # more frequently used environments.)
@@ -49,7 +35,6 @@
       - imageoptim
       - licecap
       # non-dev stuff for general productivity
-      # - daisydisk (I bought this in MAS whoops)
       - authy
       # non-dev stuff for general unproductivity (games, media, torrents)
       - brogue
@@ -62,6 +47,13 @@
     homebrew:
       state: present
       name:
+        # former "essential" list
+        - git
+        - coreutils
+        - hub
+        - scmpuff
+        - ssh-copy-id
+        - imagemagick
         # General dev tools useful on the command line.
         - ack
         - ripgrep
