@@ -63,6 +63,8 @@
         - scc
         - hyperfine
         - git-sizer
+        - git-absorb
+        - git-delta
         # better replacements for standard coreutils etc
         - hexyl # better hexdump
         - bat   # better less
