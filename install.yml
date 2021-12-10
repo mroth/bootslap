@@ -50,16 +50,12 @@
         # former "essential" list
         - git
         - coreutils
-        - hub
         - scmpuff
         - ssh-copy-id
-        - imagemagick
         # General dev tools useful on the command line.
-        - ack
         - ripgrep
         - jq
-        - gist
-        - github/gh/gh
+        - gh
         - scc
         - hyperfine
         - git-sizer
@@ -79,7 +75,7 @@
         - mroth/formulas/git-semver-describe  # see github.com/mroth/semverdesc
         - mroth/formulas/ramdisk              # see github.com/mroth/ramdisk
         # let us avoid global gems as distribution tool
-        - brew-gem
+        # - brew-gem
         # Linters, etc that aren't part of a general dev environment.
         - shellcheck
         # Tools to aide Heroku deployments.  I do this less often these days,
